@@ -1,1 +1,40 @@
-<p>admin-init works!</p>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    fixedInViewport="false"
+    [attr.role]="(isSmall$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isSmall$ | async) ? 'over' : 'side'"
+    [opened]="(isSmall$ | async) === false"
+  >
+    <div class="d-flex justify-content-center my-3">
+      logo
+      <!--  <img
+        id="login-logo-workards"
+        [src]="LogoWorkards.url_white"
+        [alt]="LogoWorkards.alt"
+      /> -->
+    </div>
+
+    <odo-admin-sidenav-list></odo-admin-sidenav-list>
+
+    <!--  <qaroni-dashboard-sidenav-list
+      [companyID]="companyID"
+      [userRole]="userRole"
+    ></qaroni-dashboard-sidenav-list> -->
+
+    <!-- <qaroni-dashboard-sidenav-info-actions
+      [companyID]="companyID"
+    ></qaroni-dashboard-sidenav-info-actions> -->
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <odo-admin-toolbar class="qaroni-sticky-toolbar"></odo-admin-toolbar>
+    <!--  <qaroni-dashboard-toolbar
+    class="qaroni-sticky-toolbar"
+    (toggleEvent)="toggle()"
+  ></qaroni-dashboard-toolbar> -->
+    <ng-container>
+      <router-outlet></router-outlet>
+    </ng-container>
+  </mat-sidenav-content>
+</mat-sidenav-container>

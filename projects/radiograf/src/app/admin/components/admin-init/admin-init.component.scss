@@ -1,0 +1,14 @@
+.mat-sidenav-container {
+  min-height: 100vh;
+  background-color: lightcyan;
+
+  .mat-sidenav {
+    position: fixed;
+    background-image: linear-gradient(224deg, #99daff, #69b7f4);
+    width: 280px;
+
+    #login-logo-workards {
+      width: 200px;
+    }
+  }
+}
