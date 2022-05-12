@@ -15,7 +15,7 @@
       },
       "root": "projects/radiograf",
       "sourceRoot": "projects/radiograf/src",
-      "prefix": "app",
+      "prefix": "odo",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
