@@ -8,40 +8,11 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
-
-   {
-    path: 'clients',
-    //canLoad: [OAuthGuard],
-    loadChildren: () =>
-      import('./clients/clients.module').then((m) => m.ClientsModule),
-  },
-  {
-    path: 'medics',
-    //canLoad: [OAuthGuard],
-    loadChildren: () =>
-      import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
-  },
- /* {
-    path: 'invitations',
-    canLoad: [OAuthGuard],
-    loadChildren: () =>
-      import('@qaroni-app/invitations/invitations.module').then(
-        (m) => m.InvitationsModule
-      ),
-  },
-  {
-    path: 'profile',
-    canLoad: [OAuthGuard],
-    loadChildren: () =>
-      import('@qaroni-app/profile/profile.module').then((m) => m.ProfileModule),
-  },*/
   {
     path: '',
     //canLoad: [OAuthGuard],
     loadChildren: () =>
-      import('./dashboard/dashboard.module').then(
-        (m) => m.DashboardModule
-      ),
+      import('./admin/admin.module').then((m) => m.AdminModule),
   },
 ];
 
