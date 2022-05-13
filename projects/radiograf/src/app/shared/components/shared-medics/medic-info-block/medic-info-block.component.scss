@@ -1,0 +1,25 @@
+.medicInfoBlock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  .avatar {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    background-color: rgb(54, 125, 219);
+    margin-right: 8px;
+  }
+  .names {
+    font-size: 16px;
+    line-height: normal;
+    color: white;
+    margin: 12px 0 0;
+  }
+  .email {
+    font-size: 12px;
+    line-height: normal;
+    color: white;
+    margin: 12px 0;
+  }
+}

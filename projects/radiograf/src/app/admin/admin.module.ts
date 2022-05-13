@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { SharedMedicsModule } from '../shared/components/shared-medics/shared-medics.module';
 import { UserModule } from '../shared/components/user/user.module';
 import { SharedModule } from '../shared/shared.module';
 import { AdminRoutingModule } from './admin-routing.module';
@@ -28,7 +29,8 @@ import { AdminToolbarComponent } from './components/admin-toolbar/admin-toolbar.
     MatIconModule,
     MatListModule,
     MatToolbarModule,
-    UserModule
+    UserModule,
+    SharedMedicsModule,
   ],
 })
 export class AdminModule {}

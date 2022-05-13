@@ -6,16 +6,24 @@
     [mode]="(isSmall$ | async) ? 'over' : 'side'"
     [opened]="(isSmall$ | async) === false"
   >
-    <div class="d-flex justify-content-center my-3">
-      logo
-      <!--  <img
-        id="login-logo-workards"
-        [src]="LogoWorkards.url_white"
-        [alt]="LogoWorkards.alt"
-      /> -->
+    <div class="logoMedicContainer">
+      <div class="appLogo">Radiograf</div>
+
+    <div class="medicInfoBlockContainer">
+      <odo-medic-info-block
+        [names]="'Dr. Jordi Duran'"
+        email="jduran@gmail.com"
+      ></odo-medic-info-block>
+
+      <div class="actionsContainer">
+        <mat-icon>exit_to_app</mat-icon>
+      </div>
+    </div>
     </div>
 
-    <odo-admin-sidenav-list></odo-admin-sidenav-list>
+    <div class="sidenavListContiner">
+      <odo-admin-sidenav-list></odo-admin-sidenav-list>
+    </div>
 
     <!--  <qaroni-dashboard-sidenav-list
       [companyID]="companyID"
