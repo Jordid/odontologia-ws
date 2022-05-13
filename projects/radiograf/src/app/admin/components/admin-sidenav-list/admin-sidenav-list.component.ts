@@ -5,11 +5,35 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './admin-sidenav-list.component.html',
   styleUrls: ['./admin-sidenav-list.component.scss']
 })
-export class AdminSidenavListComponent implements OnInit {
+export class AdminSidenavListComponent  {
+  /* @Input() companyID: number;
+  @Input() userRole: UserRole; */
 
-  constructor() { }
+  //public currentDate: string = format(new Date(), 'yyyy-MM');
 
-  ngOnInit(): void {
+  get showCompanySideMenu(): boolean {
+    return true;/* this.userRole?.role === UserRoleEnum.BASIC ||
+      this.userRole?.role === UserRoleEnum.DEVELOPER
+      ? true
+      : false */;
+  }
+
+  public goToWidgets(): string[] {
+    return [];//this.companyID ? [`/companies/${this.companyID}/widgets`] : null;
+  }
+
+  public goToChecks(): string[] {
+    return [];//this.companyID ? [`/companies/${this.companyID}/checks`] : null;
+  }
+
+  public goToDowns(): string[] {
+    return [];//this.companyID ? [`/companies/${this.companyID}/downs/list`] : null;
+  }
+
+  public goToVacations(): string[] {
+    return [];/*this.companyID
+      ? [`/companies/${this.companyID}/vacations/list`]
+      : null;*/
   }
 
 }

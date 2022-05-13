@@ -1,1 +1,254 @@
-<p>admin-sidenav-list works!</p>
+<mat-nav-list class="pb-5">
+  <ng-container *ngIf="true">
+    <div class="qaroni-divider-container mb-3 mt-1">
+      <span >Empleado</span>
+      <mat-divider class="qaroni-bg-white"></mat-divider>
+    </div>
+
+    <a
+      mat-list-item
+      [routerLink]="goToWidgets()"
+      routerLinkActive="qaroni-text-blue"
+    >
+      <div class="d-flex align-items-center">
+        <mat-icon class="mx-2">home</mat-icon>
+        <span >Inicio</span>
+      </div>
+    </a>
+
+    <a
+      mat-list-item
+      [routerLink]=""
+      [queryParams]="{ status: 'ACTIVE' }"
+      routerLinkActive="qaroni-text-blue"
+      [disabled]="true"
+    >
+      <div class="d-flex align-items-center">
+        <mat-icon class="mx-2">account_circle</mat-icon>
+        <span >Perfil</span>
+      </div>
+    </a>
+
+    <a
+      mat-list-item
+      [routerLink]="goToChecks()"
+      [queryParams]="{ date: '' }"
+      routerLinkActive="qaroni-text-blue"
+    >
+      <div class="d-flex align-items-center">
+        <mat-icon class="mx-2">group_add</mat-icon>
+        <span >Fichajes</span>
+      </div>
+    </a>
+
+    <a
+      mat-list-item
+      [routerLink]=""
+      routerLinkActive="qaroni-text-blue"
+      [disabled]="true"
+    >
+      <div class="d-flex align-items-center">
+        <mat-icon class="mx-2">person_off</mat-icon>
+        <span >Ausencias</span>
+      </div>
+    </a>
+
+    <a
+      mat-list-item
+      [routerLink]=""
+      routerLinkActive="qaroni-text-blue"
+      [disabled]="true"
+    >
+      <div class="d-flex align-items-center">
+        <mat-icon class="mx-2">calendar_month</mat-icon>
+        <span >Calendario</span>
+      </div>
+    </a>
+
+    <a
+      mat-list-item
+      [routerLink]=""
+      routerLinkActive="qaroni-text-blue"
+      [disabled]="true"
+    >
+      <div class="d-flex align-items-center">
+        <mat-icon class="mx-2">folder</mat-icon>
+        <span >Documentos</span>
+      </div>
+    </a>
+
+    <a
+      mat-list-item
+      [routerLink]=""
+      routerLinkActive="qaroni-text-blue"
+      [disabled]="true"
+    >
+      <div class="d-flex align-items-center">
+        <mat-icon class="mx-2">inbox</mat-icon>
+        <span >Bandeja de entrada</span>
+      </div>
+    </a>
+
+    <a
+      mat-list-item
+      [routerLink]=""
+      routerLinkActive="qaroni-text-blue"
+      [disabled]="true"
+    >
+      <div class="d-flex align-items-center">
+        <mat-icon class="mx-2">engineering</mat-icon>
+        <span >Productividad</span>
+      </div>
+    </a>
+
+  </ng-container>
+
+  <ng-container *ngIf="!showCompanySideMenu">
+    <div class="qaroni-divider-container my-3">
+      <span >Empresa</span>
+      <mat-divider class="bg-white"></mat-divider>
+    </div>
+
+    <a
+      mat-list-item
+      [routerLink]=""
+      [queryParams]="{ status: 'ACTIVE' }"
+      routerLinkActive="qaroni-text-blue"
+    >
+      <div class="d-flex align-items-center">
+        <mat-icon class="mx-2">home</mat-icon>
+        <span >Inicio</span>
+      </div>
+    </a>
+
+    <a
+      mat-list-item
+      [routerLink]=""
+      [queryParams]="{ status: 'ACTIVE' }"
+      routerLinkActive="qaroni-text-blue"
+    >
+      <div class="d-flex align-items-center">
+        <mat-icon class="mx-2">groups</mat-icon>
+        <span >Empleados</span>
+      </div>
+    </a>
+
+    <a
+      mat-list-item
+      [routerLink]=""
+      routerLinkActive="qaroni-text-blue"
+    >
+      <div class="d-flex align-items-center">
+        <mat-icon class="mx-2">supervisor_account</mat-icon>
+        <span >Usuarios</span>
+      </div>
+    </a>
+
+    <a
+      mat-list-item
+      [routerLink]=""
+      routerLinkActive="qaroni-text-blue"
+    >
+      <div class="d-flex align-items-center">
+        <mat-icon class="mx-2">domain</mat-icon>
+        <span >Centros de trabajo</span>
+      </div>
+    </a>
+
+    <a
+      mat-list-item
+      [routerLink]=""
+      routerLinkActive="qaroni-text-blue"
+      [disabled]="true"
+    >
+      <div class="d-flex align-items-center">
+        <mat-icon class="mx-2">schedule</mat-icon>
+        <span >Control de Horarios</span>
+      </div>
+    </a>
+
+    <a
+      mat-list-item
+      [routerLink]=""
+      routerLinkActive="qaroni-text-blue"
+      [disabled]="true"
+    >
+      <div class="d-flex align-items-center">
+        <mat-icon class="mx-2">event_note</mat-icon>
+        <span >Turnos</span>
+      </div>
+    </a>
+
+    <a
+      mat-list-item
+      [routerLink]=""
+      routerLinkActive="qaroni-text-blue"
+      [disabled]="true"
+    >
+      <div class="d-flex align-items-center">
+        <mat-icon class="mx-2">calendar_month</mat-icon>
+        <span >Calendario</span>
+      </div>
+    </a>
+
+    <a
+      mat-list-item
+      [routerLink]=""
+      routerLinkActive="qaroni-text-blue"
+      [disabled]="true"
+    >
+      <div class="d-flex align-items-center">
+        <mat-icon class="mx-2">assignment</mat-icon>
+        <span >Informes</span>
+      </div>
+    </a>
+
+    <a
+      mat-list-item
+      [routerLink]=""
+      routerLinkActive="qaroni-text-blue"
+      [disabled]="true"
+    >
+      <div class="d-flex align-items-center">
+        <mat-icon class="mx-2">grade</mat-icon>
+        <span >Desempeño</span>
+      </div>
+    </a>
+
+    <a
+      mat-list-item
+      [routerLink]=""
+      routerLinkActive="qaroni-text-blue"
+      [disabled]="true"
+    >
+      <div class="d-flex align-items-center">
+        <mat-icon class="mx-2">inbox</mat-icon>
+        <span >Bandeja de entrada</span>
+      </div>
+    </a>
+
+    <a
+      mat-list-item
+      [routerLink]=""
+      routerLinkActive="qaroni-text-blue"
+      [disabled]="true"
+    >
+      <div class="d-flex align-items-center">
+        <mat-icon class="mx-2">poll</mat-icon>
+        <span >Encuestas</span>
+      </div>
+    </a>
+
+    <a
+      mat-list-item
+      [routerLink]=""
+      routerLinkActive="qaroni-text-blue"
+      [disabled]="true"
+    >
+      <div class="d-flex align-items-center">
+        <mat-icon class="mx-2">folder</mat-icon>
+        <span >Documentos</span>
+      </div>
+    </a>
+  </ng-container>
+</mat-nav-list>

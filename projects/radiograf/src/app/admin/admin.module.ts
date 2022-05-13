@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { UserModule } from '../shared/components/user/user.module';
 import { SharedModule } from '../shared/shared.module';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminInitComponent } from './components/admin-init/admin-init.component';
@@ -27,6 +28,7 @@ import { AdminToolbarComponent } from './components/admin-toolbar/admin-toolbar.
     MatIconModule,
     MatListModule,
     MatToolbarModule,
+    UserModule
   ],
 })
 export class AdminModule {}
