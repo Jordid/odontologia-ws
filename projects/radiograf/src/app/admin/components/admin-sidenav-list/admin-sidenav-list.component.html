@@ -4,9 +4,8 @@
   <!-- Dashboard -->
   <a
     mat-list-item
-    [routerLink]=""
-    [queryParams]="{ status: 'ACTIVE' }"
-    routerLinkActive="qaroni-text-blue"
+    [routerLink]="['/admin/dashboard']"
+    routerLinkActive="activedRoute"
   >
     <div class="d-flex align-items-center">
       <mat-icon class="mx-2">dashboard</mat-icon>
@@ -17,9 +16,8 @@
   <!-- Radiografías -->
   <a
     mat-list-item
-    [routerLink]=""
-    [queryParams]="{ status: 'ACTIVE' }"
-    routerLinkActive="qaroni-text-blue"
+    [routerLink]="['/admin/xrays']"
+    routerLinkActive="activedRoute"
   >
     <div class="d-flex align-items-center">
       <mat-icon class="mx-2">picture_in_picture</mat-icon>
@@ -28,7 +26,11 @@
   </a>
 
   <!-- Odontólogos -->
-  <a mat-list-item [routerLink]="" routerLinkActive="qaroni-text-blue">
+  <a
+    mat-list-item
+    [routerLink]="['/admin/medics']"
+    routerLinkActive="activedRoute"
+  >
     <div class="d-flex align-items-center">
       <mat-icon class="mx-2">supervisor_account</mat-icon>
       <span>Odontólogos</span>
@@ -36,7 +38,11 @@
   </a>
 
   <!-- Clientes -->
-  <a mat-list-item [routerLink]="" routerLinkActive="qaroni-text-blue">
+  <a
+    mat-list-item
+    [routerLink]="['/admin/clients']"
+    routerLinkActive="activedRoute"
+  >
     <div class="d-flex align-items-center">
       <mat-icon class="mx-2">groups</mat-icon>
       <span>Clientes</span>

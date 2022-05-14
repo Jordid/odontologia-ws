@@ -1,9 +1,9 @@
 <div class="avatarNameContainer">
-  <div class="avatar"></div>
+  <img
+    [src]="avatarUrl ? avatarUrl : ImagesConfig.medicAvatar"
+    alt="Avatar usuario"
+    class="avatar img-fluid"
+  />
 
   <span class="userName">{{ userName }}</span>
-
-  <button mat-icon-button>
-    <mat-icon>keyboard_arrow_down</mat-icon>
-  </button>
 </div>

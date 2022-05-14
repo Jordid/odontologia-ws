@@ -8,10 +8,8 @@
   padding-bottom: 10px;
   padding-left: 12px;
   .avatar {
-    height: 40px;
-    width: 40px;
+    height: 45px;
     border-radius: 50%;
-    background-color: gray;
     margin-right: 8px;
   }
   .userName {
@@ -19,8 +17,4 @@
     line-height: normal;
     margin-right: 8px;
   }
-}
-.avatarNameContainer:hover {
-  background-color: rgb(224, 223, 223);
-  cursor: pointer;
 }

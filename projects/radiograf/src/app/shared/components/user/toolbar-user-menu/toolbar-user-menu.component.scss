@@ -1,0 +1,11 @@
+.avatarMenuContainer {
+  display: flex;
+  align-items: center;
+}
+.avatarMenuContainer:hover {
+  background-color: rgb(224, 223, 223);
+  cursor: pointer;
+}
+.itemContainer {
+  min-width: 208px;
+}

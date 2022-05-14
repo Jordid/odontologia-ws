@@ -1,8 +1,5 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ImagesConfig } from '../../../../core/utils/images-config';
 
 @Component({
   selector: 'odo-user-avatar-with-name',
@@ -11,6 +8,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserAvatarWithNameComponent {
+  ImagesConfig = ImagesConfig;
   @Input() avatarUrl: string = '';
   @Input() userName: string = '';
 }
