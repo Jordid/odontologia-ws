@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthInitComponent } from './components/auth-init/auth-init.component';
 import { LoginComponent } from './components/login/login.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 /* import { NotOAuthGuard } from '@qaroni-core/guards/o-auth/not-o-auth/not-o-auth.guard';
 import { OAuthGuard } from '@qaroni-core/guards/o-auth/o-auth/o-auth.guard';
 import { AuthGoogleComponent } from './components/auth-google/auth-google.component'; */
@@ -32,13 +34,13 @@ const routes: Routes = [
         path: 'password',
         component: PasswordComponent,
         canActivate: [NotOAuthGuard],
-      },
+      },*/
       {
         path: 'sign-up',
         component: SignUpComponent,
-        canActivate: [NotOAuthGuard],
+        //canActivate: [NotOAuthGuard],
       },
-      {
+     /* {
         path: 'sign-up/success',
         component: SignUpSuccessComponent,
         canActivate: [NotOAuthGuard],
@@ -72,8 +74,8 @@ const routes: Routes = [
         path: 'google',
         component: AuthGoogleComponent,
         canActivate: [NotOAuthGuard],
-      },
-      { path: 'logout', component: LogoutComponent, canActivate: [OAuthGuard] }, */
+      },*/
+      { path: 'logout', component: LogoutComponent, /*canActivate: [OAuthGuard]*/ },
     ],
   },
 ];

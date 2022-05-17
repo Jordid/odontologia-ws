@@ -1,1 +1,36 @@
-<p>login works!</p>
+<div class="row d-flex justify-content-center">
+  <div class="col-12">
+    <div class="loginContainer">
+      <div class="titleContainer">
+        <img
+          [src]="ImagesConfig.login_icon"
+          alt="Imagen login"
+          class="img-fluid"
+        />
+      </div>
+
+      <mat-card class="bodyContaner mat-elevation-z8" >
+        <div class="formContainer">
+          <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" />
+          </mat-form-field>
+        </div>
+
+        <div class="actionsContainer">
+          <button mat-raised-button color="primary" (click)="login()">INCIAR SESIÓN</button>
+        </div>
+
+        <div class="linksContainer">
+          <span> No tengo una cuenta? </span>
+          <a [routerLink]="['/auth/sign-up']">Click aquí para crear una</a>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>
