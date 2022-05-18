@@ -9,27 +9,42 @@
         />
       </div>
 
-      <mat-card class="bodyContaner mat-elevation-z8" >
-        <div class="formContainer">
-          <mat-form-field appearance="fill">
-            <mat-label>Email</mat-label>
-            <input matInput type="email" />
-          </mat-form-field>
+      <mat-card class="bodyContaner mat-elevation-z8">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="formContainer">
+            <mat-form-field appearance="fill">
+              <mat-label>Email</mat-label>
+              <input matInput type="email" formControlName="email" />
+              <mat-error
+                align="start"
+                *ngIf="InputValidation.checkInputErrors(email)"
+              >
+                <!-- <qaroni-input-error-messages [fc]="email"></qaroni-input-error-messages> -->
+              </mat-error>
+            </mat-form-field>
 
-          <mat-form-field appearance="fill">
-            <mat-label>Password</mat-label>
-            <input matInput type="password" />
-          </mat-form-field>
-        </div>
+            <mat-form-field appearance="fill">
+              <mat-label>Password</mat-label>
+              <input matInput type="password" formControlName="password" />
+              <mat-error
+                align="start"
+                *ngIf="InputValidation.checkInputErrors(password)"
+              >
+                <!-- <qaroni-input-error-messages [fc]="password"></qaroni-input-error-messages> -->
+              </mat-error>
+            </mat-form-field>
+          </div>
 
-        <div class="actionsContainer">
-          <button mat-raised-button color="primary" (click)="login()">INCIAR SESIÓN</button>
-        </div>
+          <div class="actionsContainer">
+            <button mat-raised-button color="primary">INCIAR SESIÓN</button>
+          </div>
 
-        <div class="linksContainer">
-          <span> No tengo una cuenta? </span>
-          <a [routerLink]="['/auth/sign-up']">Click aquí para crear una</a>
-        </div>
+          <div class="linksContainer">
+            <span> No tengo una cuenta? </span>
+            <a [routerLink]="['/auth/sign-up']">Click aquí para crear una</a>
+           <!--  <a>Click aquí para crear una</a> -->
+          </div>
+        </form>
       </mat-card>
     </div>
   </div>

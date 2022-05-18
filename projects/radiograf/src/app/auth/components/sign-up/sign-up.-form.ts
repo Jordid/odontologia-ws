@@ -4,9 +4,10 @@ import {
   FormGroup,
   Validators
 } from '@angular/forms';
-import { GenderArray, GenderEnum } from '../../../core/types/gender/gender.enum';
+import { GenderArray, GenderEnum } from '../../../core/types/gender.enum';
 import { InputValidation } from '../../../core/utils/validations/input-validation';
 import { PasswordValidator } from '../../../shared/validators/password.validator';
+
 
 export class SignUpForm {
   private fb: FormBuilder = new FormBuilder();

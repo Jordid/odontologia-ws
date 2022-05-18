@@ -1,7 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import { UserModule } from '../shared/components/user/user.module';
 import { CreateMedicFormComponent } from './components/create-medic-form/create-medic-form.component';
 import { MedicsInitComponent } from './components/medics-init/medics-init.component';
 import { MedicsTableComponent } from './components/medics-table/medics-table.component';
@@ -21,6 +24,9 @@ import { MedicsRoutingModule } from './medic-routing.module';
     MedicsRoutingModule,
     MatTableModule,
     MatPaginatorModule,
+    MatButtonModule,
+    MatIconModule,
+    UserModule,
   ],
 })
 export class MedicsModule {}
