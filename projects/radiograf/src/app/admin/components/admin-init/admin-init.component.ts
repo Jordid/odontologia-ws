@@ -3,6 +3,7 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { map, Observable, Subscription } from 'rxjs';
+import { OAuthStorageService } from '../../../auth/services/o-auth-storage.service';
 @Component({
   selector: 'odo-admin-init',
   templateUrl: './admin-init.component.html',
@@ -10,6 +11,9 @@ import { map, Observable, Subscription } from 'rxjs';
 })
 export class AdminInitComponent implements OnInit, OnDestroy {
   @ViewChild('drawer') sidenav!: MatSidenav;
+  avatarUrl: string;
+  userName: string;
+  email: string;
 
   /*   public LogoWorkards = ImagesConfig.workards;
   public companyID: number; */
@@ -29,12 +33,18 @@ export class AdminInitComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private breakpointObserver: BreakpointObserver
-  ) /*   private workersService: WorkersService, */
-  /*     private oAuthStorageService: OAuthStorageService */
-  {}
+    private breakpointObserver: BreakpointObserver,
+    private oauthStorageService: OAuthStorageService /*   private workersService: WorkersService, */ /*     private oAuthStorageService: OAuthStorageService */
+  ) {}
 
   ngOnInit(): void {
+    const user = this.oauthStorageService.getUser;
+    console.log('menu izq. user: ', user);
+    if (user) {
+      this.avatarUrl = user?.avatarUrl;
+      this.userName = user?.name;
+      this.email = user?.email;
+    }
     //this.subs.add(this.userRole$.subscribe(this.getUserRole));
     this.subs.add(this.route.paramMap.subscribe(this.getParamMap));
   }

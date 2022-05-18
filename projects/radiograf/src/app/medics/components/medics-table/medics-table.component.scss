@@ -5,3 +5,8 @@ table {
 .avatarContainer {
   margin-right: 8px;
 }
+
+.actionsRow {
+  display: flex;
+  flex-wrap: nowrap;
+}

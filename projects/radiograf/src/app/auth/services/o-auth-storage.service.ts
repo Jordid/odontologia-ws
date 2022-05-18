@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { StorageUtilsService } from '../../core/services/app/storage-utils/storage-utils.service';
 import { OAuth } from '../types/o-auth';
+import { IUser } from '../types/user-interface';
 
 @Injectable({
   providedIn: 'root',
@@ -53,5 +54,9 @@ export class OAuthStorageService {
 
   get getUserID(): number {
     return this.get()?.user?.userId;
+  }
+
+  get getUser(): IUser {
+    return this.get()?.user;
   }
 }
