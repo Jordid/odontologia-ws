@@ -1,15 +1,54 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { MedicsService } from '../../services/medics.service';
+import { IMedic } from '../../types/medic.interface';
+import { CreateMedicForm } from './create-medic-form.class';
 
 @Component({
   selector: 'odo-create-medic-form',
   templateUrl: './create-medic-form.component.html',
-  styleUrls: ['./create-medic-form.component.scss']
+  styleUrls: ['./create-medic-form.component.scss'],
 })
-export class CreateMedicFormComponent implements OnInit {
+export class CreateMedicFormComponent
+  extends CreateMedicForm
+  implements OnInit, OnDestroy
+{
+  private subs: Subscription = new Subscription();
 
-  constructor() { }
+  private submitting = false;
 
-  ngOnInit(): void {
+  constructor(private medicsService: MedicsService, private router: Router) {
+    super();
   }
 
+  ngOnInit(): void {
+    this.subs.add(this.medicsService.getMedic$().subscribe(this.getMedic));
+  }
+
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
+  }
+
+  private enableLoading(): void {
+    this.submitting = true;
+  }
+
+  private disableLoading(): void {
+    this.submitting = false;
+  }
+
+  public onSubmit(): void {
+    if (this.validatedForm) {
+      this.medicsService.createMedic(this.createMedicForm.getRawValue());
+    }
+  }
+
+  private getMedic = (medic: IMedic): void => {
+    if (medic?.doctorId > 0) {
+      this.router.navigate(['/admin/medics']);
+    } else {
+      this.disableLoading();
+    }
+  };
 }

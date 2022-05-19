@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Params } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ApiRadiografEnv } from '../../core/config/apis/api-radiograf/api-radiograf.config';
+import { IMedic } from '../types/medic.interface';
 @Injectable({
   providedIn: 'root',
 })
 export class MedicsHttpService {
   constructor(private http: HttpClient) {}
 
-  public createMedic$(medic: any): Observable<HttpResponse<any>> {
+  public createMedic$(medic: IMedic): Observable<HttpResponse<any>> {
     const url = `${ApiRadiografEnv.baseUrl}/doctors`;
     return this.http.post(url, medic, { observe: 'response' });
   }

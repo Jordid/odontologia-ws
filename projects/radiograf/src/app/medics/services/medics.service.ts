@@ -41,7 +41,7 @@ export class MedicsService {
     return this.medicSubject.asObservable();
   }
 
-  public createMedic(medic: any): void {
+  public createMedic(medic: IMedic): void {
     this.enableLoading();
     this.medicsHttp
       .createMedic$(medic)
@@ -52,22 +52,17 @@ export class MedicsService {
   private nextRegister = (data: HttpResponse<any>): void => {
     console.log('medic response: ', data);
 
-    /*  if (this.commonsHttp.validationsHttp.verifyStatus201(data)) {
-      const user: User = data.body.result[0];
-      this.userSubject.next(user);
-      /*this.allApp.snackbar.open(
-        OAuthSnackbars.successRegister.message,
-        OAuthSnackbars.successRegister.closeBtn,
-        OAuthSnackbars.successRegister.config
-      );
+    if (this.commonsHttp.validationsHttp.verifyStatus201(data)) {
+      const medic: IMedic = data.body.result[0];
+      this.medicSubject.next(medic);
     } else {
-      this.userSubject.next(null);
+      this.medicSubject.next(null);
       this.commonsHttp.errorsHttp.apiInvalidResponse(data);
-    } */
+    }
   };
 
   private errorRegister = (error: HttpErrorResponse): void => {
-    //this.userSubject.next(null);
+    this.medicSubject.next(null);
     /* if (
       this.commonsHttp.errorsHttp.isControlledError(error) &&
       this.commonsHttp.errorsHttp.isErrorCode(
@@ -82,8 +77,8 @@ export class MedicsService {
         OAuthSnackbars.failureRegisterEmailExists.closeBtn,
         OAuthSnackbars.failureRegisterEmailExists.config
       );
-    }
-    //this.commonsHttp.errorsHttp.communication(error);*/
+    }*/
+    this.commonsHttp.errorsHttp.communication(error);
   };
 
   /* Get medics. */

@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Params, Router } from '@angular/router';
 
 @Component({
   selector: 'odo-medics-table-menu',
   templateUrl: './medics-table-menu.component.html',
-  styleUrls: ['./medics-table-menu.component.scss']
+  styleUrls: ['./medics-table-menu.component.scss'],
 })
-export class MedicsTableMenuComponent implements OnInit {
+export class MedicsTableMenuComponent {
+  constructor(private router: Router) {}
 
-  constructor() { }
-
-  ngOnInit(): void {
+  public onQueryParamsChange(queryParams: Params): void {
+    console.log('queryParams: ', queryParams);
+    if (queryParams['pageNumber']) {
+      queryParams['pageNumber'] = 1;
+    }
+    this.router.navigate([], { queryParams });
   }
-
 }
