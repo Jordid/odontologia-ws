@@ -40,7 +40,6 @@ export class OAuthService {
   }
 
   private nextLogin = (data: HttpResponse<any>): void => {
-    console.log("login: ", data);
     if (this.commonsHttp.validationsHttp.verifyStatus200(data)) {
       const oAuth: OAuth = data.body.result;
       this.oAuthStorage.set(oAuth);

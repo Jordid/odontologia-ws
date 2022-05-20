@@ -19,4 +19,9 @@ export class MedicsHttpService {
     const url = `${ApiRadiografEnv.baseUrl}/doctors`;
     return this.http.get(url, { observe: 'response', params });
   }
+
+  public deleteMedic$(medicId: number): Observable<HttpResponse<any>> {
+    const url = `${ApiRadiografEnv.baseUrl}/doctors/${medicId}`;
+    return this.http.delete(url, { observe: 'response' });
+  }
 }

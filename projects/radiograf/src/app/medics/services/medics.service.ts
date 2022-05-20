@@ -12,6 +12,7 @@ import { MedicsHttpService } from './medics-http.service';
 export class MedicsService {
   protected readonly medicSubject = new Subject<IMedic>();
   protected readonly medicsSubject = new Subject<IMedic[]>();
+  protected readonly deletedMedicSubject = new Subject<boolean>();
   constructor(
     private medicsHttp: MedicsHttpService,
     private commonsHttp: CommonsHttpService
@@ -50,8 +51,6 @@ export class MedicsService {
   }
 
   private nextRegister = (data: HttpResponse<any>): void => {
-    console.log('medic response: ', data);
-
     if (this.commonsHttp.validationsHttp.verifyStatus201(data)) {
       const medic: IMedic = data.body.result[0];
       this.medicSubject.next(medic);
@@ -96,7 +95,6 @@ export class MedicsService {
   }
 
   private nextGeMedics = (data: HttpResponse<any>): void => {
-    console.log('get medics data: ', data);
     if (this.commonsHttp.validationsHttp.verifyStatus200(data)) {
       const medics: IMedic[] = data.body.result;
       const paginationLinks: PaginationLinks = data.body.links;
@@ -112,6 +110,32 @@ export class MedicsService {
   private errorGetMedics = (error: HttpErrorResponse): void => {
     this.medicsSubject.next(null);
     this.paginationLinksSubject.next(null);
+    this.commonsHttp.errorsHttp.communication(error);
+  };
+
+  /* Delete Medic */
+  public getDeletedMedic$(): Observable<boolean> {
+    return this.deletedMedicSubject.asObservable();
+  }
+
+  public deleteMedic(medicId: number): void {
+    this.medicsHttp.deleteMedic$(medicId).subscribe({
+      next: this.nextDeleteMedic,
+      error: this.errorDeleteMedic,
+    });
+  }
+
+  private nextDeleteMedic = (data: HttpResponse<any>): void => {
+    if (this.commonsHttp.validationsHttp.verifyStatus204(data)) {
+      this.deletedMedicSubject.next(true);
+    } else {
+      this.deletedMedicSubject.next(false);
+      this.commonsHttp.errorsHttp.apiInvalidResponse(data);
+    }
+  };
+
+  private errorDeleteMedic = (error: HttpErrorResponse): void => {
+    this.deletedMedicSubject.next(false);
     this.commonsHttp.errorsHttp.communication(error);
   };
 }

@@ -19,7 +19,7 @@ export abstract class OdoDataSource<T = any> extends DataSource<T> {
 
   abstract paginationLinks$: Observable<PaginationLinks>;
 
-  private subs: Subscription = new Subscription();
+  public subs: Subscription = new Subscription();
 
   constructor(private route: ActivatedRoute, private router: Router) {
     super();

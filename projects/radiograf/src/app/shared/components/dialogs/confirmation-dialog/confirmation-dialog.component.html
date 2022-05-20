@@ -1,1 +1,51 @@
-<p>confirmation-dialog works!</p>
+<div class="dialogContainer">
+  <div class="headerDialog">
+    <div class="mat-dialog-title dialogTitle">{{ data?.title }}</div>
+    <button
+      mat-button
+      type="button"
+      class="qaroni-close-icon closeIcon"
+      [mat-dialog-close]="false"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <mat-dialog-content *ngIf="data?.message" class="text-center">
+    <p class="mb-0" [innerHTML]="data?.message"></p>
+  </mat-dialog-content>
+  <mat-dialog-actions align="center">
+    <div class="row justify-content-center mb-3">
+      <div class="col-auto col-md-6 order-2 order-md-1">
+        <button
+          mat-flat-button
+          color="none"
+          class="qaroni-rounded-lg-button mw-100 leftButton"
+          type="button"
+          (click)="onCancelClick()"
+        >
+          <div class="d-flex justify-content-center align-items-center">
+            <mat-icon *ngIf="data?.cancelMatIcon" class="mt-1 me-1">{{
+              data?.cancelMatIcon
+            }}</mat-icon>
+            <span>{{ data?.cancelText || "Cancelar" }}</span>
+          </div>
+        </button>
+      </div>
+      <div class="col-auto col-md-6 order-1 order-md-2 mb-3 mb-md-0">
+        <button
+          mat-flat-button
+          color="none"
+          class="qaroni-rounded-lg-button mw-100 rightButton"
+          [mat-dialog-close]="true"
+        >
+          <div class="d-flex justify-content-center align-items-center">
+            <mat-icon *ngIf="data?.confirmMatIcon" class="mt-1 me-1">{{
+              data?.confirmMatIcon
+            }}</mat-icon>
+            <span>{{ data?.confirmText }}</span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </mat-dialog-actions>
+</div>

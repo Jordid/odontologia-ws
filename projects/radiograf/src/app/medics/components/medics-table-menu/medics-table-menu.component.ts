@@ -10,7 +10,6 @@ export class MedicsTableMenuComponent {
   constructor(private router: Router) {}
 
   public onQueryParamsChange(queryParams: Params): void {
-    console.log('queryParams: ', queryParams);
     if (queryParams['pageNumber']) {
       queryParams['pageNumber'] = 1;
     }

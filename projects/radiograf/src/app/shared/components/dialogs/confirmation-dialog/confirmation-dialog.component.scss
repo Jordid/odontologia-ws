@@ -1,0 +1,25 @@
+.dialogContainer {
+  padding: 0px;
+  .headerDialog {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    .dialogTitle {
+      margin-bottom: 0px;
+    }
+    .closeIcon {
+      margin-left: 16px;
+    }
+  }
+}
+
+.leftButton {
+  background-color: #d44b4b;
+  color: white;
+}
+.rightButton {
+  background-color: #1976d2;
+  color: white;
+}

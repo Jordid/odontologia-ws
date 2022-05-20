@@ -39,7 +39,6 @@ export class AdminInitComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const user = this.oauthStorageService.getUser;
-    console.log('menu izq. user: ', user);
     if (user) {
       this.avatarUrl = user?.avatarUrl;
       this.userName = user?.name;

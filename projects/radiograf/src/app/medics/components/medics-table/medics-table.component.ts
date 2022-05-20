@@ -3,13 +3,16 @@ import {
   Component,
   Input,
   OnInit,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { ConfirmationDialogData } from '../../../core/types/dialogs/confirmation-dialog-data';
+import { QaroniDialogConfig } from '../../../core/types/dialogs/qaroni-dialog-config';
 import { ConfirmationDialogComponent } from '../../../shared/components/dialogs/confirmation-dialog/confirmation-dialog.component';
 import { MedicsService } from '../../services/medics.service';
 import { MedicDataSource } from '../../types/medic-datasource';
@@ -24,8 +27,10 @@ import { IMedic } from '../../types/medic.interface';
   styleUrls: ['./medics-table.component.scss'],
 })
 export class MedicsTableComponent implements OnInit, AfterViewInit {
+  private subs: Subscription = new Subscription();
+
   @Input() showPaginator = true;
-  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatTable) table!: MatTable<IMedic>;
   public dataSource: MedicDataSource = null;
@@ -56,6 +61,14 @@ export class MedicsTableComponent implements OnInit, AfterViewInit {
       this.router,
       this.medicsService
     );
+
+    this.subs.add(
+      this.medicsService.getDeletedMedic$().subscribe(this.getDeletedMedic)
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
   }
 
   ngAfterViewInit(): void {
@@ -65,28 +78,41 @@ export class MedicsTableComponent implements OnInit, AfterViewInit {
   }
 
   viewMedic(medic: IMedic): void {
-    console.log('medic: ', medic);
     if (medic) {
     }
   }
 
   deleteMedic(medic: IMedic): void {
-    console.log('medic: ', medic);
     if (medic?.doctorId) {
-      const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-        width: '250px',
-        data: null,
-      });
+      const data: ConfirmationDialogData = {
+        title: `¿Estás seguro de eliminar el médico?`,
+        cancelColorButton: `light-blue`,
+        confirmColorButton: `light-pink`,
+        confirmMatIcon: `delete`,
+        confirmText: `Eliminar`,
+      };
 
-      dialogRef.afterClosed().subscribe((result) => {
-        console.log('Closed: ', result);
-      });
+      const dialogConfig = new QaroniDialogConfig<ConfirmationDialogData>();
+      dialogConfig.data = data;
+      dialogConfig.width = '500px';
+
+      const dialog = this.dialog.open<
+        ConfirmationDialogComponent,
+        ConfirmationDialogData,
+        boolean
+      >(ConfirmationDialogComponent, dialogConfig);
+      this.subs.add(
+        dialog.afterClosed().subscribe((result) => {
+          if (result && result == true) {
+            this.medicsService.deleteMedic(medic?.doctorId);
+          }
+        })
+      );
     }
   }
-}
-function DialogConfirmationComponent(
-  DialogConfirmationComponent: any,
-  arg1: { width: string; data: null }
-) {
-  throw new Error('Function not implemented.');
+
+  private getDeletedMedic = (deletedMedic: boolean): void => {
+    if (deletedMedic === true) {
+    }
+  };
 }

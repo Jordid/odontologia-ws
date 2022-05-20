@@ -14,7 +14,6 @@ export class AdminToolbarComponent implements OnInit {
 
   ngOnInit(): void {
     const user = this.oauthStorageService.getUser;
-    console.log('user: ', user);
     if (user) {
       this.avatarUrl = user?.avatarUrl;
       this.userName = user?.name;
