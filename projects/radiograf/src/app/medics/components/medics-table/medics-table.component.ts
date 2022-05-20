@@ -12,7 +12,7 @@ import { MatTable } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ConfirmationDialogData } from '../../../core/types/dialogs/confirmation-dialog-data';
-import { QaroniDialogConfig } from '../../../core/types/dialogs/qaroni-dialog-config';
+import { OdoDialogConfig } from '../../../core/types/dialogs/odo-dialog-config';
 import { ConfirmationDialogComponent } from '../../../shared/components/dialogs/confirmation-dialog/confirmation-dialog.component';
 import { MedicsService } from '../../services/medics.service';
 import { MedicDataSource } from '../../types/medic-datasource';
@@ -92,7 +92,7 @@ export class MedicsTableComponent implements OnInit, AfterViewInit {
         confirmText: `Eliminar`,
       };
 
-      const dialogConfig = new QaroniDialogConfig<ConfirmationDialogData>();
+      const dialogConfig = new OdoDialogConfig<ConfirmationDialogData>();
       dialogConfig.data = data;
       dialogConfig.width = '500px';
 

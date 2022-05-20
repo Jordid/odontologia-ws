@@ -1,6 +1,6 @@
 import { MatDialogConfig } from '@angular/material/dialog';
 
-export class QaroniDialogConfig<D = any> extends MatDialogConfig<D> {
+export class OdoDialogConfig<D = any> extends MatDialogConfig<D> {
   constructor() {
     super();
     this.autoFocus = false;
