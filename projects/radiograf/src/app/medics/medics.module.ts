@@ -12,6 +12,7 @@ import { MatTableModule } from '@angular/material/table';
 import { SharedMedicsModule } from '../shared/components/shared-medics/shared-medics.module';
 import { UserModule } from '../shared/components/user/user.module';
 import { PipesModule } from '../shared/pipes/pipes.module';
+import { DialogsModule } from '../shared/components/dialogs/dialogs.module';
 import { CreateMedicFormComponent } from './components/create-medic-form/create-medic-form.component';
 import { MedicsInitComponent } from './components/medics-init/medics-init.component';
 import { MedicsTableMenuComponent } from './components/medics-table-menu/medics-table-menu.component';
@@ -19,6 +20,7 @@ import { MedicsTableWithMenuComponent } from './components/medics-table-with-men
 import { MedicsTableComponent } from './components/medics-table/medics-table.component';
 import { MedicsComponent } from './components/medics/medics.component';
 import { MenuPanelComponent } from './components/medics/menu-panel/menu-panel.component';
+import { UpdateMedicFormComponent } from './components/update-medic-form/update-medic-form.component';
 import { MedicsRoutingModule } from './medic-routing.module';
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { MedicsRoutingModule } from './medic-routing.module';
     MenuPanelComponent,
     MedicsTableMenuComponent,
     MedicsTableWithMenuComponent,
+    UpdateMedicFormComponent,
   ],
   imports: [
     CommonModule,
@@ -46,6 +49,7 @@ import { MedicsRoutingModule } from './medic-routing.module';
     UserModule,
     SharedMedicsModule,
     PipesModule,
+    DialogsModule
   ],
 })
 export class MedicsModule {}
