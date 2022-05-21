@@ -16,8 +16,6 @@ export class CreateMedicFormComponent
 {
   private subs: Subscription = new Subscription();
 
-  private submitting = false;
-
   constructor(private medicsService: MedicsService, private router: Router) {
     super();
   }

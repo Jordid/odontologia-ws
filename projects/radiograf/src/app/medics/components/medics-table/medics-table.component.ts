@@ -3,7 +3,7 @@ import {
   Component,
   Input,
   OnInit,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -79,6 +79,12 @@ export class MedicsTableComponent implements OnInit, AfterViewInit {
 
   viewMedic(medic: IMedic): void {
     if (medic) {
+    }
+  }
+
+  editMedic(medic: IMedic): void {
+    if (medic?.doctorId) {
+      this.router.navigate([`/admin/medics/${medic?.doctorId}/update`]);
     }
   }
 

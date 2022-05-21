@@ -13,5 +13,5 @@ export interface IPerson {
   lastName: string;
   lastUpdateDate: string;
   personId: number;
-  users: IUser[];
+  user: IUser;
 }

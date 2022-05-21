@@ -11,8 +11,8 @@ import { PasswordValidator } from '../../../shared/validators/password.validator
 export class CreateMedicForm {
   private fb: FormBuilder = new FormBuilder();
   private createMedicSkeleton = {
-    firstName: ['', Validators.required, Validators.minLength(3)],
-    lastName: ['', Validators.required, Validators.minLength(3)],
+    firstName: ['', [Validators.required, Validators.minLength(3)]],
+    lastName: ['', [Validators.required, Validators.minLength(3)]],
     gender: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     document: [
@@ -20,6 +20,8 @@ export class CreateMedicForm {
       [Validators.required, Validators.minLength(10), Validators.maxLength(10)],
     ],
   };
+
+  submitting = false;
 
   createMedicForm: FormGroup = this.fb.group(this.createMedicSkeleton, {
     validators: PasswordValidator.matchPassword,
@@ -53,7 +55,11 @@ export class CreateMedicForm {
   }
 
   get validatedForm(): boolean {
-    return true; //this.signUpForm.dirty && this.signUpForm.valid;
+    return (
+      this.createMedicForm.dirty &&
+      this.createMedicForm.valid &&
+      !this.submitting
+    );
   }
 
   getControlByName(controlName: string): AbstractControl {

@@ -34,14 +34,6 @@ export class MedicsService {
     return this.paginationLinksSubject.asObservable();
   }
 
-  // ==========================================================================================
-  // Register User
-  // ==========================================================================================
-
-  public getMedic$(): Observable<IMedic> {
-    return this.medicSubject.asObservable();
-  }
-
   public createMedic(medic: IMedic): void {
     this.enableLoading();
     this.medicsHttp
@@ -80,6 +72,35 @@ export class MedicsService {
     this.commonsHttp.errorsHttp.communication(error);
   };
 
+  /* Get Medic */
+  public getMedic$(): Observable<IMedic> {
+    return this.medicSubject.asObservable();
+  }
+
+  public getMedic(doctorId: number): void {
+    /*  if (this.oAuthStorage.hasOAuth) { */
+    this.medicsHttp.getMedic$(doctorId).subscribe({
+      next: this.nextGeMedic,
+      error: this.errorGetMedic,
+    });
+    /* } */
+  }
+
+  private nextGeMedic = (data: HttpResponse<any>): void => {
+    if (this.commonsHttp.validationsHttp.verifyStatus200(data)) {
+      const medic: IMedic = data.body.result[0];
+      this.medicSubject.next(medic);
+    } else {
+      this.medicSubject.next(null);
+      this.commonsHttp.errorsHttp.apiInvalidResponse(data);
+    }
+  };
+
+  private errorGetMedic = (error: HttpErrorResponse): void => {
+    this.medicSubject.next(null);
+    this.commonsHttp.errorsHttp.communication(error);
+  };
+
   /* Get medics. */
   public getMedics$(): Observable<IMedic[]> {
     return this.medicsSubject.asObservable();
@@ -110,6 +131,29 @@ export class MedicsService {
   private errorGetMedics = (error: HttpErrorResponse): void => {
     this.medicsSubject.next(null);
     this.paginationLinksSubject.next(null);
+    this.commonsHttp.errorsHttp.communication(error);
+  };
+
+  public updateMedic(doctorId: number, medic: IMedic): void {
+    this.enableLoading();
+    this.medicsHttp
+      .updateMedic$(doctorId, medic)
+      .pipe(finalize(() => this.disableLoading()))
+      .subscribe({ next: this.nextUpdateMedic, error: this.errorUpdateMedic });
+  }
+
+  private nextUpdateMedic = (data: HttpResponse<any>): void => {
+    if (this.commonsHttp.validationsHttp.verifyStatus200(data)) {
+      const medic: IMedic = data.body.result[0];
+      this.medicSubject.next(medic);
+    } else {
+      this.medicSubject.next(null);
+      this.commonsHttp.errorsHttp.apiInvalidResponse(data);
+    }
+  };
+
+  private errorUpdateMedic = (error: HttpErrorResponse): void => {
+    this.medicSubject.next(null);
     this.commonsHttp.errorsHttp.communication(error);
   };
 

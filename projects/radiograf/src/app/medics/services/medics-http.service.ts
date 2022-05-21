@@ -15,6 +15,16 @@ export class MedicsHttpService {
     return this.http.post(url, medic, { observe: 'response' });
   }
 
+  public getMedic$(doctorId: number): Observable<HttpResponse<any>> {
+    const url = `${ApiRadiografEnv.baseUrl}/doctors/${doctorId}`;
+    return this.http.get(url, { observe: 'response' });
+  }
+
+  public updateMedic$(doctorId: number, medic: IMedic): Observable<HttpResponse<any>> {
+    const url = `${ApiRadiografEnv.baseUrl}/doctors/${doctorId}`;
+    return this.http.patch(url, medic, { observe: 'response' });
+  }
+
   public getMedics$(params?: Params): Observable<HttpResponse<any>> {
     const url = `${ApiRadiografEnv.baseUrl}/doctors`;
     return this.http.get(url, { observe: 'response', params });
