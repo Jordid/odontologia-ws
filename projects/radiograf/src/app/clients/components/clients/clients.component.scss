@@ -1,0 +1,11 @@
+.panelTableContainer {
+  display: flex;
+  flex-direction: column;
+  .tableContainer {
+    margin-top: 137px;
+    position: absolute;
+    height: 500px;
+    width: calc(100% - 50px);
+    margin-left: 25px;
+  }
+}

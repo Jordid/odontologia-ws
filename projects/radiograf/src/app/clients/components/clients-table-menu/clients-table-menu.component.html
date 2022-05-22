@@ -1,0 +1,26 @@
+<div class="menuTableContainer">
+  <div class="titleContainer">
+    <h5>Clientes</h5>
+  </div>
+
+  <div class="searcherContainer">
+    <odo-text-searcher
+      (queryParamsChange)="onQueryParamsChange($event)"
+    ></odo-text-searcher>
+  </div>
+
+  <div class="actionsContainer">
+    <button mat-mini-fab color="none" aria-label="Filtros tabla de clientes">
+      <mat-icon>filter_list</mat-icon>
+    </button>
+
+    <button
+      class="plusIcon"
+      mat-mini-fab
+      aria-label="Agregar cliente"
+      [routerLink]="['/admin/clients/create']"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>
