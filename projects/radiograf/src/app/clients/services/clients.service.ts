@@ -1,20 +1,21 @@
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Params } from '@angular/router';
 import { finalize, Observable, Subject } from 'rxjs';
 import { CommonsHttpService } from '../../core/services/commons/commons-http/commons-http.service';
+import { ClientsHttpService } from './clients-http.service';
 import { PaginationLinks } from '../../core/types/pagination-links';
-import { IMedic } from '../types/medic.interface';
-import { MedicsHttpService } from './medics-http.service';
+import { IClient } from '../types/client.interface';
+import { Params } from '@angular/router';
+
 @Injectable({
   providedIn: 'root',
 })
-export class MedicsService {
-  protected readonly medicSubject = new Subject<IMedic>();
-  protected readonly medicsSubject = new Subject<IMedic[]>();
-  protected readonly deletedMedicSubject = new Subject<boolean>();
+export class ClientsService {
+  protected readonly clientSubject = new Subject<IClient>();
+  protected readonly clientsSubject = new Subject<IClient[]>();
+  protected readonly deletedClientSubject = new Subject<boolean>();
   constructor(
-    private medicsHttp: MedicsHttpService,
+    private clientsHttp: ClientsHttpService,
     private commonsHttp: CommonsHttpService
   ) {}
   protected readonly paginationLinksSubject = new Subject<PaginationLinks>();
@@ -34,26 +35,26 @@ export class MedicsService {
     return this.paginationLinksSubject.asObservable();
   }
 
-  public createMedic(medic: IMedic): void {
+  public createClient(client: IClient): void {
     this.enableLoading();
-    this.medicsHttp
-      .createMedic$(medic)
+    this.clientsHttp
+      .createClient$(client)
       .pipe(finalize(() => this.disableLoading()))
       .subscribe({ next: this.nextRegister, error: this.errorRegister });
   }
 
   private nextRegister = (data: HttpResponse<any>): void => {
     if (this.commonsHttp.validationsHttp.verifyStatus201(data)) {
-      const medic: IMedic = data.body.result[0];
-      this.medicSubject.next(medic);
+      const client: IClient = data.body.result[0];
+      this.clientSubject.next(client);
     } else {
-      this.medicSubject.next(null);
+      this.clientSubject.next(null);
       this.commonsHttp.errorsHttp.apiInvalidResponse(data);
     }
   };
 
   private errorRegister = (error: HttpErrorResponse): void => {
-    this.medicSubject.next(null);
+    this.clientSubject.next(null);
     /* if (
       this.commonsHttp.errorsHttp.isControlledError(error) &&
       this.commonsHttp.errorsHttp.isErrorCode(
@@ -72,114 +73,117 @@ export class MedicsService {
     this.commonsHttp.errorsHttp.communication(error);
   };
 
-  /* Get Medic */
-  public getMedic$(): Observable<IMedic> {
-    return this.medicSubject.asObservable();
+  /* Get Client */
+  public getClient$(): Observable<IClient> {
+    return this.clientSubject.asObservable();
   }
 
-  public getMedic(doctorId: number): void {
+  public getClientc(clientId: number): void {
     /*  if (this.oAuthStorage.hasOAuth) { */
-    this.medicsHttp.getMedic$(doctorId).subscribe({
-      next: this.nextGetMedic,
-      error: this.errorGetMedic,
+    this.clientsHttp.getClient$(clientId).subscribe({
+      next: this.nextGetClient,
+      error: this.errorGetClient,
     });
     /* } */
   }
 
-  private nextGetMedic = (data: HttpResponse<any>): void => {
+  private nextGetClient = (data: HttpResponse<any>): void => {
     if (this.commonsHttp.validationsHttp.verifyStatus200(data)) {
-      const medic: IMedic = data.body.result[0];
-      this.medicSubject.next(medic);
+      const client: IClient = data.body.result[0];
+      this.clientSubject.next(client);
     } else {
-      this.medicSubject.next(null);
+      this.clientSubject.next(null);
       this.commonsHttp.errorsHttp.apiInvalidResponse(data);
     }
   };
 
-  private errorGetMedic = (error: HttpErrorResponse): void => {
-    this.medicSubject.next(null);
+  private errorGetClient = (error: HttpErrorResponse): void => {
+    this.clientSubject.next(null);
     this.commonsHttp.errorsHttp.communication(error);
   };
 
-  /* Get medics. */
-  public getMedics$(): Observable<IMedic[]> {
-    return this.medicsSubject.asObservable();
+  /* Get clients. */
+  public getClients$(): Observable<IClient[]> {
+    return this.clientsSubject.asObservable();
   }
 
-  public getMedics(params?: Params): void {
+  public getClients(params?: Params): void {
     /*  if (this.oAuthStorage.hasOAuth) { */
-    this.medicsHttp.getMedics$(params).subscribe({
-      next: this.nextGetMedics,
-      error: this.errorGetMedics,
+    this.clientsHttp.getClients$(params).subscribe({
+      next: this.nextGetClients,
+      error: this.errorGetClients,
     });
     /* } */
   }
 
-  private nextGetMedics = (data: HttpResponse<any>): void => {
+  private nextGetClients = (data: HttpResponse<any>): void => {
     if (this.commonsHttp.validationsHttp.verifyStatus200(data)) {
-      const medics: IMedic[] = data.body.result;
+      const client: IClient[] = data.body.result;
       const paginationLinks: PaginationLinks = data.body.links;
-      this.medicsSubject.next(medics);
+      this.clientsSubject.next(client);
       this.paginationLinksSubject.next(paginationLinks);
     } else {
-      this.medicsSubject.next(null);
+      this.clientsSubject.next(null);
       this.paginationLinksSubject.next(null);
       this.commonsHttp.errorsHttp.apiInvalidResponse(data);
     }
   };
 
-  private errorGetMedics = (error: HttpErrorResponse): void => {
-    this.medicsSubject.next(null);
+  private errorGetClients = (error: HttpErrorResponse): void => {
+    this.clientsSubject.next(null);
     this.paginationLinksSubject.next(null);
     this.commonsHttp.errorsHttp.communication(error);
   };
 
-  public updateMedic(doctorId: number, medic: IMedic): void {
+  public updateClient(clientId: number, client: IClient): void {
     this.enableLoading();
-    this.medicsHttp
-      .updateMedic$(doctorId, medic)
+    this.clientsHttp
+      .updateClient$(clientId, client)
       .pipe(finalize(() => this.disableLoading()))
-      .subscribe({ next: this.nextUpdateMedic, error: this.errorUpdateMedic });
+      .subscribe({
+        next: this.nextUpdateClient,
+        error: this.errorUpdateClient,
+      });
   }
 
-  private nextUpdateMedic = (data: HttpResponse<any>): void => {
+  private nextUpdateClient = (data: HttpResponse<any>): void => {
     if (this.commonsHttp.validationsHttp.verifyStatus200(data)) {
-      const medic: IMedic = data.body.result[0];
-      this.medicSubject.next(medic);
+      const client: IClient = data.body.result[0];
+      this.clientSubject.next(client);
     } else {
-      this.medicSubject.next(null);
+      this.clientSubject.next(null);
       this.commonsHttp.errorsHttp.apiInvalidResponse(data);
     }
   };
 
-  private errorUpdateMedic = (error: HttpErrorResponse): void => {
-    this.medicSubject.next(null);
+  private errorUpdateClient = (error: HttpErrorResponse): void => {
+    this.clientSubject.next(null);
     this.commonsHttp.errorsHttp.communication(error);
   };
 
-  /* Delete Medic */
-  public getDeletedMedic$(): Observable<boolean> {
-    return this.deletedMedicSubject.asObservable();
+  /* Delete Client */
+  public getDeletedClient$(): Observable<boolean> {
+    return this.deletedClientSubject.asObservable();
   }
 
-  public deleteMedic(doctorId: number): void {
-    this.medicsHttp.deleteMedic$(doctorId).subscribe({
-      next: this.nextDeleteMedic,
-      error: this.errorDeleteMedic,
+  public deleteClient(clientId: number): void {
+    this.clientsHttp.deleteClient$(clientId).subscribe({
+      next: this.nextDeleteClient,
+      error: this.errorDeleteClient,
     });
   }
 
-  private nextDeleteMedic = (data: HttpResponse<any>): void => {
+  private nextDeleteClient = (data: HttpResponse<any>): void => {
     if (this.commonsHttp.validationsHttp.verifyStatus204(data)) {
-      this.deletedMedicSubject.next(true);
+      this.deletedClientSubject.next(true);
     } else {
-      this.deletedMedicSubject.next(false);
+      this.deletedClientSubject.next(false);
       this.commonsHttp.errorsHttp.apiInvalidResponse(data);
     }
   };
 
-  private errorDeleteMedic = (error: HttpErrorResponse): void => {
-    this.deletedMedicSubject.next(false);
+  private errorDeleteClient = (error: HttpErrorResponse): void => {
+    this.deletedClientSubject.next(false);
     this.commonsHttp.errorsHttp.communication(error);
   };
 }

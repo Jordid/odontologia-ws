@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { MedicsService } from './../../../medics/services/medics.service';
-import { IMedic } from './../../../medics/types/medic.interface';
+import { ClientsService } from '../../services/clients.service';
+import { IClient } from '../../types/client.interface';
 import { CreateClientForm } from './create-client-form.class';
+
 @Component({
   selector: 'odo-create-client-form',
   templateUrl: './create-client-form.component.html',
@@ -15,12 +16,12 @@ export class CreateClientFormComponent
 {
   private subs: Subscription = new Subscription();
 
-  constructor(private medicsService: MedicsService, private router: Router) {
+  constructor(private clientsService: ClientsService, private router: Router) {
     super();
   }
 
   ngOnInit(): void {
-    this.subs.add(this.medicsService.getMedic$().subscribe(this.getMedic));
+    this.subs.add(this.clientsService.getClient$().subscribe(this.getClient));
   }
 
   ngOnDestroy(): void {
@@ -37,12 +38,12 @@ export class CreateClientFormComponent
 
   public onSubmit(): void {
     if (this.validatedForm) {
-      this.medicsService.createMedic(this.createClientForm.getRawValue());
+      this.clientsService.createClient(this.createClientForm.getRawValue());
     }
   }
 
-  private getMedic = (medic: IMedic): void => {
-    if (medic?.doctorId > 0) {
+  private getClient = (client: IClient): void => {
+    if (client?.clientId > 0) {
       this.router.navigate(['/admin/clients']);
     } else {
       this.disableLoading();

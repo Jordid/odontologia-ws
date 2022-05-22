@@ -11,6 +11,7 @@ import { PasswordValidator } from '../../../shared/validators/password.validator
 export class CreateClientForm {
   private fb: FormBuilder = new FormBuilder();
   private createClientSkeleton = {
+    birthDate: ['1991-03-22', [Validators.required]],
     firstName: ['', [Validators.required, Validators.minLength(3)]],
     lastName: ['', [Validators.required, Validators.minLength(3)]],
     gender: ['', Validators.required],

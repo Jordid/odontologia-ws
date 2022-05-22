@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  Input,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -7,24 +13,24 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ConfirmationDialogData } from '../../../core/types/dialogs/confirmation-dialog-data';
 import { OdoDialogConfig } from '../../../core/types/dialogs/odo-dialog-config';
-import { MedicsService } from '../../../medics/services/medics.service';
-import { MedicDataSource } from '../../../medics/types/medic-datasource';
-import { IMedic } from '../../../medics/types/medic.interface';
 import { ConfirmationDialogComponent } from '../../../shared/components/dialogs/confirmation-dialog/confirmation-dialog.component';
+import { ClientsService } from '../../services/clients.service';
+import { ClientDataSource } from '../../types/client-datasource';
+import { IClient } from '../../types/client.interface';
 
 @Component({
   selector: 'odo-clients-table',
   templateUrl: './clients-table.component.html',
-  styleUrls: ['./clients-table.component.scss']
+  styleUrls: ['./clients-table.component.scss'],
 })
-export class ClientsTableComponent  implements OnInit, AfterViewInit {
+export class ClientsTableComponent implements OnInit, AfterViewInit {
   private subs: Subscription = new Subscription();
 
   @Input() showPaginator = true;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatTable) table!: MatTable<IMedic>;
-  public dataSource: MedicDataSource = null;
+  @ViewChild(MatTable) table!: MatTable<IClient>;
+  public dataSource: ClientDataSource = null;
 
   public displayedColumns: string[] = [
     'avatar',
@@ -42,19 +48,19 @@ export class ClientsTableComponent  implements OnInit, AfterViewInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private medicsService: MedicsService,
+    private clientsService: ClientsService,
     private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
-    this.dataSource = new MedicDataSource(
+    this.dataSource = new ClientDataSource(
       this.route,
       this.router,
-      this.medicsService
+      this.clientsService
     );
 
     this.subs.add(
-      this.medicsService.getDeletedMedic$().subscribe(this.getDeletedMedic)
+      this.clientsService.getDeletedClient$().subscribe(this.getDeletedClient)
     );
   }
 
@@ -68,21 +74,21 @@ export class ClientsTableComponent  implements OnInit, AfterViewInit {
     this.table.dataSource = this.dataSource;
   }
 
-  viewMedic(medic: IMedic): void {
-    if (medic) {
+  viewClient(client: IClient): void {
+    if (client) {
     }
   }
 
-  editMedic(medic: IMedic): void {
-    if (medic?.doctorId) {
-      this.router.navigate([`/admin/medics/${medic?.doctorId}/update`]);
+  editClient(client: IClient): void {
+    if (client?.clientId) {
+      this.router.navigate([`/admin/clients/${client?.clientId}/update`]);
     }
   }
 
-  deleteMedic(medic: IMedic): void {
-    if (medic?.doctorId) {
+  deleteClient(client: IClient): void {
+    if (client?.clientId) {
       const data: ConfirmationDialogData = {
-        title: `¿Estás seguro de eliminar el médico?`,
+        title: `¿Estás seguro de eliminar el cliente?`,
         cancelColorButton: `light-blue`,
         confirmColorButton: `light-pink`,
         confirmMatIcon: `delete`,
@@ -101,15 +107,15 @@ export class ClientsTableComponent  implements OnInit, AfterViewInit {
       this.subs.add(
         dialog.afterClosed().subscribe((result) => {
           if (result && result == true) {
-            this.medicsService.deleteMedic(medic?.doctorId);
+            this.clientsService.deleteClient(client?.clientId);
           }
         })
       );
     }
   }
 
-  private getDeletedMedic = (deletedMedic: boolean): void => {
-    if (deletedMedic === true) {
+  private getDeletedClient = (deletedClient: boolean): void => {
+    if (deletedClient === true) {
     }
   };
 }
