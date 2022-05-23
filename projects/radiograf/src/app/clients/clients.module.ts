@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -22,6 +24,7 @@ import { ClientsTableComponent } from './components/clients-table/clients-table.
 import { ClientsComponent } from './components/clients/clients.component';
 import { CreateClientFormComponent } from './components/create-client-form/create-client-form.component';
 import { UpdateClientFormComponent } from './components/update-client-form/update-client-form.component';
+
 @NgModule({
   declarations: [
     ClientsInitComponent,
@@ -46,6 +49,8 @@ import { UpdateClientFormComponent } from './components/update-client-form/updat
     ReactiveFormsModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
     SearchersModule,
     UserModule,
     PipesModule,

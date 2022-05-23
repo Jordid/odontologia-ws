@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { ClientsService } from '../../services/clients.service';
 import { IClient } from '../../types/client.interface';
 import { CreateClientForm } from './create-client-form.class';
-
+import * as moment from 'moment';
 @Component({
   selector: 'odo-create-client-form',
   templateUrl: './create-client-form.component.html',
@@ -16,8 +16,13 @@ export class CreateClientFormComponent
 {
   private subs: Subscription = new Subscription();
 
+  minBirthDate: Date;
+  maxBirthDate: Date;
   constructor(private clientsService: ClientsService, private router: Router) {
     super();
+    const currentYear = new Date().getFullYear();
+    this.minBirthDate = new Date(currentYear - 150, 0, 0);
+    this.maxBirthDate = new Date();
   }
 
   ngOnInit(): void {
@@ -38,7 +43,14 @@ export class CreateClientFormComponent
 
   public onSubmit(): void {
     if (this.validatedForm) {
+      this.prepateFormToSend();
       this.clientsService.createClient(this.createClientForm.getRawValue());
+    }
+  }
+
+  private prepateFormToSend(): void {
+    if (this.birthDate.value && moment(this.birthDate.value).isValid()) {
+      this.birthDate.setValue(moment(this.birthDate.value).format('YYYY-MM-DD'));
     }
   }
 

@@ -7,11 +7,10 @@ import {
 import { GenderArray, GenderEnum } from '../../../core/types/gender.enum';
 import { InputValidation } from '../../../core/utils/validations/input-validation';
 import { PasswordValidator } from '../../../shared/validators/password.validator';
-
 export class CreateClientForm {
   private fb: FormBuilder = new FormBuilder();
   private createClientSkeleton = {
-    birthDate: ['1991-03-22', [Validators.required]],
+    birthDate: ['', [Validators.required]],
     firstName: ['', [Validators.required, Validators.minLength(3)]],
     lastName: ['', [Validators.required, Validators.minLength(3)]],
     gender: ['', Validators.required],
@@ -36,6 +35,10 @@ export class CreateClientForm {
     return GenderArray;
   }
 
+  get birthDate(): AbstractControl {
+    return this.getControlByName('birthDate');
+  }
+
   get firstName(): AbstractControl {
     return this.getControlByName('firstName');
   }
@@ -51,6 +54,7 @@ export class CreateClientForm {
   get email(): AbstractControl {
     return this.getControlByName('email');
   }
+
   get document(): AbstractControl {
     return this.getControlByName('document');
   }

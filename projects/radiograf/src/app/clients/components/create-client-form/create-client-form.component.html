@@ -89,6 +89,25 @@
               </div>
 
               <div class="col-12 mb-2">
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Fecha de nacimeinto</mat-label>
+                  <input
+                    matInput
+                    [min]="minBirthDate"
+                    [max]="maxBirthDate"
+                    [matDatepicker]="picker"
+                    formControlName="birthDate"
+                  />
+                  <mat-hint>MM/DD/YYYY</mat-hint>
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="picker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+
+              <div class="col-12 mb-2">
                 <mat-form-field appearance="outline" hideRequiredMarker>
                   <mat-label>
                     Correo electrónico<!-- qaroni-required-indicator></qaroni-required-indicator> -->
@@ -138,7 +157,8 @@
               </div>
 
               <div class="col-12 mb-4 d-flex justify-content-end">
-                <button *ngIf="validatedForm"
+                <button
+                  *ngIf="validatedForm"
                   mat-flat-button
                   color="accent"
                   type="submit"

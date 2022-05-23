@@ -1,12 +1,11 @@
 import { IPerson } from '../../core/types/person.interface';
-import { MedicStatusEnum } from './medic-status.enum';
+import { ClientStatusEnum } from './client-status.enum';
 
 export interface IClient {
-  personId: number;
-  specilty: string;
-  status: MedicStatusEnum;
+  clientId: number;
   creationDate: string;
   lastUpdateDate: string;
-  clientId: number;
   person: IPerson;
+  personId: number;
+  status: ClientStatusEnum;
 }
