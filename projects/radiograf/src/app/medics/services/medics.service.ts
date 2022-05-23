@@ -5,6 +5,7 @@ import { finalize, Observable, Subject } from 'rxjs';
 import { CommonsHttpService } from '../../core/services/commons/commons-http/commons-http.service';
 import { PaginationLinks } from '../../core/types/pagination-links';
 import { IMedic } from '../types/medic.interface';
+import { MedicSnackbarsService } from './medic-snackbars.service';
 import { MedicsHttpService } from './medics-http.service';
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,8 @@ export class MedicsService {
   protected readonly deletedMedicSubject = new Subject<boolean>();
   constructor(
     private medicsHttp: MedicsHttpService,
-    private commonsHttp: CommonsHttpService
+    private commonsHttp: CommonsHttpService,
+    public medicSnackbars: MedicSnackbarsService
   ) {}
   protected readonly paginationLinksSubject = new Subject<PaginationLinks>();
 
