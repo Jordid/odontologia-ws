@@ -36,6 +36,13 @@ const routes: Routes = [
         loadChildren: () =>
           import('../xrays/xrays.module').then((m) => m.XraysModule),
       },
+
+      {
+        path: 'orders',
+        //canLoad: [OAuthGuard],
+        loadChildren: () =>
+          import('../orders/orders.module').then((m) => m.OrdersModule),
+      },
     ],
   },
 ];
