@@ -1,0 +1,51 @@
+<div class="containerSearch">
+  <form [formGroup]="autocompleteForm" class="searchForm">
+    <mat-form-field class="formField" appearance="fill">
+      <input
+        matInput
+        type="search"
+        formControlName="searcher"
+        autocomplete="off"
+        [placeholder]="autocompleteData?.placeholder"
+        [matAutocomplete]="auto"
+      />
+
+      <mat-icon matPrefix class="me-3">search</mat-icon>
+
+      <mat-autocomplete #auto="matAutocomplete">
+        <ng-container *ngIf="options">
+          <div *ngIf="counterFilteredOptions > 0" class="counterContainer">
+            <span>{{ counterFilteredOptions }}</span>
+            <span *ngIf="autocompleteData?.counterMessage">
+              &nbsp;{{ autocompleteData?.counterMessage }}</span
+            >
+          </div>
+          <mat-option
+            (click)="selectOption()"
+            *ngFor="let option of filteredOptions | async"
+            [value]="option.value"
+          >
+            <ng-container>
+              <div class="rowContainer">
+                <odo-avatar></odo-avatar>
+
+                <div>{{ option.value }}</div>
+              </div>
+            </ng-container>
+          </mat-option>
+        </ng-container>
+      </mat-autocomplete>
+
+      <button
+        mat-icon-button
+        matSuffix
+        type="button"
+        aria-label="Limpiar"
+        *ngIf="searcher.value"
+        (click)="onClear()"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+</div>

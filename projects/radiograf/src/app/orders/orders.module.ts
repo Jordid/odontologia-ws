@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
+import { AutocompletesModule } from '../shared/components/autocompletes/autocompletes.module';
 import { DialogsModule } from '../shared/components/dialogs/dialogs.module';
 import { SearchersModule } from '../shared/components/searchers/searchers.module';
 import { SharedMedicsModule } from '../shared/components/shared-medics/shared-medics.module';
@@ -51,6 +52,7 @@ import { OrderRoutingModule } from './order-routing.module';
     PipesModule,
     DialogsModule,
     SearchersModule,
+    AutocompletesModule,
   ],
 })
 export class OrdersModule {}

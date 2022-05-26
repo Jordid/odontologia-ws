@@ -1,1 +1,22 @@
-<p>create-order-form works!</p>
+<div class="container pt-3 pb-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+      <mat-card class="bg-grey card-auth mat-elevation-z4">
+        <mat-card-title>Generar oferta</mat-card-title>
+        <mat-card-content>
+          <span class="y-2">Médico {{ medicCode }}</span>
+          <odo-medics-autocomplete
+            (medicCode)="onMedicCodeChange($event)"
+          ></odo-medics-autocomplete>
+
+          <br />
+
+          <span class="my-2">Cliente</span>
+          <odo-clients-autocomplete></odo-clients-autocomplete>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<!-- <pre>{{signUpForm.getRawValue()|json}}</pre> -->
