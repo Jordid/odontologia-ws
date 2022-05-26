@@ -1,1 +1,4 @@
-<odo-autocomplete></odo-autocomplete>
+<odo-autocomplete
+  [autocompleteData]="autocompleteData"
+  (enteredTextEmit)="onEnteredTextChange($event)"
+></odo-autocomplete>

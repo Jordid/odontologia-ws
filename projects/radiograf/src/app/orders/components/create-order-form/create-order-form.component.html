@@ -11,8 +11,10 @@
 
           <br />
 
-          <span class="my-2">Cliente</span>
-          <odo-clients-autocomplete></odo-clients-autocomplete>
+          <span class="my-2">Cliente {{ clientCode }}</span>
+          <odo-clients-autocomplete
+            (clientCode)="onClientCodeChange($event)"
+          ></odo-clients-autocomplete>
         </mat-card-content>
       </mat-card>
     </div>

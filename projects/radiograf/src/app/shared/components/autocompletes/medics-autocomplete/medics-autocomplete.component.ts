@@ -105,18 +105,15 @@ export class MedicsAutocompleteComponent implements OnInit, OnDestroy {
   }
 
   onEnteredTextChange(enteredText: string): void {
-    console.log("enteredText: ", enteredText);
-
     if (enteredText) {
       const selectedMedic = this.getSelectedMedic(enteredText);
       this.medicCode.emit(selectedMedic?.code);
-      console.log('selectedMedic: ', selectedMedic);
       if (selectedMedic) {
         this.autocompleteData.optionsList = [];
         this.parserData();
       } else {
         const params: Params = {};
-        params['textoBusqueda'] = enteredText;
+        params['search'] = enteredText;
 
         this.autocompleteData.optionsList = [];
         this.parserData();

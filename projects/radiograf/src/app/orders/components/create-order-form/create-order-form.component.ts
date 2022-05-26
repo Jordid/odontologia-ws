@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateOrderFormComponent implements OnInit {
   medicCode: number = null;
+  clientCode: number = null;
+
   constructor() {}
 
   ngOnInit(): void {}
@@ -16,6 +18,13 @@ export class CreateOrderFormComponent implements OnInit {
       this.medicCode = parseInt(medicCode);
     } else {
       this.medicCode = null;
+    }
+  }
+  onClientCodeChange(clientCode: string): void {
+    if (clientCode) {
+      this.clientCode = parseInt(clientCode);
+    } else {
+      this.clientCode = null;
     }
   }
 }
