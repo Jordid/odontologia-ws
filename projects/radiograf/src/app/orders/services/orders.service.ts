@@ -1,4 +1,8 @@
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import {
+  HttpErrorResponse,
+  HttpEvent,
+  HttpResponse
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Params } from '@angular/router';
 import { finalize, Observable, Subject } from 'rxjs';
@@ -13,11 +17,13 @@ import { OrdersHttpService } from './orders-http.service';
 export class OrdersService {
   protected readonly orderSubject = new Subject<IOrder>();
   protected readonly ordersSubject = new Subject<IOrder[]>();
+  protected readonly fileSubject = new Subject<any>();
+  protected readonly paginationLinksSubject = new Subject<PaginationLinks>();
+
   constructor(
     private ordersHttp: OrdersHttpService,
     private commonsHttp: CommonsHttpService
   ) {}
-  protected readonly paginationLinksSubject = new Subject<PaginationLinks>();
 
   private enableLoading(): void {
     //this.allApp.progressBar.show();
@@ -116,6 +122,39 @@ export class OrdersService {
   private errorGetOrders = (error: HttpErrorResponse): void => {
     this.ordersSubject.next(null);
     this.paginationLinksSubject.next(null);
+    this.commonsHttp.errorsHttp.communication(error);
+  };
+
+  /* Upload file. */
+  public getFile$(): Observable<any> {
+    return this.fileSubject.asObservable();
+  }
+
+  public uploadFile(file: File): void {
+    this.enableLoading();
+    this.ordersHttp
+      .uploadFiles$(file)
+      .pipe(finalize(() => this.disableLoading()))
+      .subscribe({ next: this.nextUploadFile, error: this.errorUploadFile });
+  }
+  public uploadFileAux(file: File): Observable<HttpEvent<any>> {
+    return this.ordersHttp.uploadFilesAux$(file);
+  }
+
+  private nextUploadFile = (data: HttpResponse<any>): void => {
+    console.log('uploaded: ', data);
+
+    /* if (this.commonsHttp.validationsHttp.verifyStatus201(data)) {
+      const order: IOrder = data.body.result[0];
+      this.fileSubject.next(order);
+    } else {
+      this.fileSubject.next(null);
+      this.commonsHttp.errorsHttp.apiInvalidResponse(data);
+    } */
+  };
+
+  private errorUploadFile = (error: HttpErrorResponse): void => {
+    this.fileSubject.next(null);
     this.commonsHttp.errorsHttp.communication(error);
   };
 }

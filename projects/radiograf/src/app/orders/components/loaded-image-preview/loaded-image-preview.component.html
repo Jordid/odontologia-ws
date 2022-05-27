@@ -1,0 +1,53 @@
+<div class="imageActionsContainer mat-elevation-z2" *ngIf="urlFile">
+  <img [src]="urlFile" class="img-fluid" />
+
+  <div class="actions">
+    <button
+      mat-icon-button
+      aria-label="Quitar"
+      class="removeButton"
+      (click)="removeFile()"
+    >
+      <mat-icon>delete_forever</mat-icon>
+    </button>
+    <button
+      *ngIf="!uploaded"
+      mat-icon-button
+      aria-label="Subir"
+      class="uploadButton"
+      (click)="uploadFile()"
+    >
+      <mat-icon>cloud_upload</mat-icon>
+    </button>
+    <button
+      *ngIf="uploaded"
+      mat-icon-button
+      aria-label="Subido"
+      class="uploadedButon"
+    >
+      <mat-icon>cloud_done</mat-icon>
+    </button>
+  </div>
+
+  <pre>uploadedError: {{uploadedError}}</pre>
+  <div *ngIf="progressInfo && progressInfo?.value < 100 && uploadedError == false">
+    <!--  <span>{{ progressInfo?.fileName }}</span> -->
+    <div class="progress">
+      <div
+        class="progress-bar progress-bar-info"
+        role="progressbar"
+        attr.aria-valuenow="{{ progressInfo?.value }}"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        [ngStyle]="{ width: progressInfo?.value + '%' }"
+      >
+        {{ progressInfo?.value }}%
+      </div>
+    </div>
+  </div>
+  <!-- <div *ngIf="message.length" class="alert alert-secondary my-3" role="alert">
+    <ul *ngFor="let msg of message; let i = index">
+      <li>{{ msg }}</li>
+    </ul>
+  </div> -->
+</div>

@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { AutocompletesModule } from '../shared/components/autocompletes/autocompletes.module';
@@ -23,6 +24,8 @@ import { OrdersTableWithMenuComponent } from './components/orders-table-with-men
 import { OrdersTableComponent } from './components/orders-table/orders-table.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { OrderRoutingModule } from './order-routing.module';
+import { UploadImagesComponent } from './components/upload-images/upload-images.component';
+import { LoadedImagePreviewComponent } from './components/loaded-image-preview/loaded-image-preview.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +36,8 @@ import { OrderRoutingModule } from './order-routing.module';
     OrdersTableComponent,
     OrdersTableMenuComponent,
     OrdersTableWithMenuComponent,
+    UploadImagesComponent,
+    LoadedImagePreviewComponent,
   ],
   imports: [
     CommonModule,
@@ -43,6 +48,7 @@ import { OrderRoutingModule } from './order-routing.module';
     MatIconModule,
     MatInputModule,
     MatCardModule,
+    MatDividerModule,
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,

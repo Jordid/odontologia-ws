@@ -88,7 +88,7 @@ export class ClientsTableComponent implements OnInit, AfterViewInit {
   deleteClient(client: IClient): void {
     if (client?.clientId) {
       const data: ConfirmationDialogData = {
-        title: `¿Estás seguro de eliminar el cliente?`,
+        title: `¿Estás seguro de eliminar el paciente?`,
         cancelColorButton: `light-blue`,
         confirmColorButton: `light-pink`,
         confirmMatIcon: `delete`,

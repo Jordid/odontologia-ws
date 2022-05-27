@@ -48,7 +48,7 @@ export class ClientsAutocompleteComponent implements OnInit, OnDestroy {
     this.autocompleteData = {
       placeholder: 'Buscar',
       optionsList: optionsList as AutocompleteOptionData[],
-      counterMessage: 'clientes encontrados',
+      counterMessage: 'pacientes encontrados',
     };
     this.parserData();
   }

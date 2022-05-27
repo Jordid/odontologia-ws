@@ -1,0 +1,27 @@
+.imageActionsContainer {
+  display: flex;
+  flex-direction: column;
+  border-radius: 6px;
+  padding: 2px;
+  img {
+    height: 90px;
+    width: 120px;
+    border-radius: 4px;
+  }
+  .actions {
+    display: flex;
+    justify-content: space-around;
+    .removeButton {
+      color: #dc3545;
+    }
+    .uploadButton {
+      color: #1976d2;
+    }
+    .uploadedButon {
+      color: #2eb42e;
+    }
+  }
+  .progress {
+    width: 120px;
+  }
+}

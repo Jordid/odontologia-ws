@@ -1,0 +1,13 @@
+section{
+  min-height: 120px;
+  background-color: aliceblue;
+  width: 100%;
+}
+.imagesListContainer {
+  display: flex;
+  flex-wrap: wrap;
+  .imageContainer {
+    margin-bottom: 16px;
+    margin-right: 16px;
+  }
+}
