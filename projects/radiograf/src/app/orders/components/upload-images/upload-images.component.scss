@@ -1,13 +1,46 @@
-section{
+section {
   min-height: 120px;
-  background-color: aliceblue;
   width: 100%;
-}
-.imagesListContainer {
-  display: flex;
-  flex-wrap: wrap;
-  .imageContainer {
-    margin-bottom: 16px;
-    margin-right: 16px;
+  .card {
+    .headerMarginBottom {
+      margin-bottom: 16px;
+    }
+    .headerNoMarginBottom {
+      margin-bottom: 0px;
+    }
   }
+}
+.containerList {
+  margin-left: 16px;
+  margin-right: 16px;
+  margin-top: 16px;
+  .imagesListContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .imageContainer {
+      margin-bottom: 16px;
+      margin-right: 16px;
+    }
+  }
+}
+
+.fileupload {
+  background-color: #ffffff;
+  cursor: pointer;
+  border: 2px dashed #1976d2;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 0px;
+  margin-left: 16px;
+  margin-right: 16px;
+  margin-bottom: 16px;
+}
+
+.ddinfo {
+  display: block;
+  text-align: center;
+  color: #a0a1a2;
 }

@@ -29,9 +29,9 @@
     </button>
   </div>
 
-  <pre>uploadedError: {{uploadedError}}</pre>
-  <div *ngIf="progressInfo && progressInfo?.value < 100 && uploadedError == false">
-    <!--  <span>{{ progressInfo?.fileName }}</span> -->
+  <div
+    *ngIf="progressInfo && progressInfo?.value <= 100 && uploadedError == false"
+  >
     <div class="progress">
       <div
         class="progress-bar progress-bar-info"
@@ -45,9 +45,4 @@
       </div>
     </div>
   </div>
-  <!-- <div *ngIf="message.length" class="alert alert-secondary my-3" role="alert">
-    <ul *ngFor="let msg of message; let i = index">
-      <li>{{ msg }}</li>
-    </ul>
-  </div> -->
 </div>

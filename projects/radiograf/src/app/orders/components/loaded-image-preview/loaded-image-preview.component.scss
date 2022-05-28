@@ -23,5 +23,8 @@
   }
   .progress {
     width: 120px;
+    .progress-bar {
+      padding: 2px;
+    }
   }
 }

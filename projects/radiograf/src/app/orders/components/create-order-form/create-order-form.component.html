@@ -6,45 +6,53 @@
         <mat-card-content>
           <div class="row justify-content-center justify-content-sm-start">
             <div class="col-12 mb-2">
-              <span class="y-2">Médico {{ medicCode }}</span>
+              <span class="y-2">Médico {{ medicId }}</span>
               <odo-medics-autocomplete
-                (medicCode)="onMedicCodeChange($event)"
+                (medicId)="onMedicIdChange($event)"
               ></odo-medics-autocomplete>
             </div>
             <div class="col-12 mb-2">
-              <span class="my-2">Paciente {{ clientCode }}</span>
+              <span class="my-2">Paciente {{ clientId }}</span>
               <odo-clients-autocomplete
-                (clientCode)="onClientCodeChange($event)"
+                (clientId)="onClientIdChange($event)"
               ></odo-clients-autocomplete>
             </div>
-            <div class="col-12 mb-4 d-flex justify-content-end">
+            <div
+              *ngIf="medicId && clientId && !formSent"
+              class="col-12 mb-4 d-flex justify-content-end"
+            >
               <button
-                *ngIf="medicCode && clientCode"
                 mat-flat-button
                 color="accent"
-                type="submit"
+                type="button"
+                (click)="createOrder()"
               >
                 Generar orden
               </button>
             </div>
 
-            <div class="col-12">
-              <!-- <mat-divider></mat-divider> -->
-              <odo-upload-images></odo-upload-images>
+            <div *ngIf="medicId && clientId && order" class="col-12">
+              <odo-upload-images
+                (imageUploaded)="onImageUploadedChange($event)"
+              ></odo-upload-images>
             </div>
 
-
-
+            <div
+              *ngIf="showContinueButton"
+              class="col-12 mb-4 d-flex justify-content-end"
+            >
+              <button
+                mat-flat-button
+                color="accent"
+                type="button"
+                (click)="continue()"
+              >
+                Continuar
+              </button>
+            </div>
           </div>
-
-
-
-
-
         </mat-card-content>
       </mat-card>
     </div>
   </div>
 </div>
-
-<!-- <pre>{{signUpForm.getRawValue()|json}}</pre> -->

@@ -16,3 +16,8 @@ export interface IOrder {
   user: IUser;
   userId: number;
 }
+
+export interface ICreateOrder {
+  clientId: number;
+  doctorId: number;
+}

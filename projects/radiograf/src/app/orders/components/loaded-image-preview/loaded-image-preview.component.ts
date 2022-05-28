@@ -1,5 +1,5 @@
 import { HttpEventType, HttpResponse } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { OrdersService } from '../../services/orders.service';
 
@@ -16,6 +16,8 @@ export interface IProgressInfo {
 export class LoadedImagePreviewComponent implements OnInit {
   @Input() image: any;
   @Input() idx: number = 1;
+  @Output() imageUploaded = new EventEmitter<boolean>();
+
   urlFile: string | ArrayBuffer;
   uploaded: boolean = false;
   uploadedError: boolean = false;
@@ -56,7 +58,7 @@ export class LoadedImagePreviewComponent implements OnInit {
           } else if (event instanceof HttpResponse) {
             const msg = 'Uploaded the file successfully: ' + this.image.name;
             this.uploaded = true;
-
+            this.imageUploaded.emit(this.uploaded);
             this.message.push(msg);
             // this.fileInfos = this.uploadService.getFiles();
           }

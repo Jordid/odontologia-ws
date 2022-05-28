@@ -20,7 +20,7 @@ import {
   styleUrls: ['./medics-autocomplete.component.scss'],
 })
 export class MedicsAutocompleteComponent implements OnInit, OnDestroy {
-  @Output() medicCode = new EventEmitter<string>();
+  @Output() medicId = new EventEmitter<string>();
 
   private medics$: Observable<IMedic[]> = this.medicsService
     .getMedics$()
@@ -47,7 +47,7 @@ export class MedicsAutocompleteComponent implements OnInit, OnDestroy {
     const optionsList: AutocompleteOptionData[] =
       this.createOptionsList(medics);
     this.autocompleteData = {
-      placeholder: 'Buscar',
+      placeholder: 'Buscar médico',
       optionsList: optionsList as AutocompleteOptionData[],
       counterMessage: 'médicos encontrados',
     };
@@ -107,7 +107,7 @@ export class MedicsAutocompleteComponent implements OnInit, OnDestroy {
   onEnteredTextChange(enteredText: string): void {
     if (enteredText) {
       const selectedMedic = this.getSelectedMedic(enteredText);
-      this.medicCode.emit(selectedMedic?.code);
+      this.medicId.emit(selectedMedic?.code);
       if (selectedMedic) {
         this.autocompleteData.optionsList = [];
         this.parserData();
@@ -121,7 +121,7 @@ export class MedicsAutocompleteComponent implements OnInit, OnDestroy {
         this.medicsService.getMedics(params);
       }
     } else {
-      this.medicCode.emit(null);
+      this.medicId.emit(null);
     }
   }
 

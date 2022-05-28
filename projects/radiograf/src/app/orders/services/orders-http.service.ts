@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 import { Params } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ApiRadiografEnv } from '../../core/config/apis/api-radiograf/api-radiograf.config';
-import { IOrder } from '../types/order.interface';
+import { ICreateOrder, IOrder } from '../types/order.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -16,9 +16,9 @@ import { IOrder } from '../types/order.interface';
 export class OrdersHttpService {
   constructor(private http: HttpClient) {}
 
-  public createOrder$(order: IOrder): Observable<HttpResponse<any>> {
+  public createOrder$(createOrderJson: ICreateOrder): Observable<HttpResponse<any>> {
     const url = `${ApiRadiografEnv.baseUrl}/orders`;
-    return this.http.post(url, order, { observe: 'response' });
+    return this.http.post(url, createOrderJson, { observe: 'response' });
   }
 
   public getOrder$(orderId: number): Observable<HttpResponse<any>> {

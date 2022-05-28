@@ -8,8 +8,9 @@ import { Params } from '@angular/router';
 import { finalize, Observable, Subject } from 'rxjs';
 import { CommonsHttpService } from '../../core/services/commons/commons-http/commons-http.service';
 import { PaginationLinks } from '../../core/types/pagination-links';
-import { IOrder } from '../types/order.interface';
+import { ICreateOrder, IOrder } from '../types/order.interface';
 import { OrdersHttpService } from './orders-http.service';
+import { OrdersSnackbarsService } from './orders-snackbars.service';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +23,8 @@ export class OrdersService {
 
   constructor(
     private ordersHttp: OrdersHttpService,
-    private commonsHttp: CommonsHttpService
+    private commonsHttp: CommonsHttpService,
+    public orderSnackbars: OrdersSnackbarsService
   ) {}
 
   private enableLoading(): void {
@@ -39,29 +41,6 @@ export class OrdersService {
   public getPaginationLinks$(): Observable<PaginationLinks> {
     return this.paginationLinksSubject.asObservable();
   }
-
-  public createOrder(order: IOrder): void {
-    this.enableLoading();
-    this.ordersHttp
-      .createOrder$(order)
-      .pipe(finalize(() => this.disableLoading()))
-      .subscribe({ next: this.nextCreateOrder, error: this.errorCreateOrder });
-  }
-
-  private nextCreateOrder = (data: HttpResponse<any>): void => {
-    if (this.commonsHttp.validationsHttp.verifyStatus201(data)) {
-      const order: IOrder = data.body.result[0];
-      this.orderSubject.next(order);
-    } else {
-      this.orderSubject.next(null);
-      this.commonsHttp.errorsHttp.apiInvalidResponse(data);
-    }
-  };
-
-  private errorCreateOrder = (error: HttpErrorResponse): void => {
-    this.orderSubject.next(null);
-    this.commonsHttp.errorsHttp.communication(error);
-  };
 
   /* Get Order */
   public getOrder$(): Observable<IOrder> {
@@ -88,6 +67,29 @@ export class OrdersService {
   };
 
   private errorGetOrder = (error: HttpErrorResponse): void => {
+    this.orderSubject.next(null);
+    this.commonsHttp.errorsHttp.communication(error);
+  };
+
+  public createOrder(createOrderJson: ICreateOrder): void {
+    this.enableLoading();
+    this.ordersHttp
+      .createOrder$(createOrderJson)
+      .pipe(finalize(() => this.disableLoading()))
+      .subscribe({ next: this.nextCreateOrder, error: this.errorCreateOrder });
+  }
+
+  private nextCreateOrder = (data: HttpResponse<any>): void => {
+    if (this.commonsHttp.validationsHttp.verifyStatus201(data)) {
+      const order: IOrder = data.body.result[0];
+      this.orderSubject.next(order);
+    } else {
+      this.orderSubject.next(null);
+      this.commonsHttp.errorsHttp.apiInvalidResponse(data);
+    }
+  };
+
+  private errorCreateOrder = (error: HttpErrorResponse): void => {
     this.orderSubject.next(null);
     this.commonsHttp.errorsHttp.communication(error);
   };

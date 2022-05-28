@@ -19,7 +19,7 @@ import {
   styleUrls: ['./clients-autocomplete.component.scss'],
 })
 export class ClientsAutocompleteComponent implements OnInit, OnDestroy {
-  @Output() clientCode = new EventEmitter<string>();
+  @Output() clientId = new EventEmitter<string>();
 
   private clients$: Observable<IClient[]> = this.clientsService
     .getClients$()
@@ -46,7 +46,7 @@ export class ClientsAutocompleteComponent implements OnInit, OnDestroy {
     const optionsList: AutocompleteOptionData[] =
       this.createOptionsList(clients);
     this.autocompleteData = {
-      placeholder: 'Buscar',
+      placeholder: 'Buscar cliente',
       optionsList: optionsList as AutocompleteOptionData[],
       counterMessage: 'pacientes encontrados',
     };
@@ -106,7 +106,7 @@ export class ClientsAutocompleteComponent implements OnInit, OnDestroy {
   onEnteredTextChange(enteredText: string): void {
     if (enteredText) {
       const selectedClient = this.getSelectedClient(enteredText);
-      this.clientCode.emit(selectedClient?.code);
+      this.clientId.emit(selectedClient?.code);
       if (selectedClient) {
         this.autocompleteData.optionsList = [];
         this.parserData();
@@ -120,7 +120,7 @@ export class ClientsAutocompleteComponent implements OnInit, OnDestroy {
         this.clientsService.getClients(params);
       }
     } else {
-      this.clientCode.emit(null);
+      this.clientId.emit(null);
     }
   }
 
