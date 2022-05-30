@@ -6,42 +6,24 @@
       mat-icon-button
       aria-label="Quitar"
       class="removeButton"
+      type="button"
       (click)="removeFile()"
     >
       <mat-icon>delete_forever</mat-icon>
     </button>
-    <button
-      *ngIf="!uploaded"
-      mat-icon-button
-      aria-label="Subir"
-      class="uploadButton"
-      (click)="uploadFile()"
-    >
-      <mat-icon>cloud_upload</mat-icon>
-    </button>
-    <button
-      *ngIf="uploaded"
-      mat-icon-button
-      aria-label="Subido"
-      class="uploadedButon"
-    >
-      <mat-icon>cloud_done</mat-icon>
-    </button>
   </div>
 
-  <div
-    *ngIf="progressInfo && progressInfo?.value <= 100 && uploadedError == false"
-  >
+  <div *ngIf="progressValue && progressValue <= 100 && uploadedError == false">
     <div class="progress">
       <div
         class="progress-bar progress-bar-info"
         role="progressbar"
-        attr.aria-valuenow="{{ progressInfo?.value }}"
+        attr.aria-valuenow="{{ progressValue }}"
         aria-valuemin="0"
         aria-valuemax="100"
-        [ngStyle]="{ width: progressInfo?.value + '%' }"
+        [ngStyle]="{ width: progressValue + '%' }"
       >
-        {{ progressInfo?.value }}%
+        {{ progressValue }}%
       </div>
     </div>
   </div>

@@ -8,7 +8,9 @@ import { Params } from '@angular/router';
 import { finalize, Observable, Subject } from 'rxjs';
 import { CommonsHttpService } from '../../core/services/commons/commons-http/commons-http.service';
 import { PaginationLinks } from '../../core/types/pagination-links';
-import { ICreateOrder, IOrder } from '../types/order.interface';
+import { IExam } from '../types/exam.interface';
+import { IFile } from '../types/file.interface';
+import { ICreateExam, ICreateOrder, IOrder } from '../types/order.interface';
 import { OrdersHttpService } from './orders-http.service';
 import { OrdersSnackbarsService } from './orders-snackbars.service';
 
@@ -18,7 +20,8 @@ import { OrdersSnackbarsService } from './orders-snackbars.service';
 export class OrdersService {
   protected readonly orderSubject = new Subject<IOrder>();
   protected readonly ordersSubject = new Subject<IOrder[]>();
-  protected readonly fileSubject = new Subject<any>();
+  protected readonly examSubject = new Subject<any>();
+  protected readonly fileSubject = new Subject<IFile>();
   protected readonly paginationLinksSubject = new Subject<PaginationLinks>();
 
   constructor(
@@ -157,6 +160,35 @@ export class OrdersService {
 
   private errorUploadFile = (error: HttpErrorResponse): void => {
     this.fileSubject.next(null);
+    this.commonsHttp.errorsHttp.communication(error);
+  };
+
+  /* Get exam. */
+  public getExam$(): Observable<IExam> {
+    return this.examSubject.asObservable();
+  }
+
+  /* Create exam. */
+  public createExam(orderId: number, createExamJson: ICreateExam): void {
+    this.enableLoading();
+    this.ordersHttp
+      .createExam$(orderId, createExamJson)
+      .pipe(finalize(() => this.disableLoading()))
+      .subscribe({ next: this.nextCreateExam, error: this.errorCreateExam });
+  }
+
+  private nextCreateExam = (data: HttpResponse<any>): void => {
+    if (this.commonsHttp.validationsHttp.verifyStatus201(data)) {
+      const exam: IExam = data.body.result[0];
+      this.examSubject.next(exam);
+    } else {
+      this.examSubject.next(null);
+      this.commonsHttp.errorsHttp.apiInvalidResponse(data);
+    }
+  };
+
+  private errorCreateExam = (error: HttpErrorResponse): void => {
+    this.examSubject.next(null);
     this.commonsHttp.errorsHttp.communication(error);
   };
 }

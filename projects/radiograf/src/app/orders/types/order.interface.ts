@@ -21,3 +21,9 @@ export interface ICreateOrder {
   clientId: number;
   doctorId: number;
 }
+
+export interface ICreateExam {
+  typeId: number;
+  value: number;
+  storageId: string;
+}

@@ -14,6 +14,7 @@ export class CreateOrderFormComponent implements OnInit, OnDestroy {
   order: IOrder;
   formSent: boolean = false;
   showContinueButton: boolean = false;
+  showCreateExamForm: boolean = false;
 
   private subs: Subscription = new Subscription();
 
@@ -62,11 +63,19 @@ export class CreateOrderFormComponent implements OnInit, OnDestroy {
     }
   }
 
+  addExam(): void {
+    this.showCreateExamForm = true;
+  }
+
   onImageUploadedChange(uploaded: boolean): void {
     this.showContinueButton = true;
   }
 
   continue(): void {
     this.router.navigate(['/admin/orders']);
+  }
+
+  onSentCreateExamChange(sentCreateExam: boolean) {
+    this.showCreateExamForm = !sentCreateExam;
   }
 }

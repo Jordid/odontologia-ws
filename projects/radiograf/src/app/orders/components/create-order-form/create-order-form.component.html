@@ -5,13 +5,13 @@
         <mat-card-title>Generar orden</mat-card-title>
         <mat-card-content>
           <div class="row justify-content-center justify-content-sm-start">
-            <div class="col-12 mb-2">
+            <div class="col-12">
               <span class="y-2">Médico {{ medicId }}</span>
               <odo-medics-autocomplete
                 (medicId)="onMedicIdChange($event)"
               ></odo-medics-autocomplete>
             </div>
-            <div class="col-12 mb-2">
+            <div class="col-12">
               <span class="my-2">Paciente {{ clientId }}</span>
               <odo-clients-autocomplete
                 (clientId)="onClientIdChange($event)"
@@ -19,27 +19,55 @@
             </div>
             <div
               *ngIf="medicId && clientId && !formSent"
-              class="col-12 mb-4 d-flex justify-content-end"
+              class="col-12 mb-3 d-flex justify-content-end"
             >
               <button
                 mat-flat-button
                 color="accent"
                 type="button"
+                class="createOrderButton"
                 (click)="createOrder()"
               >
                 Generar orden
               </button>
             </div>
 
-            <div *ngIf="medicId && clientId && order" class="col-12">
+            <!-- Agregar examen button -->
+            <!-- <div
+            *ngIf="medicId && clientId && order"
+            class="col-12 d-flex justify-content-end"
+          > -->
+            <div
+              *ngIf="order?.orderId > 0"
+              class="col-12 mb-3 d-flex justify-content-end"
+            >
+              <button
+                mat-stroked-button
+                color="accent"
+                type="button"
+                (click)="addExam()"
+              >
+                Agregar exámen
+              </button>
+            </div>
+
+            <div *ngIf="showCreateExamForm" class="col-12">
+              <odo-create-exam-form
+                [orderId]="order?.orderId"
+                (sentCreateExam)="onSentCreateExamChange($event)"
+              ></odo-create-exam-form>
+            </div>
+          </div>
+
+          <!-- <div *ngIf="medicId && clientId && order" class="col-12">
               <odo-upload-images
                 (imageUploaded)="onImageUploadedChange($event)"
               ></odo-upload-images>
-            </div>
+            </div> -->
 
-            <div
+          <!-- <div
               *ngIf="showContinueButton"
-              class="col-12 mb-4 d-flex justify-content-end"
+              class="col-12 mt-2 d-flex justify-content-end"
             >
               <button
                 mat-flat-button
@@ -49,8 +77,7 @@
               >
                 Continuar
               </button>
-            </div>
-          </div>
+            </div> -->
         </mat-card-content>
       </mat-card>
     </div>

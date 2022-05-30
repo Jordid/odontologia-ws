@@ -1,5 +1,5 @@
 import { HttpEventType, HttpResponse } from '@angular/common/http';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Observable } from 'rxjs';
 import { OrdersService } from '../../services/orders.service';
 
@@ -13,23 +13,24 @@ export interface IProgressInfo {
   templateUrl: './loaded-image-preview.component.html',
   styleUrls: ['./loaded-image-preview.component.scss'],
 })
-export class LoadedImagePreviewComponent implements OnInit {
+export class LoadedImagePreviewComponent implements OnChanges {
+  @Input() progressValue: number;
+  @Input() uploadedError: boolean;
   @Input() image: any;
   @Input() idx: number = 1;
   @Output() imageUploaded = new EventEmitter<boolean>();
 
   urlFile: string | ArrayBuffer;
   uploaded: boolean = false;
-  uploadedError: boolean = false;
 
-  selectedFiles?: FileList;
+  selectedFiles?: File[];
   progressInfo: IProgressInfo;
   message: string[] = [];
   fileInfos?: Observable<any>;
 
   constructor(private ordersService: OrdersService) {}
 
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges): void {
     this.processImage();
   }
 
