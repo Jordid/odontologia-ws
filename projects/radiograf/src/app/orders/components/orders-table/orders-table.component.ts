@@ -3,7 +3,7 @@ import {
   Component,
   Input,
   OnInit,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -28,10 +28,10 @@ export class OrdersTableComponent implements OnInit, AfterViewInit {
   public dataSource: OrderDataSource = null;
 
   public displayedColumns: string[] = [
-    'firstName',
-    'lastName',
-    'document',
-    'specialty',
+    'patientNames',
+    'patientDocument',
+    'medicNames',
+    'medicDocument',
     'status',
     'actions',
   ];
@@ -61,4 +61,16 @@ export class OrdersTableComponent implements OnInit, AfterViewInit {
   }
 
   viewOrder(oder: IOrder): void {}
+
+  getNameAndLastName(firstName: string, lastName: string): string {
+    let nameAndLastName = '';
+    if (firstName && lastName) {
+      nameAndLastName = firstName + ' ' + lastName;
+    } else if (firstName) {
+      nameAndLastName = firstName;
+    } else if (lastName) {
+      nameAndLastName = lastName;
+    }
+    return nameAndLastName;
+  }
 }
