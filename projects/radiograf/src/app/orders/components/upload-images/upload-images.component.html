@@ -20,8 +20,9 @@
           <odo-loaded-image-preview
             [progressValue]="progressValue"
             [uploadedError]="uploadedError"
-            [image]="selectedImage"
+            [file]="selectedImage"
             (imageUploaded)="onImageUploadedChange($event)"
+            (removedFile)="onRemovedFileChange($event)"
           ></odo-loaded-image-preview>
         </div>
       </div>

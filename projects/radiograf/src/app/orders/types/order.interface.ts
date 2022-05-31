@@ -9,7 +9,7 @@ export interface IOrder {
   creationDate: number;
   doctorId: number;
   lastUpdateDate: string;
-  medic: IMedic;
+  doctor: IMedic;
   orderId: number;
   sendDate: string;
   status: OrderStatusEnum;

@@ -30,8 +30,11 @@ export class CreateOrderFormComponent implements OnInit, OnDestroy {
 
   private getOrder = (order: IOrder) => {
     this.order = order;
+    console.log("order: ", order);
+
     if (order?.orderId) {
       this.ordersService.orderSnackbars.successGeneratedOrder();
+
     } else {
       this.ordersService.orderSnackbars.failureGeneratedOrder();
     }

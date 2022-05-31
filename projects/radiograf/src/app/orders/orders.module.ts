@@ -31,6 +31,7 @@ import { UploadImagesComponent } from './components/upload-images/upload-images.
 import { OrderRoutingModule } from './order-routing.module';
 import { ExamCategoryPipe } from './pipes/exam-category.pipe';
 import { RadiographyTypePipe } from './pipes/radiography-type.pipe';
+import { OderPatientAndMedicPreviewComponent } from './components/oder-patient-and-medic-preview/oder-patient-and-medic-preview.component';
 @NgModule({
   declarations: [
     CreateExamFormComponent,
@@ -46,6 +47,7 @@ import { RadiographyTypePipe } from './pipes/radiography-type.pipe';
     OrdersTableWithMenuComponent,
     RadiographyTypePipe,
     UploadImagesComponent,
+    OderPatientAndMedicPreviewComponent,
   ],
   imports: [
     CommonModule,

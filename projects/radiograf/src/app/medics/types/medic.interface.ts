@@ -7,6 +7,6 @@ export interface IMedic {
   lastUpdateDate: string;
   person: IPerson;
   personId: number;
-  specilty: string;
+  specialty: string;
   status: MedicStatusEnum;
 }

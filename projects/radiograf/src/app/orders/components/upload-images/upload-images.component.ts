@@ -23,6 +23,14 @@ export class UploadImagesComponent {
   }
 
   onImageUploadedChange(uploaded: boolean): void {
-    this.imageUploaded.emit(uploaded);
+    if (uploaded) {
+      this.imageUploaded.emit(uploaded);
+    }
+  }
+  onRemovedFileChange(removed: boolean): void {
+    if (removed) {
+      this.selectedFile = false;
+      this.selectedImagesList = [];
+    }
   }
 }
