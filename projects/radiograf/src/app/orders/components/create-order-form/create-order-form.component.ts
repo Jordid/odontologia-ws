@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { OrdersService } from '../../services/orders.service';
+import { IExam } from '../../types/exam.interface';
 import { ICreateOrder, IOrder } from '../../types/order.interface';
 @Component({
   selector: 'odo-create-order-form',
@@ -15,6 +16,7 @@ export class CreateOrderFormComponent implements OnInit, OnDestroy {
   formSent: boolean = false;
   showContinueButton: boolean = false;
   showCreateExamForm: boolean = false;
+  exams: IExam[];
 
   private subs: Subscription = new Subscription();
 
@@ -22,6 +24,7 @@ export class CreateOrderFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subs.add(this.ordersService.getOrder$().subscribe(this.getOrder));
+    this.subs.add(this.ordersService.getExams$().subscribe(this.getExams));
   }
 
   ngOnDestroy(): void {
@@ -30,11 +33,10 @@ export class CreateOrderFormComponent implements OnInit, OnDestroy {
 
   private getOrder = (order: IOrder) => {
     this.order = order;
-    console.log("order: ", order);
+    console.log('order: ', order);
 
     if (order?.orderId) {
       this.ordersService.orderSnackbars.successGeneratedOrder();
-
     } else {
       this.ordersService.orderSnackbars.failureGeneratedOrder();
     }
@@ -80,5 +82,13 @@ export class CreateOrderFormComponent implements OnInit, OnDestroy {
 
   onSentCreateExamChange(sentCreateExam: boolean) {
     this.showCreateExamForm = !sentCreateExam;
+    if (this.order?.orderId) {
+      this.ordersService.getExams(this.order?.orderId);
+    }
   }
+
+  private getExams = (exams: IExam[]): void => {
+    console.log('Get exams. ', exams);
+    this.exams = exams;
+  };
 }

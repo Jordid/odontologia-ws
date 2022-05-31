@@ -20,7 +20,8 @@ import { OrdersSnackbarsService } from './orders-snackbars.service';
 export class OrdersService {
   protected readonly orderSubject = new Subject<IOrder>();
   protected readonly ordersSubject = new Subject<IOrder[]>();
-  protected readonly examSubject = new Subject<any>();
+  protected readonly examSubject = new Subject<IExam>();
+  protected readonly examsSubject = new Subject<IExam[]>();
   protected readonly fileSubject = new Subject<IFile>();
   protected readonly paginationLinksSubject = new Subject<PaginationLinks>();
 
@@ -189,6 +190,39 @@ export class OrdersService {
 
   private errorCreateExam = (error: HttpErrorResponse): void => {
     this.examSubject.next(null);
+    this.commonsHttp.errorsHttp.communication(error);
+  };
+
+  /* Get Exams. */
+  public getExams$(): Observable<IExam[]> {
+    return this.examsSubject.asObservable();
+  }
+
+  public getExams(orderId: number): void {
+    /*  if (this.oAuthStorage.hasOAuth) { */
+    this.ordersHttp.getExams$(orderId).subscribe({
+      next: this.nextGetExams,
+      error: this.errorGetExams,
+    });
+    /* } */
+  }
+
+  private nextGetExams = (data: HttpResponse<any>): void => {
+    if (this.commonsHttp.validationsHttp.verifyStatus200(data)) {
+      const exams: IExam[] = data.body.result;
+      const paginationLinks: PaginationLinks = data.body.links;
+      this.examsSubject.next(exams);
+      this.paginationLinksSubject.next(paginationLinks);
+    } else {
+      this.examsSubject.next(null);
+      this.paginationLinksSubject.next(null);
+      this.commonsHttp.errorsHttp.apiInvalidResponse(data);
+    }
+  };
+
+  private errorGetExams = (error: HttpErrorResponse): void => {
+    this.examsSubject.next(null);
+    this.paginationLinksSubject.next(null);
     this.commonsHttp.errorsHttp.communication(error);
   };
 }

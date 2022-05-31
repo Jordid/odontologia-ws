@@ -1,15 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'odo-file-preview',
   templateUrl: './file-preview.component.html',
-  styleUrls: ['./file-preview.component.scss']
+  styleUrls: ['./file-preview.component.scss'],
 })
-export class FilePreviewComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class FilePreviewComponent {
+  @Input() urlFile: string;
 }

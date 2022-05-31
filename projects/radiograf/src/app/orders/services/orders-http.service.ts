@@ -2,7 +2,7 @@ import {
   HttpClient,
   HttpEvent,
   HttpRequest,
-  HttpResponse
+  HttpResponse,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Params } from '@angular/router';
@@ -57,5 +57,10 @@ export class OrdersHttpService {
   ): Observable<HttpResponse<any>> {
     const url = `${ApiRadiografEnv.baseUrl}/orders/${orderId}/radiography`;
     return this.http.post(url, createExamJson, { observe: 'response' });
+  }
+
+  public getExams$(orderId: number): Observable<HttpResponse<any>> {
+    const url = `${ApiRadiografEnv.baseUrl}/orders/${orderId}/radiography`;
+    return this.http.get(url, { observe: 'response' });
   }
 }

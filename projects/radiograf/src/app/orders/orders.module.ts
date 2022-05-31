@@ -13,14 +13,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { AutocompletesModule } from '../shared/components/autocompletes/autocompletes.module';
 import { DialogsModule } from '../shared/components/dialogs/dialogs.module';
+import { FilesModule } from '../shared/components/files/files.module';
 import { SearchersModule } from '../shared/components/searchers/searchers.module';
 import { SharedMedicsModule } from '../shared/components/shared-medics/shared-medics.module';
 import { UserModule } from '../shared/components/user/user.module';
 import { PipesModule } from '../shared/pipes/pipes.module';
 import { CreateExamFormComponent } from './components/create-exam-form/create-exam-form.component';
 import { CreateOrderFormComponent } from './components/create-order-form/create-order-form.component';
-import { FilesListContainerComponent } from './components/files-list-container/files-list-container.component';
 import { LoadedImagePreviewComponent } from './components/loaded-image-preview/loaded-image-preview.component';
+import { OderPatientAndMedicPreviewComponent } from './components/oder-patient-and-medic-preview/oder-patient-and-medic-preview.component';
+import { OrdersFilesListPreviewComponent } from './components/orders-files-list-preview/orders-files-list-preview.component';
 import { OrdersInitComponent } from './components/orders-init/orders-init.component';
 import { OrdersMenuPanelComponent } from './components/orders-menu-panel/orders-menu-panel.component';
 import { OrdersTableMenuComponent } from './components/orders-table-menu/orders-table-menu.component';
@@ -31,15 +33,15 @@ import { UploadImagesComponent } from './components/upload-images/upload-images.
 import { OrderRoutingModule } from './order-routing.module';
 import { ExamCategoryPipe } from './pipes/exam-category.pipe';
 import { RadiographyTypePipe } from './pipes/radiography-type.pipe';
-import { OderPatientAndMedicPreviewComponent } from './components/oder-patient-and-medic-preview/oder-patient-and-medic-preview.component';
 @NgModule({
   declarations: [
     CreateExamFormComponent,
     CreateOrderFormComponent,
     ExamCategoryPipe,
-    FilesListContainerComponent,
     LoadedImagePreviewComponent,
+    OderPatientAndMedicPreviewComponent,
     OrdersComponent,
+    OrdersFilesListPreviewComponent,
     OrdersInitComponent,
     OrdersMenuPanelComponent,
     OrdersTableComponent,
@@ -47,7 +49,6 @@ import { OderPatientAndMedicPreviewComponent } from './components/oder-patient-a
     OrdersTableWithMenuComponent,
     RadiographyTypePipe,
     UploadImagesComponent,
-    OderPatientAndMedicPreviewComponent,
   ],
   imports: [
     CommonModule,
@@ -70,6 +71,7 @@ import { OderPatientAndMedicPreviewComponent } from './components/oder-patient-a
     DialogsModule,
     SearchersModule,
     AutocompletesModule,
+    FilesModule,
   ],
 })
 export class OrdersModule {}

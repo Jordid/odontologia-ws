@@ -1,0 +1,11 @@
+.imageContainer {
+  display: flex;
+  flex-direction: column;
+  border-radius: 6px;
+  padding: 2px;
+  img {
+    height: 90px;
+    width: 120px;
+    border-radius: 4px;
+  }
+}

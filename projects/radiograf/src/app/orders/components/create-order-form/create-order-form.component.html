@@ -14,6 +14,12 @@
               </div>
             </ng-container>
 
+            <ng-container>
+              <odo-orders-files-list-preview
+                [exams]="exams"
+              ></odo-orders-files-list-preview>
+            </ng-container>
+
             <!-- Si aún no se genera la orden se muestra los buscadores de paciente y médico. -->
             <ng-template #buscadores>
               <div class="col-12 col-lg-6">

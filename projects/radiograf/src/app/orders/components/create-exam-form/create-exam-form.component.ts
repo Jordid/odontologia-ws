@@ -6,7 +6,7 @@ import {
   OnDestroy,
   OnInit,
   Output,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -25,7 +25,7 @@ export interface IProgressInfo {
   selector: 'odo-create-exam-form',
   templateUrl: './create-exam-form.component.html',
   styleUrls: ['./create-exam-form.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class CreateExamFormComponent
   extends CreateExamForm
@@ -42,6 +42,7 @@ export class CreateExamFormComponent
   uploaded: boolean = false;
   uploadedError: boolean = false;
   uploadedFile: IFile;
+  exams: IExam[];
 
   constructor(private router: Router, private ordersService: OrdersService) {
     super();
