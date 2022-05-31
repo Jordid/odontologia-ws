@@ -1,5 +1,12 @@
 <div class="mat-elevation-z8">
   <table mat-table matSort>
+    <!-- order code Column -->
+    <ng-container matColumnDef="orderCode">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Cód. orden</th>
+      <td mat-cell *matCellDef="let row">
+        {{ row?.orderId }}
+      </td>
+    </ng-container>
     <!-- patient names Column -->
     <ng-container matColumnDef="patientNames">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Paciente</th>

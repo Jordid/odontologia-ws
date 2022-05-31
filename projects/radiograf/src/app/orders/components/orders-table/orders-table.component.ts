@@ -28,6 +28,7 @@ export class OrdersTableComponent implements OnInit, AfterViewInit {
   public dataSource: OrderDataSource = null;
 
   public displayedColumns: string[] = [
+    'orderCode',
     'patientNames',
     'patientDocument',
     'medicNames',
