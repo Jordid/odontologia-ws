@@ -33,6 +33,14 @@ import { UploadImagesComponent } from './components/upload-images/upload-images.
 import { OrderRoutingModule } from './order-routing.module';
 import { ExamCategoryPipe } from './pipes/exam-category.pipe';
 import { RadiographyTypePipe } from './pipes/radiography-type.pipe';
+import { OdontogramContainerComponent } from './components/odontogram/odontogram-container/odontogram-container.component';
+import { DentalPieceComponent } from './components/odontogram/dental-piece/dental-piece.component';
+import { OdontogramComponent } from './components/odontogram/odontogram/odontogram.component';
+import { FirstPiecesBlockComponent } from './components/odontogram/first-pieces-block/first-pieces-block.component';
+import { SecondtPiecesBlockComponent } from './components/odontogram/secondt-pieces-block/secondt-pieces-block.component';
+import { PiecesBlockComponent } from './components/odontogram/pieces-block/pieces-block.component';
+import { ToothPieceComponent } from './components/odontogram/tooth-piece/tooth-piece.component';
+import { MolarPieceComponent } from './components/odontogram/molar-piece/molar-piece.component';
 @NgModule({
   declarations: [
     CreateExamFormComponent,
@@ -49,6 +57,14 @@ import { RadiographyTypePipe } from './pipes/radiography-type.pipe';
     OrdersTableWithMenuComponent,
     RadiographyTypePipe,
     UploadImagesComponent,
+    OdontogramContainerComponent,
+    DentalPieceComponent,
+    OdontogramComponent,
+    FirstPiecesBlockComponent,
+    SecondtPiecesBlockComponent,
+    PiecesBlockComponent,
+    ToothPieceComponent,
+    MolarPieceComponent,
   ],
   imports: [
     CommonModule,

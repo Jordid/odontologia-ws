@@ -12,7 +12,7 @@
           <div class="row justify-content-center justify-content-sm-start">
             <!-- Categoría de exámen. -->
             <div class="col-12 col-md-6">
-              <mat-form-field class="ff-no-bottom-space moz-suffix">
+              <mat-form-field>
                 <mat-label>Categoría</mat-label>
                 <mat-select formControlName="examCatergory">
                   <mat-option
@@ -37,7 +37,7 @@
 
             <!-- Tipo de radiografía. -->
             <div class="col-12 col-md-6">
-              <mat-form-field class="ff-no-bottom-space moz-suffix">
+              <mat-form-field>
                 <mat-label>Exámen</mat-label>
                 <mat-select formControlName="examType">
                   <mat-option
@@ -96,6 +96,28 @@
                   >Agregar estudio</mat-checkbox
                 >
               </section>
+            </div>
+
+            <!-- Observación. -->
+            <div class="col-12 mt-3 colPriceExamInput">
+              <mat-form-field appearance="outline" hideRequiredMarker>
+                <mat-label> Observación </mat-label>
+                <input
+                  matInput
+                  formControlName="observation"
+                  autocomplete="off"
+                  type="text"
+                  required
+                />
+                <mat-error
+                  align="start"
+                  *ngIf="InputValidation.checkInputErrors(observation)"
+                >
+                  <!--  <qaroni-input-error-messages
+                     [fc]="observation"
+                   ></qaroni-input-error-messages> -->
+                </mat-error>
+              </mat-form-field>
             </div>
 
             <div class="col-12 mb-2">

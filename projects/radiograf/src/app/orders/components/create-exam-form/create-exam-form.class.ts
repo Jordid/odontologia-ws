@@ -25,6 +25,7 @@ export class CreateExamForm {
     isAditional: [''],
     price: ['', Validators.required],
     isAddStudio: [''],
+    observation: [''],
   };
 
   submitting = false;
@@ -64,6 +65,10 @@ export class CreateExamForm {
 
   get isAddStudio(): AbstractControl {
     return this.getControlByName('isAddStudio');
+  }
+
+  get observation(): AbstractControl {
+    return this.getControlByName('observation');
   }
 
   get validatedForm(): boolean {

@@ -1,0 +1,19 @@
+<div class="odontrogramContainer">
+  <div class="firstPiecesBlockContainer">
+    <odo-pieces-block block="left" (pieceCode)="onChangeSelectedPieceCode($event)"></odo-pieces-block>
+  </div>
+  <div class="secondPiecesBlockContainer">
+    <odo-pieces-block block="right" (pieceCode)="onChangeSelectedPieceCode($event)"></odo-pieces-block>
+  </div>
+</div>
+<div class="bottomActions mt-2">
+  <button
+    mat-flat-button
+    color="accent"
+    type="button"
+    class="createOrderButton"
+    (click)="addPieces()"
+  >
+    Agregar
+  </button>
+</div>

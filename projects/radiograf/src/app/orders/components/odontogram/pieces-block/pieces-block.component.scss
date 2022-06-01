@@ -1,0 +1,37 @@
+.pieceBlockContainer {
+  border: 1px solid gray;
+  min-height: 120px;
+  width: 100%;
+  .firstMolarRowPieces {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    margin-bottom: 16px;
+  }
+  .firstToothRowPieces {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    margin-bottom: 16px;
+  }
+  .secondToothRowPieces {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    margin-bottom: 16px;
+  }
+  .secondMolarRowPieces {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+  }
+}
+
+.toothPieceContainer {
+  margin-left: 4px;
+  margin-right: 4px;
+}
+.molarPieceContainer {
+  margin-left: 4px;
+  margin-right: 4px;
+}

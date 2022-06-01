@@ -5,6 +5,11 @@
         <mat-card-title>Generar orden</mat-card-title>
         <mat-card-content>
           <div class="row justify-content-center justify-content-sm-start">
+            <div class="col-12 mb-5">
+              <h3>Odontrograma</h3>
+              <odo-odontogram></odo-odontogram>
+            </div>
+
             <!-- Si ya se generó la orden se muestra los datos del paciente y médico. -->
             <ng-container *ngIf="order?.orderId > 0; else buscadores">
               <div class="previewContainer">
@@ -14,7 +19,7 @@
               </div>
             </ng-container>
 
-            <ng-container>
+            <ng-container *ngIf="exams?.length > 0">
               <odo-orders-files-list-preview
                 [exams]="exams"
               ></odo-orders-files-list-preview>
@@ -68,7 +73,8 @@
             </div>
 
             <!-- Se muestra el formulario de creación de exámen cuando se hace clic en el boton agregar exámen. -->
-            <div *ngIf="showCreateExamForm" class="col-12">
+            <!-- <div *ngIf="showCreateExamForm" class="col-12"> -->
+            <div *ngIf="true" class="col-12">
               <odo-create-exam-form
                 [orderId]="order?.orderId"
                 (sentCreateExam)="onSentCreateExamChange($event)"

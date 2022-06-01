@@ -1,0 +1,193 @@
+<!-- Left block -->
+<div *ngIf="block === 'left'" class="pieceBlockContainer">
+  <!-- First molar pieces row -->
+  <div class="firstMolarRowPieces">
+    <div class="molarPieceContainer">
+      <odo-molar-piece molarCode="18" (selectedPiece)="selecPiece($event)"></odo-molar-piece>
+    </div>
+    <div class="molarPieceContainer">
+      <odo-molar-piece molarCode="17" (selectedPiece)="selecPiece($event)"></odo-molar-piece>
+    </div>
+    <div class="molarPieceContainer">
+      <odo-molar-piece molarCode="16" (selectedPiece)="selecPiece($event)"></odo-molar-piece>
+    </div>
+    <div class="molarPieceContainer">
+      <odo-molar-piece molarCode="15" (selectedPiece)="selecPiece($event)"></odo-molar-piece>
+    </div>
+    <div class="molarPieceContainer">
+      <odo-molar-piece molarCode="14" (selectedPiece)="selecPiece($event)"></odo-molar-piece>
+    </div>
+    <div class="molarPieceContainer">
+      <odo-molar-piece molarCode="13" (selectedPiece)="selecPiece($event)"></odo-molar-piece>
+    </div>
+    <div class="molarPieceContainer">
+      <odo-molar-piece molarCode="12" (selectedPiece)="selecPiece($event)"></odo-molar-piece>
+    </div>
+    <div class="molarPieceContainer">
+      <odo-molar-piece molarCode="11" (selectedPiece)="selecPiece($event)"></odo-molar-piece>
+    </div>
+  </div>
+
+  <!-- First tooth pieces row -->
+  <div class="firstToothRowPieces">
+    <div class="toothPieceContainer">
+      <odo-tooth-piece toothCode="55"></odo-tooth-piece>
+    </div>
+    <div class="toothPieceContainer">
+      <odo-tooth-piece toothCode="54"></odo-tooth-piece>
+    </div>
+    <div class="toothPieceContainer">
+      <odo-tooth-piece toothCode="53"></odo-tooth-piece>
+    </div>
+    <div class="toothPieceContainer">
+      <odo-tooth-piece toothCode="52"></odo-tooth-piece>
+    </div>
+    <div class="toothPieceContainer">
+      <odo-tooth-piece toothCode="51"></odo-tooth-piece>
+    </div>
+  </div>
+
+  <!-- Second tooth pieces row -->
+  <div class="secondToothRowPieces">
+    <div class="toothPieceContainer">
+      <odo-tooth-piece toothCode="85"></odo-tooth-piece>
+    </div>
+    <div class="toothPieceContainer">
+      <odo-tooth-piece toothCode="84"></odo-tooth-piece>
+    </div>
+    <div class="toothPieceContainer">
+      <odo-tooth-piece toothCode="83"></odo-tooth-piece>
+    </div>
+    <div class="toothPieceContainer">
+      <odo-tooth-piece toothCode="82"></odo-tooth-piece>
+    </div>
+    <div class="toothPieceContainer">
+      <odo-tooth-piece toothCode="81"></odo-tooth-piece>
+    </div>
+  </div>
+
+  <!-- Second molar pieces row -->
+  <div class="secondMolarRowPieces">
+    <div class="molarPieceContainer">
+      <odo-molar-piece molarCode="48"></odo-molar-piece>
+    </div>
+    <div class="molarPieceContainer">
+      <odo-molar-piece molarCode="47"></odo-molar-piece>
+    </div>
+    <div class="molarPieceContainer">
+      <odo-molar-piece molarCode="46"></odo-molar-piece>
+    </div>
+    <div class="molarPieceContainer">
+      <odo-molar-piece molarCode="45"></odo-molar-piece>
+    </div>
+    <div class="molarPieceContainer">
+      <odo-molar-piece molarCode="44"></odo-molar-piece>
+    </div>
+    <div class="molarPieceContainer">
+      <odo-molar-piece molarCode="43"></odo-molar-piece>
+    </div>
+    <div class="molarPieceContainer">
+      <odo-molar-piece molarCode="42"></odo-molar-piece>
+    </div>
+    <div class="molarPieceContainer">
+      <odo-molar-piece molarCode="41"></odo-molar-piece>
+    </div>
+  </div>
+</div>
+
+<!-- Right block -->
+<div *ngIf="block === 'right'" class="pieceBlockContainer">
+  <!-- First molar pieces row -->
+  <div class="firstMolarRowPieces">
+    <div class="molarPieceContainer">
+      <odo-molar-piece molarCode="18"></odo-molar-piece>
+    </div>
+    <div class="molarPieceContainer">
+      <odo-molar-piece molarCode="17"></odo-molar-piece>
+    </div>
+    <div class="molarPieceContainer">
+      <odo-molar-piece molarCode="16"></odo-molar-piece>
+    </div>
+    <div class="molarPieceContainer">
+      <odo-molar-piece molarCode="15"></odo-molar-piece>
+    </div>
+    <div class="molarPieceContainer">
+      <odo-molar-piece molarCode="14"></odo-molar-piece>
+    </div>
+    <div class="molarPieceContainer">
+      <odo-molar-piece molarCode="13"></odo-molar-piece>
+    </div>
+    <div class="molarPieceContainer">
+      <odo-molar-piece molarCode="12"></odo-molar-piece>
+    </div>
+    <div class="molarPieceContainer">
+      <odo-molar-piece molarCode="11"></odo-molar-piece>
+    </div>
+  </div>
+
+  <!-- First tooth pieces row -->
+  <div class="firstToothRowPieces">
+    <div class="toothPieceContainer">
+      <odo-tooth-piece toothCode="55"></odo-tooth-piece>
+    </div>
+    <div class="toothPieceContainer">
+      <odo-tooth-piece toothCode="54"></odo-tooth-piece>
+    </div>
+    <div class="toothPieceContainer">
+      <odo-tooth-piece toothCode="53"></odo-tooth-piece>
+    </div>
+    <div class="toothPieceContainer">
+      <odo-tooth-piece toothCode="52"></odo-tooth-piece>
+    </div>
+    <div class="toothPieceContainer">
+      <odo-tooth-piece toothCode="51"></odo-tooth-piece>
+    </div>
+  </div>
+
+  <!-- Second tooth pieces row -->
+  <div class="secondToothRowPieces">
+    <div class="toothPieceContainer">
+      <odo-tooth-piece toothCode="85"></odo-tooth-piece>
+    </div>
+    <div class="toothPieceContainer">
+      <odo-tooth-piece toothCode="84"></odo-tooth-piece>
+    </div>
+    <div class="toothPieceContainer">
+      <odo-tooth-piece toothCode="83"></odo-tooth-piece>
+    </div>
+    <div class="toothPieceContainer">
+      <odo-tooth-piece toothCode="82"></odo-tooth-piece>
+    </div>
+    <div class="toothPieceContainer">
+      <odo-tooth-piece toothCode="81"></odo-tooth-piece>
+    </div>
+  </div>
+
+  <!-- Second molar pieces row -->
+  <div class="secondMolarRowPieces">
+    <div class="molarPieceContainer">
+      <odo-molar-piece molarCode="48"></odo-molar-piece>
+    </div>
+    <div class="molarPieceContainer">
+      <odo-molar-piece molarCode="47"></odo-molar-piece>
+    </div>
+    <div class="molarPieceContainer">
+      <odo-molar-piece molarCode="46"></odo-molar-piece>
+    </div>
+    <div class="molarPieceContainer">
+      <odo-molar-piece molarCode="45"></odo-molar-piece>
+    </div>
+    <div class="molarPieceContainer">
+      <odo-molar-piece molarCode="44"></odo-molar-piece>
+    </div>
+    <div class="molarPieceContainer">
+      <odo-molar-piece molarCode="43"></odo-molar-piece>
+    </div>
+    <div class="molarPieceContainer">
+      <odo-molar-piece molarCode="42"></odo-molar-piece>
+    </div>
+    <div class="molarPieceContainer">
+      <odo-molar-piece molarCode="41"></odo-molar-piece>
+    </div>
+  </div>
+</div>

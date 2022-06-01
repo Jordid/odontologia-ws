@@ -1,0 +1,25 @@
+.odontrogramContainer {
+  padding: 24px;
+  min-height: 120px;
+  width: 100%;
+  border: 1px solid gray;
+  background-color: aliceblue;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  .firstPiecesBlockContainer {
+    width: 50%;
+    min-width: 350px;
+    margin-bottom: 16px;
+  }
+  .secondPiecesBlockContainer {
+    width: 50%;
+    min-width: 350px;
+  }
+}
+.bottomActions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
