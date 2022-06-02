@@ -97,6 +97,34 @@
                 >
               </section>
             </div>
+            <div class="col-12 mt-3">
+              <div class="linkAndPiecestextContainer">
+                <div class="linkContainer">
+                  <a
+                    *ngIf="!piecesCodeList || piecesCodeList?.length < 1"
+                    class="link"
+                    (click)="onAddPieces()"
+                  >
+                    Agregar piezas dentales
+                  </a>
+                  <a
+                    *ngIf="piecesCodeList?.length > 0"
+                    class="link"
+                    (click)="onAddPieces()"
+                  >
+                    Cambiar/Quitar Piezas
+                  </a>
+                </div>
+                <div
+                  *ngIf="piecesCodeList?.length > 0"
+                  class="piecesTextContainer"
+                >
+                  <span class="text">
+                    {{ getPiecesCodeText() }}
+                  </span>
+                </div>
+              </div>
+            </div>
 
             <!-- Observación. -->
             <div class="col-12 mt-3 colPriceExamInput">

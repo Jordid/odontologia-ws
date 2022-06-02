@@ -6,14 +6,17 @@ import {
   OnDestroy,
   OnInit,
   Output,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
-import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
+import { ConfirmationDialogData } from '../../../core/types/dialogs/confirmation-dialog-data';
+import { OdoDialogConfig } from '../../../core/types/dialogs/odo-dialog-config';
 import { OrdersService } from '../../services/orders.service';
 import { IExam } from '../../types/exam.interface';
 import { IFile } from '../../types/file.interface';
 import { ICreateExam } from '../../types/order.interface';
+import { OdontogramDialogComponent } from '../odontogram/odontogram-dialog/odontogram-dialog.component';
 import { CreateExamForm } from './create-exam-form.class';
 
 export interface IProgressInfo {
@@ -33,7 +36,6 @@ export class CreateExamFormComponent
 {
   @Input() orderId: number;
   @Output() sentCreateExam = new EventEmitter<boolean>();
-
   private subs: Subscription = new Subscription();
 
   showCrearteExamButton = false;
@@ -43,8 +45,10 @@ export class CreateExamFormComponent
   uploadedError: boolean = false;
   uploadedFile: IFile;
   exams: IExam[];
+  piecesCodeList: string[] = [];
+  piecesCodeText: string;
 
-  constructor(private router: Router, private ordersService: OrdersService) {
+  constructor(private ordersService: OrdersService, private dialog: MatDialog) {
     super();
   }
 
@@ -132,4 +136,67 @@ export class CreateExamFormComponent
     this.sentCreateExam.emit(true);
     this.submitting = false;
   };
+
+  onAddPieces(): void {
+    this.openOdontogramDialog();
+  }
+
+  openOdontogramDialog(): void {
+    console.log('Open odontogram');
+    const data: ConfirmationDialogData = {
+      title: `¿Estás seguro de eliminar el paciente?`,
+      cancelColorButton: `light-blue`,
+      confirmColorButton: `light-pink`,
+      confirmMatIcon: `delete`,
+      confirmText: `Eliminar`,
+    };
+
+    const dialogConfig = new OdoDialogConfig<ConfirmationDialogData>();
+    dialogConfig.data = data;
+    dialogConfig.width = '750px';
+
+    const dialog = this.dialog.open<
+      OdontogramDialogComponent,
+      ConfirmationDialogData,
+      string[] | string
+    >(OdontogramDialogComponent, dialogConfig);
+    this.subs.add(
+      dialog.afterClosed().subscribe((result) => {
+        if (result) {
+          if ((result as string) != 'cancel') {
+            this.piecesCodeList = result as string[];
+          }
+        } else {
+          this.piecesCodeList = [];
+        }
+        console.log('piecesCodeList: ', this.piecesCodeList);
+      })
+    );
+  }
+
+  getPiecesCodeText(): string {
+    let piecesCodeText = '';
+    if (this.piecesCodeList?.length > 0) {
+      let cont = 0;
+      const length = this.piecesCodeList.length;
+      for (const code of this.piecesCodeList) {
+        if (code) {
+          if (cont < length) {
+            if (piecesCodeText.length < 1) {
+              piecesCodeText = code;
+            } else {
+              piecesCodeText = piecesCodeText + ', ' + code;
+            }
+          } else {
+            piecesCodeText = piecesCodeText + ' ' + code;
+          }
+        }
+        cont++;
+      }
+      if (piecesCodeText.length > 0) {
+        piecesCodeText = '[' + piecesCodeText + ']';
+      }
+    }
+    return piecesCodeText;
+  }
 }

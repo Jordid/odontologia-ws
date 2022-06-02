@@ -1,13 +1,21 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatCheckboxChange } from '@angular/material/checkbox';
+import { ISelectedPiece } from '../selected-piece.interface';
 
 @Component({
   selector: 'odo-tooth-piece',
   templateUrl: './tooth-piece.component.html',
   styleUrls: ['./tooth-piece.component.scss'],
 })
-export class ToothPieceComponent implements OnInit {
+export class ToothPieceComponent {
   @Input() toothCode: string;
-  constructor() {}
+  @Output() selectedPiece = new EventEmitter<ISelectedPiece>();
 
-  ngOnInit(): void {}
+  selecPiece(matCheckboxChange: MatCheckboxChange): void {
+    const selectedPiece: ISelectedPiece = {
+      code: this.toothCode,
+      selecetd: matCheckboxChange?.checked,
+    };
+    this.selectedPiece.emit(selectedPiece);
+  }
 }

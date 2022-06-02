@@ -2,15 +2,11 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
   Output,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
-
-export interface ISelectedPiece {
-  code: string;
-  selecetd: boolean;
-}
+import { MatCheckboxChange } from '@angular/material/checkbox';
+import { ISelectedPiece } from '../selected-piece.interface';
 
 @Component({
   selector: 'odo-molar-piece',
@@ -18,18 +14,14 @@ export interface ISelectedPiece {
   styleUrls: ['./molar-piece.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class MolarPieceComponent implements OnInit {
+export class MolarPieceComponent {
   @Input() molarCode: string;
   @Output() selectedPiece = new EventEmitter<ISelectedPiece>();
 
-  constructor() {}
-
-  ngOnInit(): void {}
-
-  selecPiece(value: any): void {
+  selecPiece(matCheckboxChange: MatCheckboxChange): void {
     const selectedPiece: ISelectedPiece = {
       code: this.molarCode,
-      selecetd: value?.checked,
+      selecetd: matCheckboxChange?.checked,
     };
     this.selectedPiece.emit(selectedPiece);
   }

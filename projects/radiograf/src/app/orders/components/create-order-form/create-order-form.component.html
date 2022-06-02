@@ -5,11 +5,6 @@
         <mat-card-title>Generar orden</mat-card-title>
         <mat-card-content>
           <div class="row justify-content-center justify-content-sm-start">
-            <div class="col-12 mb-5">
-              <h3>Odontrograma</h3>
-              <odo-odontogram></odo-odontogram>
-            </div>
-
             <!-- Si ya se generó la orden se muestra los datos del paciente y médico. -->
             <ng-container *ngIf="order?.orderId > 0; else buscadores">
               <div class="previewContainer">

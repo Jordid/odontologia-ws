@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -22,6 +23,15 @@ import { CreateExamFormComponent } from './components/create-exam-form/create-ex
 import { CreateOrderFormComponent } from './components/create-order-form/create-order-form.component';
 import { LoadedImagePreviewComponent } from './components/loaded-image-preview/loaded-image-preview.component';
 import { OderPatientAndMedicPreviewComponent } from './components/oder-patient-and-medic-preview/oder-patient-and-medic-preview.component';
+import { DentalPieceComponent } from './components/odontogram/dental-piece/dental-piece.component';
+import { FirstPiecesBlockComponent } from './components/odontogram/first-pieces-block/first-pieces-block.component';
+import { MolarPieceComponent } from './components/odontogram/molar-piece/molar-piece.component';
+import { OdontogramContainerComponent } from './components/odontogram/odontogram-container/odontogram-container.component';
+import { OdontogramDialogComponent } from './components/odontogram/odontogram-dialog/odontogram-dialog.component';
+import { OdontogramComponent } from './components/odontogram/odontogram/odontogram.component';
+import { PiecesBlockComponent } from './components/odontogram/pieces-block/pieces-block.component';
+import { SecondtPiecesBlockComponent } from './components/odontogram/secondt-pieces-block/secondt-pieces-block.component';
+import { ToothPieceComponent } from './components/odontogram/tooth-piece/tooth-piece.component';
 import { OrdersFilesListPreviewComponent } from './components/orders-files-list-preview/orders-files-list-preview.component';
 import { OrdersInitComponent } from './components/orders-init/orders-init.component';
 import { OrdersMenuPanelComponent } from './components/orders-menu-panel/orders-menu-panel.component';
@@ -33,14 +43,7 @@ import { UploadImagesComponent } from './components/upload-images/upload-images.
 import { OrderRoutingModule } from './order-routing.module';
 import { ExamCategoryPipe } from './pipes/exam-category.pipe';
 import { RadiographyTypePipe } from './pipes/radiography-type.pipe';
-import { OdontogramContainerComponent } from './components/odontogram/odontogram-container/odontogram-container.component';
-import { DentalPieceComponent } from './components/odontogram/dental-piece/dental-piece.component';
-import { OdontogramComponent } from './components/odontogram/odontogram/odontogram.component';
-import { FirstPiecesBlockComponent } from './components/odontogram/first-pieces-block/first-pieces-block.component';
-import { SecondtPiecesBlockComponent } from './components/odontogram/secondt-pieces-block/secondt-pieces-block.component';
-import { PiecesBlockComponent } from './components/odontogram/pieces-block/pieces-block.component';
-import { ToothPieceComponent } from './components/odontogram/tooth-piece/tooth-piece.component';
-import { MolarPieceComponent } from './components/odontogram/molar-piece/molar-piece.component';
+
 @NgModule({
   declarations: [
     CreateExamFormComponent,
@@ -65,22 +68,24 @@ import { MolarPieceComponent } from './components/odontogram/molar-piece/molar-p
     PiecesBlockComponent,
     ToothPieceComponent,
     MolarPieceComponent,
+    OdontogramDialogComponent,
   ],
   imports: [
     CommonModule,
     OrderRoutingModule,
-    MatTableModule,
-    MatPaginatorModule,
     MatButtonModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatCardModule,
-    MatDividerModule,
+    MatPaginatorModule,
+    MatSelectModule,
+    MatTableModule,
     FormsModule,
     ReactiveFormsModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatCheckboxModule,
     UserModule,
     SharedMedicsModule,
     PipesModule,
