@@ -23,14 +23,10 @@ import { CreateExamFormComponent } from './components/create-exam-form/create-ex
 import { CreateOrderFormComponent } from './components/create-order-form/create-order-form.component';
 import { LoadedImagePreviewComponent } from './components/loaded-image-preview/loaded-image-preview.component';
 import { OderPatientAndMedicPreviewComponent } from './components/oder-patient-and-medic-preview/oder-patient-and-medic-preview.component';
-import { DentalPieceComponent } from './components/odontogram/dental-piece/dental-piece.component';
-import { FirstPiecesBlockComponent } from './components/odontogram/first-pieces-block/first-pieces-block.component';
 import { MolarPieceComponent } from './components/odontogram/molar-piece/molar-piece.component';
-import { OdontogramContainerComponent } from './components/odontogram/odontogram-container/odontogram-container.component';
 import { OdontogramDialogComponent } from './components/odontogram/odontogram-dialog/odontogram-dialog.component';
 import { OdontogramComponent } from './components/odontogram/odontogram/odontogram.component';
 import { PiecesBlockComponent } from './components/odontogram/pieces-block/pieces-block.component';
-import { SecondtPiecesBlockComponent } from './components/odontogram/secondt-pieces-block/secondt-pieces-block.component';
 import { ToothPieceComponent } from './components/odontogram/tooth-piece/tooth-piece.component';
 import { OrdersFilesListPreviewComponent } from './components/orders-files-list-preview/orders-files-list-preview.component';
 import { OrdersInitComponent } from './components/orders-init/orders-init.component';
@@ -50,7 +46,10 @@ import { RadiographyTypePipe } from './pipes/radiography-type.pipe';
     CreateOrderFormComponent,
     ExamCategoryPipe,
     LoadedImagePreviewComponent,
+    MolarPieceComponent,
     OderPatientAndMedicPreviewComponent,
+    OdontogramComponent,
+    OdontogramDialogComponent,
     OrdersComponent,
     OrdersFilesListPreviewComponent,
     OrdersInitComponent,
@@ -58,17 +57,10 @@ import { RadiographyTypePipe } from './pipes/radiography-type.pipe';
     OrdersTableComponent,
     OrdersTableMenuComponent,
     OrdersTableWithMenuComponent,
-    RadiographyTypePipe,
-    UploadImagesComponent,
-    OdontogramContainerComponent,
-    DentalPieceComponent,
-    OdontogramComponent,
-    FirstPiecesBlockComponent,
-    SecondtPiecesBlockComponent,
     PiecesBlockComponent,
+    RadiographyTypePipe,
     ToothPieceComponent,
-    MolarPieceComponent,
-    OdontogramDialogComponent,
+    UploadImagesComponent,
   ],
   imports: [
     CommonModule,
