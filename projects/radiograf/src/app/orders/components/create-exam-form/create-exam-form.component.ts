@@ -6,7 +6,7 @@ import {
   OnDestroy,
   OnInit,
   Output,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
@@ -142,15 +142,9 @@ export class CreateExamFormComponent
   }
 
   openOdontogramDialog(): void {
-    console.log('Open odontogram');
     const data: ConfirmationDialogData = {
-      title: `¿Estás seguro de eliminar el paciente?`,
-      cancelColorButton: `light-blue`,
-      confirmColorButton: `light-pink`,
-      confirmMatIcon: `delete`,
-      confirmText: `Eliminar`,
+      data: this.piecesCodeList,
     };
-
     const dialogConfig = new OdoDialogConfig<ConfirmationDialogData>();
     dialogConfig.data = data;
     dialogConfig.width = '750px';
@@ -158,17 +152,18 @@ export class CreateExamFormComponent
     const dialog = this.dialog.open<
       OdontogramDialogComponent,
       ConfirmationDialogData,
-      string[] | string
+      string[]
     >(OdontogramDialogComponent, dialogConfig);
     this.subs.add(
       dialog.afterClosed().subscribe((result) => {
-        if (result) {
+        /* if (result) {
           if ((result as string) != 'cancel') {
             this.piecesCodeList = result as string[];
           }
         } else {
           this.piecesCodeList = [];
-        }
+        } */
+        this.piecesCodeList = result;
         console.log('piecesCodeList: ', this.piecesCodeList);
       })
     );

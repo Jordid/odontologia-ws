@@ -1,26 +1,38 @@
-.pieceBlockContainer {
-  .firstMolarRowPieces {
-    display: flex;
-    justify-content: center;
-    flex-wrap: nowrap;
-    margin-bottom: 16px;
-  }
-  .firstToothRowPieces {
-    display: flex;
-    justify-content: center;
-    flex-wrap: nowrap;
-    margin-bottom: 16px;
-  }
-  .secondToothRowPieces {
-    display: flex;
-    justify-content: center;
-    flex-wrap: nowrap;
-    margin-bottom: 16px;
-  }
-  .secondMolarRowPieces {
-    display: flex;
-    justify-content: center;
-    flex-wrap: nowrap;
+.odontrogramContainer {
+  border: 1px solid gray;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  max-width: 700px;
+  .firstPiecesBlockContainer,
+  .secondPiecesBlockContainer {
+    margin: 16px;
+    .pieceBlockContainer {
+      .firstMolarRowPieces {
+        display: flex;
+        justify-content: center;
+        flex-wrap: nowrap;
+        margin-bottom: 16px;
+      }
+      .firstToothRowPieces {
+        display: flex;
+        justify-content: center;
+        flex-wrap: nowrap;
+        margin-bottom: 16px;
+      }
+      .secondToothRowPieces {
+        display: flex;
+        justify-content: center;
+        flex-wrap: nowrap;
+        margin-bottom: 16px;
+      }
+      .secondMolarRowPieces {
+        display: flex;
+        justify-content: center;
+        flex-wrap: nowrap;
+      }
+    }
   }
 }
 

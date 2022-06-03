@@ -3,6 +3,9 @@
     {{ molarCode }}
   </div>
   <div class="molar">
-    <mat-checkbox (change)="selecPiece($event)"></mat-checkbox>
+    <mat-checkbox
+      (change)="selecPiece($event)"
+      [checked]="isSelected"
+    ></mat-checkbox>
   </div>
 </div>

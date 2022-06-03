@@ -8,6 +8,7 @@ import { ISelectedPiece } from '../selected-piece.interface';
   styleUrls: ['./tooth-piece.component.scss'],
 })
 export class ToothPieceComponent {
+  @Input() isSelected: boolean;
   @Input() toothCode: string;
   @Output() selectedPiece = new EventEmitter<ISelectedPiece>();
 

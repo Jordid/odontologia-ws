@@ -1,14 +1,4 @@
-<div class="odontrogramContainer">
-  <div class="firstPiecesBlockContainer">
-    <odo-pieces-block
-      block="left"
-      (selectedPiece)="onChangeSelectedPiece($event)"
-    ></odo-pieces-block>
-  </div>
-  <div class="secondPiecesBlockContainer">
-    <odo-pieces-block
-      block="right"
-      (selectedPiece)="onChangeSelectedPiece($event)"
-    ></odo-pieces-block>
-  </div>
-</div>
+<odo-pieces-block
+  [piecesCodeListInput]="piecesCodeListInput"
+  (piecesCodeListOutput)="onChangePiecesCodeListOutput($event)"
+></odo-pieces-block>

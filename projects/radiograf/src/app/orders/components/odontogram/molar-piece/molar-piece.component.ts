@@ -3,7 +3,7 @@ import {
   EventEmitter,
   Input,
   Output,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { ISelectedPiece } from '../selected-piece.interface';
@@ -15,6 +15,7 @@ import { ISelectedPiece } from '../selected-piece.interface';
   encapsulation: ViewEncapsulation.None,
 })
 export class MolarPieceComponent {
+  @Input() isSelected: boolean;
   @Input() molarCode: string;
   @Output() selectedPiece = new EventEmitter<ISelectedPiece>();
 
