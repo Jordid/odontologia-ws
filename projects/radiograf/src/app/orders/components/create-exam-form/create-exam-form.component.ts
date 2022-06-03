@@ -5,17 +5,19 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  Output,
-  ViewEncapsulation
+  Output
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSelectChange } from '@angular/material/select';
 import { Subscription } from 'rxjs';
 import { ConfirmationDialogData } from '../../../core/types/dialogs/confirmation-dialog-data';
 import { OdoDialogConfig } from '../../../core/types/dialogs/odo-dialog-config';
 import { OrdersService } from '../../services/orders.service';
+import { ExamCategoryEnum } from '../../types/exam-category.enum';
 import { IExam } from '../../types/exam.interface';
 import { IFile } from '../../types/file.interface';
 import { ICreateExam } from '../../types/order.interface';
+import { IRadiographyType } from '../../types/radiography-type.interface';
 import { OdontogramDialogComponent } from '../odontogram/odontogram-dialog/odontogram-dialog.component';
 import { CreateExamForm } from './create-exam-form.class';
 
@@ -28,7 +30,6 @@ export interface IProgressInfo {
   selector: 'odo-create-exam-form',
   templateUrl: './create-exam-form.component.html',
   styleUrls: ['./create-exam-form.component.scss'],
-  encapsulation: ViewEncapsulation.None,
 })
 export class CreateExamFormComponent
   extends CreateExamForm
@@ -47,6 +48,7 @@ export class CreateExamFormComponent
   exams: IExam[];
   piecesCodeList: string[] = [];
   piecesCodeText: string;
+  radiographyTypes: IRadiographyType[];
 
   constructor(private ordersService: OrdersService, private dialog: MatDialog) {
     super();
@@ -54,6 +56,11 @@ export class CreateExamFormComponent
 
   ngOnInit(): void {
     this.subs.add(this.ordersService.getExam$().subscribe(this.getExam));
+    this.subs.add(
+      this.ordersService
+        .getRadiographyTypes$()
+        .subscribe(this.getRadiographyTypes)
+    );
   }
 
   ngOnDestroy(): void {
@@ -70,12 +77,7 @@ export class CreateExamFormComponent
 
   public onSubmit(): void {
     if (this.validatedForm && this.fileList?.length > 0) {
-      //console.log('fileList: ', this.fileList);
-      //console.log('form: ', this.createRadiographyForm.getRawValue());
       this.uploadFile(this.fileList);
-
-      /* this.prepateFormToSend();
-      this.clientsService.createClient(this.createClientForm.getRawValue()); */
     }
   }
 
@@ -84,8 +86,6 @@ export class CreateExamFormComponent
       return;
     }
     for (const file of fileList) {
-      console.log('file: ', file);
-
       this.progressInfo = { value: 0, fileName: file.name };
       this.uploadedError = false;
       this.ordersService.uploadFileAux(file).subscribe({
@@ -99,43 +99,18 @@ export class CreateExamFormComponent
             if (array?.length > 0) {
               this.uploadedFile = array[0];
             }
-
-            console.log('responseImage: ', event);
             this.uploaded = true;
-
             this.createExam();
-
-            //this.message.push(msg);
-            // this.fileInfos = this.uploadService.getFiles();
           }
         },
         error: (err: any) => {
           this.progressInfo.value = 0;
           this.uploaded = false;
           this.uploadedError = true;
-          //this.fileInfos = this.uploadService.getFiles();
         },
       });
     }
   }
-
-  createExam(): void {
-    if (this.validatedForm && this.uploadedFile) {
-      const createExamJson = {
-        typeId: 1,
-        value: 17,
-        storageId: this.uploadedFile.storageId,
-      } as ICreateExam;
-      this.submitting = true;
-      this.ordersService.createExam(this.orderId, createExamJson);
-    }
-  }
-
-  private getExam = (exam: IExam): void => {
-    console.log('Created exam. ', exam);
-    this.sentCreateExam.emit(true);
-    this.submitting = false;
-  };
 
   onAddPieces(): void {
     this.openOdontogramDialog();
@@ -156,15 +131,7 @@ export class CreateExamFormComponent
     >(OdontogramDialogComponent, dialogConfig);
     this.subs.add(
       dialog.afterClosed().subscribe((result) => {
-        /* if (result) {
-          if ((result as string) != 'cancel') {
-            this.piecesCodeList = result as string[];
-          }
-        } else {
-          this.piecesCodeList = [];
-        } */
         this.piecesCodeList = result;
-        console.log('piecesCodeList: ', this.piecesCodeList);
       })
     );
   }
@@ -193,5 +160,52 @@ export class CreateExamFormComponent
       }
     }
     return piecesCodeText;
+  }
+
+  createExam(): void {
+    console.log('validatedForm: ', this.createExamForm);
+
+    if (this.validatedForm && this.uploadedFile) {
+      let categoryType: IRadiographyType = null;
+      if (this.examType.value) {
+        categoryType = this.examType.value;
+      }
+      const createExamJson: ICreateExam = {
+        description: this.observation.value,
+        isAddional: this.isAdditional.value,
+        storageId: this.uploadedFile.storageId,
+        teeth:
+          this.piecesCodeList?.length > 0
+            ? this.piecesCodeList.toString()
+            : null,
+        typeId: categoryType?.typeId,
+        price: this.price.value,
+      };
+      this.submitting = true;
+      this.ordersService.createExam(this.orderId, createExamJson);
+    }
+  }
+
+  private getExam = (exam: IExam): void => {
+    if (this.submitting) {
+      if (exam) {
+        console.log('Created exam. ', exam);
+        this.sentCreateExam.emit(true);
+      }
+      this.submitting = false;
+    }
+  };
+
+  private getRadiographyTypes = (
+    radiographyTypes: IRadiographyType[]
+  ): void => {
+    this.radiographyTypes =
+      radiographyTypes?.length > 0 ? radiographyTypes : [];
+  };
+
+  public onExamCategoryChange(event: MatSelectChange): void {
+    if (event?.value === ExamCategoryEnum.RADIOGRAFHY) {
+      this.ordersService.getRadiographyTypes();
+    }
   }
 }

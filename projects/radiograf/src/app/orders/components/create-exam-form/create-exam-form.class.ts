@@ -4,7 +4,6 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { GenderEnum } from '../../../core/types/gender.enum';
 import { InputValidation } from '../../../core/utils/validations/input-validation';
 import {
   ExamCategoryArray,
@@ -18,22 +17,20 @@ import {
 export class CreateExamForm {
   private fb: FormBuilder = new FormBuilder();
 
-  /* Skeleton del formulario de radiografía. */
-  private createRadiographySkeleton = {
-    examCatergory: ['', Validators.required],
-    examType: [''],
-    isAditional: [''],
-    price: ['', Validators.required],
-    isAddStudio: [''],
-    observation: [''],
+  /* Skeleton del formulario de examen. */
+  private createExamSkeleton = {
+    examCatergory: [null, Validators.required],
+    examType: [null],
+    isAdditional: [false],
+    price: [null, Validators.required],
+    isAddStudio: [false],
+    observation: [null],
   };
 
   submitting = false;
 
-  /* Formulario de radiografía. */
-  createRadiographyForm: FormGroup = this.fb.group(
-    this.createRadiographySkeleton
-  );
+  /* Formulario de examen. */
+  createExamForm: FormGroup = this.fb.group(this.createExamSkeleton);
 
   get InputValidation(): any {
     return InputValidation;
@@ -55,8 +52,8 @@ export class CreateExamForm {
     return this.getControlByName('examType');
   }
 
-  get isAditional(): AbstractControl {
-    return this.getControlByName('isAditional');
+  get isAdditional(): AbstractControl {
+    return this.getControlByName('isAdditional');
   }
 
   get price(): AbstractControl {
@@ -73,16 +70,14 @@ export class CreateExamForm {
 
   get validatedForm(): boolean {
     return (
-      this.createRadiographyForm.dirty &&
-      this.createRadiographyForm.valid &&
-      !this.submitting
+      this.createExamForm.dirty && this.createExamForm.valid && !this.submitting
     );
   }
 
   getControlByName(controlName: string): AbstractControl {
     let control: any;
-    if (controlName && this.createRadiographyForm?.controls) {
-      control = this.createRadiographyForm.get(controlName);
+    if (controlName && this.createExamForm?.controls) {
+      control = this.createExamForm.get(controlName);
     }
     return control;
   }

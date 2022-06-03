@@ -1,7 +1,7 @@
 export enum ExamCategoryEnum {
-  RADIOGRAFHY = 'RADIOGRAFHY',
-  TOMOGRAPHY = 'TOMOGRAPHY',
-  RADIOLOGICAL_STUDY = 'RADIOLOGICAL_STUDY',
+  RADIOGRAFHY = '1',
+  TOMOGRAPHY = '2',
+  RADIOLOGICAL_STUDY = '3',
 }
 
 export const ExamCategoryArray = [

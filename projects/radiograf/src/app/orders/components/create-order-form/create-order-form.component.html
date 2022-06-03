@@ -68,8 +68,7 @@
             </div>
 
             <!-- Se muestra el formulario de creación de exámen cuando se hace clic en el boton agregar exámen. -->
-            <!-- <div *ngIf="showCreateExamForm" class="col-12"> -->
-            <div *ngIf="true" class="col-12">
+            <div *ngIf="showCreateExamForm" class="col-12">
               <odo-create-exam-form
                 [orderId]="order?.orderId"
                 (sentCreateExam)="onSentCreateExamChange($event)"

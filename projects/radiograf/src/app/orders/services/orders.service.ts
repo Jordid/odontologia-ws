@@ -11,6 +11,7 @@ import { PaginationLinks } from '../../core/types/pagination-links';
 import { IExam } from '../types/exam.interface';
 import { IFile } from '../types/file.interface';
 import { ICreateExam, ICreateOrder, IOrder } from '../types/order.interface';
+import { IRadiographyType } from '../types/radiography-type.interface';
 import { OrdersHttpService } from './orders-http.service';
 import { OrdersSnackbarsService } from './orders-snackbars.service';
 
@@ -22,6 +23,9 @@ export class OrdersService {
   protected readonly ordersSubject = new Subject<IOrder[]>();
   protected readonly examSubject = new Subject<IExam>();
   protected readonly examsSubject = new Subject<IExam[]>();
+  protected readonly radiographyTypesSubject = new Subject<
+    IRadiographyType[]
+  >();
   protected readonly fileSubject = new Subject<IFile>();
   protected readonly paginationLinksSubject = new Subject<PaginationLinks>();
 
@@ -223,6 +227,35 @@ export class OrdersService {
   private errorGetExams = (error: HttpErrorResponse): void => {
     this.examsSubject.next(null);
     this.paginationLinksSubject.next(null);
+    this.commonsHttp.errorsHttp.communication(error);
+  };
+
+  /* Get RadiographyTypes. */
+  public getRadiographyTypes$(): Observable<IRadiographyType[]> {
+    return this.radiographyTypesSubject.asObservable();
+  }
+
+  public getRadiographyTypes(): void {
+    /*  if (this.oAuthStorage.hasOAuth) { */
+    this.ordersHttp.getRadiographyTypes$().subscribe({
+      next: this.nextGetRadiographyTypes,
+      error: this.errorGetRadiographyTypes,
+    });
+    /* } */
+  }
+
+  private nextGetRadiographyTypes = (data: HttpResponse<any>): void => {
+    if (this.commonsHttp.validationsHttp.verifyStatus200(data)) {
+      const radiographyTypes: IRadiographyType[] = data.body.result;
+      this.radiographyTypesSubject.next(radiographyTypes);
+    } else {
+      this.radiographyTypesSubject.next(null);
+      this.commonsHttp.errorsHttp.apiInvalidResponse(data);
+    }
+  };
+
+  private errorGetRadiographyTypes = (error: HttpErrorResponse): void => {
+    this.radiographyTypesSubject.next(null);
     this.commonsHttp.errorsHttp.communication(error);
   };
 }

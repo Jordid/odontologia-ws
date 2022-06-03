@@ -23,7 +23,10 @@ export interface ICreateOrder {
 }
 
 export interface ICreateExam {
-  typeId: number;
-  value: number;
+  description: string;
+  isAddional: boolean;
   storageId: string;
+  teeth: string;
+  typeId: number;
+  price: number;
 }
