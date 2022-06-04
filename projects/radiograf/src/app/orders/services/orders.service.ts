@@ -116,7 +116,6 @@ export class OrdersService {
   }
 
   private nextUpdateOrder = (data: HttpResponse<any>): void => {
-    console.log('update: ', data);
     if (this.commonsHttp.validationsHttp.verifyStatus200(data)) {
       const order: IOrder = data.body.result[0];
       this.orderSubject.next(order);
