@@ -22,7 +22,6 @@ export class LoadedImagePreviewComponent implements OnChanges {
   @Input() uploadedError: boolean;
   @Input() file: File;
   @Output() removedFile = new EventEmitter<boolean>();
-  @Output() imageUploaded = new EventEmitter<boolean>();
 
   urlFile: string | ArrayBuffer;
   uploaded: boolean = false;

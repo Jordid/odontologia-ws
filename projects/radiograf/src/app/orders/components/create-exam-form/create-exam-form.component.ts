@@ -49,6 +49,7 @@ export class CreateExamFormComponent
   piecesCodeList: string[] = [];
   piecesCodeText: string;
   radiographyTypes: IRadiographyType[];
+  fileFormatsArray: string[];
 
   constructor(private ordersService: OrdersService, private dialog: MatDialog) {
     super();
@@ -72,7 +73,7 @@ export class CreateExamFormComponent
   }
 
   cancel(): void {
-    this.sentCreateExam.emit(true);
+    this.sentCreateExam.emit(false);
   }
 
   public onSubmit(): void {
@@ -205,6 +206,7 @@ export class CreateExamFormComponent
 
   public onExamCategoryChange(event: MatSelectChange): void {
     if (event?.value === ExamCategoryEnum.RADIOGRAFHY) {
+      this.fileFormatsArray = ['.jpg','.png'];
       this.ordersService.getRadiographyTypes();
     }
   }

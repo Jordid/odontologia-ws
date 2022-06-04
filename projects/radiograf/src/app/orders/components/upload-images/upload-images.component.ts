@@ -8,8 +8,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class UploadImagesComponent {
   @Input() progressValue: number;
   @Input() uploadedError: boolean;
+  @Input() fileFormatsArray: string[];
   @Output() fileList = new EventEmitter<File[]>();
-  @Output() imageUploaded = new EventEmitter<boolean>();
+  @Output() removedFile = new EventEmitter<boolean>();
+
   selectedImagesList: File[] = [];
   selectedFile: boolean = false;
 
@@ -22,15 +24,11 @@ export class UploadImagesComponent {
     }
   }
 
-  onImageUploadedChange(uploaded: boolean): void {
-    if (uploaded) {
-      this.imageUploaded.emit(uploaded);
-    }
-  }
   onRemovedFileChange(removed: boolean): void {
     if (removed) {
       this.selectedFile = false;
       this.selectedImagesList = [];
+      this.fileList.emit(null);
     }
   }
 }

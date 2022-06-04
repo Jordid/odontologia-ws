@@ -136,7 +136,6 @@
                   formControlName="observation"
                   autocomplete="off"
                   type="text"
-                  required
                 />
                 <mat-error
                   align="start"
@@ -153,6 +152,7 @@
               <odo-upload-images
                 [progressValue]="progressInfo?.value"
                 [uploadedError]="uploadedError"
+                [fileFormatsArray]="fileFormatsArray"
                 (fileList)="onFileListChange($event)"
               ></odo-upload-images>
             </div>

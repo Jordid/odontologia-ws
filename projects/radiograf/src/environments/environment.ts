@@ -16,5 +16,6 @@ export const environment = {
 // import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
 
 export const apiRadioGrafEnvironment = {
-  baseUrl: 'https://radiograf.jivsoft.com/api',
+  //baseUrl: 'https://radiograf.jivsoft.com/api',
+  baseUrl: 'https://app.rayodent.com/api',
 };

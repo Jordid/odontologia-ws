@@ -81,8 +81,8 @@ export class CreateOrderFormComponent implements OnInit, OnDestroy {
   }
 
   onSentCreateExamChange(sentCreateExam: boolean) {
-    this.showCreateExamForm = !sentCreateExam;
-    if (this.order?.orderId) {
+    this.showCreateExamForm = false;
+    if (this.order?.orderId && sentCreateExam === true) {
       this.ordersService.getExams(this.order?.orderId);
     }
   }

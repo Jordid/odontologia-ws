@@ -14,11 +14,11 @@
               </div>
             </ng-container>
 
-            <ng-container *ngIf="exams?.length > 0">
+            <div class="orderFilesListContainer" *ngIf="exams?.length > 0">
               <odo-orders-files-list-preview
                 [exams]="exams"
               ></odo-orders-files-list-preview>
-            </ng-container>
+            </div>
 
             <!-- Si aún no se genera la orden se muestra los buscadores de paciente y médico. -->
             <ng-template #buscadores>

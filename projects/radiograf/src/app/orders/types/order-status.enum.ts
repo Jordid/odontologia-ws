@@ -1,13 +1,17 @@
 export enum OrderStatusEnum {
-  PENDING = 'PENDING',
+  CREATED = 'CREATED',
+  SENT = 'SENT',
 }
 
-export const OrderStatusArray = [OrderStatusEnum.PENDING];
+export const OrderStatusArray = [OrderStatusEnum.CREATED, OrderStatusEnum.SENT];
 
-export const ClientStatusInfo = [
+export const OrderStatusInfo = [
   {
-    [OrderStatusEnum.PENDING]: {
-      name: 'Pendiente',
+    [OrderStatusEnum.CREATED]: {
+      name: 'Creado',
+    },
+    [OrderStatusEnum.SENT]: {
+      name: 'Enviado',
     },
   },
 ];

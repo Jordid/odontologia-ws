@@ -21,7 +21,6 @@
             [progressValue]="progressValue"
             [uploadedError]="uploadedError"
             [file]="selectedImage"
-            (imageUploaded)="onImageUploadedChange($event)"
             (removedFile)="onRemovedFileChange($event)"
           ></odo-loaded-image-preview>
         </div>
@@ -41,8 +40,8 @@
           #fileField
           type="file"
           (change)="selectFiles($event)"
+          [accept]="fileFormatsArray"
           hidden
-
         />
       </label>
     </div>
