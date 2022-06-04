@@ -117,7 +117,7 @@
       },
       "root": "projects/medic-adm",
       "sourceRoot": "projects/medic-adm/src",
-      "prefix": "app",
+      "prefix": "odo",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -133,9 +133,10 @@
               "projects/medic-adm/src/assets"
             ],
             "styles": [
-              "projects/medic-adm/src/styles.scss"
+              "projects/medic-adm/src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.min.js"]
           },
           "configurations": {
             "production": {
@@ -200,9 +201,7 @@
               "projects/medic-adm/src/favicon.ico",
               "projects/medic-adm/src/assets"
             ],
-            "styles": [
-              "projects/medic-adm/src/styles.scss"
-            ],
+            "styles": ["projects/medic-adm/src/styles.scss"],
             "scripts": []
           }
         }

@@ -29,14 +29,6 @@ const routes: Routes = [
         loadChildren: () =>
           import('../medics/medics.module').then((m) => m.MedicsModule),
       },
-
-      {
-        path: 'xrays',
-        //canLoad: [OAuthGuard],
-        loadChildren: () =>
-          import('../xrays/xrays.module').then((m) => m.XraysModule),
-      },
-
       {
         path: 'orders',
         //canLoad: [OAuthGuard],
