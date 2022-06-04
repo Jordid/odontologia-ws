@@ -3,7 +3,7 @@ import {
   Component,
   Input,
   OnInit,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -12,13 +12,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { OrdersService } from '../../services/orders.service';
 import { OrderDataSource } from '../../types/order-datasource';
-import { IOrder } from '../../types/order.interface';
+import { OrderStatusEnum } from '../../types/order-status.enum';
+import { IOrder, IUpdateOrder } from '../../types/order.interface';
 @Component({
   selector: 'odo-orders-table',
   templateUrl: './orders-table.component.html',
   styleUrls: ['./orders-table.component.scss'],
 })
 export class OrdersTableComponent implements OnInit, AfterViewInit {
+  OrderStatusEnum = OrderStatusEnum;
   private subs: Subscription = new Subscription();
 
   @Input() showPaginator = true;
@@ -49,6 +51,7 @@ export class OrdersTableComponent implements OnInit, AfterViewInit {
       this.router,
       this.ordersService
     );
+    this.subs.add(this.ordersService.getOrder$().subscribe(this.getOrder));
   }
 
   ngOnDestroy(): void {
@@ -61,7 +64,25 @@ export class OrdersTableComponent implements OnInit, AfterViewInit {
     this.table.dataSource = this.dataSource;
   }
 
+  private getOrder = (order: IOrder) => {
+    if (order?.orderId) {
+      this.ordersService.orderSnackbars.successSentOrder();
+    } else {
+      this.ordersService.orderSnackbars.failureSentOrder();
+    }
+  };
+
   viewOrder(oder: IOrder): void {}
+
+  send(oder: IOrder): void {
+    if (oder?.orderId) {
+      console.log('sending...');
+      const updateOrderJson: IUpdateOrder = {
+        status: OrderStatusEnum.SENT,
+      };
+      this.ordersService.updateOrder(oder?.orderId, updateOrderJson);
+    }
+  }
 
   getNameAndLastName(firstName: string, lastName: string): string {
     let nameAndLastName = '';

@@ -7,12 +7,15 @@ import {
   OnInit,
   Output
 } from '@angular/core';
+import { Validators } from '@angular/forms';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSelectChange } from '@angular/material/select';
 import { Subscription } from 'rxjs';
 import { ConfirmationDialogData } from '../../../core/types/dialogs/confirmation-dialog-data';
 import { OdoDialogConfig } from '../../../core/types/dialogs/odo-dialog-config';
 import { OrdersService } from '../../services/orders.service';
+import { ExamCategoryTypeEnum } from '../../types/exam-category-type.enum';
 import { ExamCategoryEnum } from '../../types/exam-category.enum';
 import { IExam } from '../../types/exam.interface';
 import { IFile } from '../../types/file.interface';
@@ -35,8 +38,10 @@ export class CreateExamFormComponent
   extends CreateExamForm
   implements OnInit, OnDestroy
 {
+  ExamCategoryTypeEnum = ExamCategoryTypeEnum;
   @Input() orderId: number;
   @Output() sentCreateExam = new EventEmitter<boolean>();
+
   private subs: Subscription = new Subscription();
 
   showCrearteExamButton = false;
@@ -50,6 +55,9 @@ export class CreateExamFormComponent
   piecesCodeText: string;
   radiographyTypes: IRadiographyType[];
   fileFormatsArray: string[];
+  showExamType = false;
+  selectedExamCategoryType: ExamCategoryTypeEnum;
+  showForm: boolean = false;
 
   constructor(private ordersService: OrdersService, private dialog: MatDialog) {
     super();
@@ -164,7 +172,7 @@ export class CreateExamFormComponent
   }
 
   createExam(): void {
-    console.log('validatedForm: ', this.createExamForm);
+    console.log('validatedForm: ', this.createExamForm.getRawValue());
 
     if (this.validatedForm && this.uploadedFile) {
       let categoryType: IRadiographyType = null;
@@ -205,9 +213,38 @@ export class CreateExamFormComponent
   };
 
   public onExamCategoryChange(event: MatSelectChange): void {
+    if (event?.value) {
+      this.showForm = true;
+    } else {
+      this.showForm = false;
+    }
     if (event?.value === ExamCategoryEnum.RADIOGRAFHY) {
-      this.fileFormatsArray = ['.jpg','.png'];
+      this.fileFormatsArray = ['.jpg', '.png'];
       this.ordersService.getRadiographyTypes();
+      this.showExamType = true;
+      this.examType.setValidators([Validators.required]);
+    } else {
+      this.showExamType = false;
+      this.examType.removeValidators([Validators.required]);
+    }
+    this.examType.updateValueAndValidity();
+  }
+
+  public onExamTypeChange(event: MatSelectChange): void {
+    console.log('event: ', event);
+    this.selectedExamCategoryType = event?.value?.type;
+    if (ExamCategoryTypeEnum.WITH_STUDY !== this.selectedExamCategoryType) {
+      this.isAddStudio.setValue(false);
+    }
+  }
+
+  onIsAdditonalChange(matCheckboxChange: MatCheckboxChange): void {
+    if (matCheckboxChange?.checked === true) {
+      this.price.setValue(0);
+      this.price.disable();
+    } else {
+      this.price.enable();
+      this.price.setValue(null);
     }
   }
 }

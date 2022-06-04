@@ -8,7 +8,11 @@ import { Injectable } from '@angular/core';
 import { Params } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ApiRadiografEnv } from '../../core/config/apis/api-radiograf/api-radiograf.config';
-import { ICreateExam, ICreateOrder } from '../types/order.interface';
+import {
+  ICreateExam,
+  ICreateOrder,
+  IUpdateOrder
+} from '../types/order.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +25,14 @@ export class OrdersHttpService {
   ): Observable<HttpResponse<any>> {
     const url = `${ApiRadiografEnv.baseUrl}/orders`;
     return this.http.post(url, createOrderJson, { observe: 'response' });
+  }
+
+  public updateOrder$(
+    orderId: number,
+    updateOrderJson: IUpdateOrder
+  ): Observable<HttpResponse<any>> {
+    const url = `${ApiRadiografEnv.baseUrl}/orders/${orderId}`;
+    return this.http.patch(url, updateOrderJson, { observe: 'response' });
   }
 
   public getOrder$(orderId: number): Observable<HttpResponse<any>> {

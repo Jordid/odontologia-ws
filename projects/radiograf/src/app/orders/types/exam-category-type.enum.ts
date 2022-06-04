@@ -1,5 +1,5 @@
 export enum ExamCategoryTypeEnum {
   BASIC = 'BASIC',
-  WITH_STADY = 'WITH_STADY',
-  WITH_TEETH = 'WITH_TEETH',
+  WITH_STUDY = 'WITH_STUDY',
+  WITH_DENTAL_PIECES = 'WITH_DENTAL_PIECES',
 }

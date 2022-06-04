@@ -22,6 +22,10 @@ export interface ICreateOrder {
   doctorId: number;
 }
 
+export interface IUpdateOrder {
+  status: OrderStatusEnum;
+}
+
 export interface ICreateExam {
   description: string;
   isAddional: boolean;

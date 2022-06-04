@@ -10,7 +10,12 @@ import { CommonsHttpService } from '../../core/services/commons/commons-http/com
 import { PaginationLinks } from '../../core/types/pagination-links';
 import { IExam } from '../types/exam.interface';
 import { IFile } from '../types/file.interface';
-import { ICreateExam, ICreateOrder, IOrder } from '../types/order.interface';
+import {
+  ICreateExam,
+  ICreateOrder,
+  IOrder,
+  IUpdateOrder
+} from '../types/order.interface';
 import { IRadiographyType } from '../types/radiography-type.interface';
 import { OrdersHttpService } from './orders-http.service';
 import { OrdersSnackbarsService } from './orders-snackbars.service';
@@ -98,6 +103,30 @@ export class OrdersService {
   };
 
   private errorCreateOrder = (error: HttpErrorResponse): void => {
+    this.orderSubject.next(null);
+    this.commonsHttp.errorsHttp.communication(error);
+  };
+
+  public updateOrder(orderId: number, updateOrderJson: IUpdateOrder): void {
+    this.enableLoading();
+    this.ordersHttp
+      .updateOrder$(orderId, updateOrderJson)
+      .pipe(finalize(() => this.disableLoading()))
+      .subscribe({ next: this.nextUpdateOrder, error: this.errorUpdateOrder });
+  }
+
+  private nextUpdateOrder = (data: HttpResponse<any>): void => {
+    console.log('update: ', data);
+    if (this.commonsHttp.validationsHttp.verifyStatus200(data)) {
+      const order: IOrder = data.body.result[0];
+      this.orderSubject.next(order);
+    } else {
+      this.orderSubject.next(null);
+      this.commonsHttp.errorsHttp.apiInvalidResponse(data);
+    }
+  };
+
+  private errorUpdateOrder = (error: HttpErrorResponse): void => {
     this.orderSubject.next(null);
     this.commonsHttp.errorsHttp.communication(error);
   };

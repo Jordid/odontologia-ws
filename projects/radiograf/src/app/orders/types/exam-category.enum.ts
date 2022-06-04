@@ -1,13 +1,13 @@
 export enum ExamCategoryEnum {
   RADIOGRAFHY = '1',
   TOMOGRAPHY = '2',
-  RADIOLOGICAL_STUDY = '3',
+  STL = '3',
 }
 
 export const ExamCategoryArray = [
   ExamCategoryEnum.RADIOGRAFHY,
   ExamCategoryEnum.TOMOGRAPHY,
-  ExamCategoryEnum.RADIOLOGICAL_STUDY,
+  ExamCategoryEnum.STL,
 ];
 
 export const ExamCategoryInfo = [
@@ -22,8 +22,8 @@ export const ExamCategoryInfo = [
     },
   },
   {
-    [ExamCategoryEnum.RADIOLOGICAL_STUDY]: {
-      name: 'Estudio radiológico',
+    [ExamCategoryEnum.STL]: {
+      name: 'STL',
     },
   },
 ];
