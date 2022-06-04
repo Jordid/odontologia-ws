@@ -1,15 +1,18 @@
 <div class="menuTableContainer">
-  <div class="titleContainer">
-    <h5>Ordenes</h5>
+
+  <div class="titleSearchContainer">
+    <div class="titleContainer">
+      <h5>Ordenes</h5>
+    </div>
+
+    <div class="searcherContainer">
+      <odo-text-searcher
+        (queryParamsChange)="onQueryParamsChange($event)"
+      ></odo-text-searcher>
+    </div>
   </div>
 
-  <div class="searcherContainer">
-    <odo-text-searcher
-      (queryParamsChange)="onQueryParamsChange($event)"
-    ></odo-text-searcher>
-  </div>
-
-  <div class="actionsContainer">
+  <div class="actionsContainer mb-3">
     <button mat-mini-fab color="none" aria-label="Filtros tabla de ordenes">
       <mat-icon>filter_list</mat-icon>
     </button>
