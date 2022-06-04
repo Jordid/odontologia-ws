@@ -1,0 +1,48 @@
+.mat-nav-list {
+  margin: 0px;
+  background-color: #283144;
+  height: 470px;
+
+  .menuTitle {
+    font-size: 16px;
+    color: #ffffffb3;
+    line-height: normal;
+    padding-left: 26px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+
+  .mat-list-item {
+    font-size: 16px;
+    color: #fff;
+    background-color: transparent;
+
+    &:hover {
+      background: #212939 !important;
+      border-radius: 25px;
+      color: #fff;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 2px;
+    }
+  }
+
+  .mat-list-item-disabled {
+    cursor: not-allowed !important;
+    opacity: 0.5;
+    text-decoration: none;
+  }
+
+  .activedRoute {
+    background: #1976d2 !important;
+    border-radius: 25px;
+    color: #fff;
+  }
+}
+
+::ng-deep .mat-list-item-ripple {
+  border-radius: 25px;
+}

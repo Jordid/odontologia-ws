@@ -1,0 +1,11 @@
+<div class="toothPieceContainer">
+  <div class="code">
+    {{ toothCode }}
+  </div>
+  <div class="tooth">
+    <mat-checkbox
+      (change)="selecPiece($event)"
+      [checked]="isSelected"
+    ></mat-checkbox>
+  </div>
+</div>

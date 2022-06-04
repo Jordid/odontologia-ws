@@ -1,0 +1,15 @@
+.panelTableContainer {
+  display: flex;
+  flex-direction: column;
+  .ordersMenuPanelContainer {
+    position: absolute;
+    height: 120px;
+    width: 100%;
+    z-index: 0;
+  }
+  .tableContainer {
+    z-index: 1;
+    padding: 0px 24px 24px 24px;
+    margin-top: 104px;
+  }
+}

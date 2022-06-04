@@ -1,0 +1,21 @@
+.dialogContainer {
+  padding: 0px;
+  .headerDialog {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    .dialogTitle {
+      margin-bottom: 0px;
+    }
+    .closeIcon {
+      margin-left: 16px;
+    }
+  }
+}
+
+.mat-dialog-content {
+  display: flex;
+  justify-content: center;
+}

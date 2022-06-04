@@ -1,0 +1,42 @@
+.menuTableContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 64px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  background-color: white;
+  flex-wrap: wrap;
+  padding: 16px;
+  .titleSearchContainer {
+    display: flex;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    .titleContainer {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      h5 {
+        font-size: 20px;
+        line-height: 32px;
+        font-weight: 500;
+        padding-right: 24px;
+        margin-right: 24px;
+        margin-bottom: 0px;
+        border-right: 1px solid rgba(0, 0, 0, 0.12);
+      }
+    }
+    .searcherContainer {
+      width: auto;
+      padding-right: 24px;
+    }
+  }
+  .actionsContainer {
+    display: flex;
+    justify-content: flex-end;
+    .plusIcon {
+      background-color: #1976d2;
+      margin-left: 16px;
+    }
+  }
+}

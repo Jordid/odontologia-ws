@@ -1,0 +1,23 @@
+.searchForm {
+  .formField {
+    width: 100%;
+  }
+}
+
+.counterContainer {
+  padding-left: 16px;
+  padding-top: 14px;
+  padding-bottom: 4px;
+}
+
+.rowContainer {
+  display: flex;
+  align-items: center;
+  .avatar {
+    margin-right: 16px;
+  }
+}
+
+#mat-autocomplete-0 {
+  max-height: 326px;
+}

@@ -1,0 +1,82 @@
+<div class="container pt-3 pb-5">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <mat-card class="bg-grey card-auth mat-elevation-z4">
+        <mat-card-title>Generar orden</mat-card-title>
+        <mat-card-content>
+          <div class="row justify-content-center justify-content-sm-start">
+            <!-- Si ya se generó la orden se muestra los datos del paciente y médico. -->
+            <ng-container *ngIf="order?.orderId > 0; else buscadores">
+              <div class="previewContainer">
+                <odo-oder-patient-and-medic-preview
+                  [order]="order"
+                ></odo-oder-patient-and-medic-preview>
+              </div>
+            </ng-container>
+
+            <div class="orderFilesListContainer" *ngIf="exams?.length > 0">
+              <odo-orders-files-list-preview
+                [exams]="exams"
+              ></odo-orders-files-list-preview>
+            </div>
+
+            <!-- Si aún no se genera la orden se muestra los buscadores de paciente y médico. -->
+            <ng-template #buscadores>
+              <div class="col-12 col-lg-6">
+                <span class="y-2">Médico {{ medicId }}</span>
+                <odo-medics-autocomplete
+                  (medicId)="onMedicIdChange($event)"
+                ></odo-medics-autocomplete>
+              </div>
+              <div class="col-12 col-lg-6">
+                <span class="my-2">Paciente {{ clientId }}</span>
+                <odo-clients-autocomplete
+                  (clientId)="onClientIdChange($event)"
+                ></odo-clients-autocomplete>
+              </div>
+            </ng-template>
+
+            <!-- Botón generar orden se muestra cuando ya se ha selecionado paciente y médico. -->
+            <div
+              *ngIf="medicId && clientId && !formSent"
+              class="col-12 mb-3 d-flex justify-content-end"
+            >
+              <button
+                mat-flat-button
+                color="accent"
+                type="button"
+                class="createOrderButton"
+                (click)="createOrder()"
+              >
+                Generar orden
+              </button>
+            </div>
+
+            <!-- Se muestra botón Agregar exmane cuando ya se generó la orden. -->
+            <div
+              *ngIf="order?.orderId > 0"
+              class="col-12 mb-3 d-flex justify-content-end"
+            >
+              <button
+                mat-stroked-button
+                color="accent"
+                type="button"
+                (click)="addExam()"
+              >
+                Agregar exámen
+              </button>
+            </div>
+
+            <!-- Se muestra el formulario de creación de exámen cuando se hace clic en el boton agregar exámen. -->
+            <div *ngIf="showCreateExamForm" class="col-12">
+              <odo-create-exam-form
+                [orderId]="order?.orderId"
+                (sentCreateExam)="onSentCreateExamChange($event)"
+              ></odo-create-exam-form>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

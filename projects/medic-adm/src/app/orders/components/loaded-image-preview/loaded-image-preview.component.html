@@ -1,0 +1,30 @@
+<div class="imageActionsContainer mat-elevation-z2" *ngIf="urlFile">
+  <img [src]="urlFile" class="img-fluid" />
+
+  <div class="actions">
+    <button
+      mat-icon-button
+      aria-label="Quitar"
+      class="removeButton"
+      type="button"
+      (click)="removeFile()"
+    >
+      <mat-icon>delete_forever</mat-icon>
+    </button>
+  </div>
+
+  <div *ngIf="progressValue && progressValue <= 100 && uploadedError == false">
+    <div class="progress">
+      <div
+        class="progress-bar progress-bar-info"
+        role="progressbar"
+        attr.aria-valuenow="{{ progressValue }}"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        [ngStyle]="{ width: progressValue + '%' }"
+      >
+        {{ progressValue }}%
+      </div>
+    </div>
+  </div>
+</div>

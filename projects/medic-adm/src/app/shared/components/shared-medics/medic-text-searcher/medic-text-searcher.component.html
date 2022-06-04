@@ -1,0 +1,29 @@
+<form [formGroup]="searchForm" class="medicTextSearcherForm">
+  <mat-form-field appearance="outline" class="ff-no-bottom-space">
+    <mat-label
+      >Nombre, apellido, cédula...
+    </mat-label>
+    <input
+      matInput
+      formControlName="search"
+      autocomplete="off"
+      type="search"
+      (keydown.enter)="onKeydownEnter($event); $event.preventDefault()"
+    />
+    <mat-icon matPrefix class="me-3">search</mat-icon>
+    <button
+      mat-icon-button
+      matSuffix
+      type="button"
+      aria-label="Limpiar"
+      *ngIf="search?.value"
+      (click)="onClear()"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    <!--  <mat-hint align="start"
+      >Buscar por nombre, apellido, cédula, celular, correo
+      electrónico...</mat-hint
+    > -->
+  </mat-form-field>
+</form>

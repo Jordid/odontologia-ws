@@ -1,0 +1,40 @@
+.mat-sidenav-container {
+  min-height: 100vh;
+  .mat-sidenav {
+    position: fixed;
+    background-color: #212939;
+    width: 280px;
+    .logoMedicContainer {
+      display: flex;
+      flex-direction: column;
+      .appLogo {
+        color: white;
+        font-size: 24px;
+        line-height: normal;
+        padding: 12px 18px 18px 24px;
+        font-weight: 600;
+        letter-spacing: 1px;
+      }
+      .medicInfoBlockContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .actionsContainer {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: white;
+          margin-top: 16px;
+        }
+      }
+    }
+    .sidenavListContiner {
+      margin-top: 20px;
+    }
+  }
+  .mat-sidenav-content {
+    background-color: white;
+    min-height: 100vh;
+  }
+}

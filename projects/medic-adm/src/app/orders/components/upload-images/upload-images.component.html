@@ -1,0 +1,49 @@
+<section>
+  <div class="card mt-3">
+    <div
+      class="card-header"
+      [ngClass]="
+        selectedImagesList?.length > 0
+          ? 'headerNoMarginBottom'
+          : 'headerMarginBottom'
+      "
+    >
+      Archivos
+    </div>
+
+    <div *ngIf="selectedImagesList?.length > 0" class="containerList">
+      <div class="imagesListContainer">
+        <div
+          *ngFor="let selectedImage of selectedImagesList"
+          class="imageContainer"
+        >
+          <odo-loaded-image-preview
+            [progressValue]="progressValue"
+            [uploadedError]="uploadedError"
+            [file]="selectedImage"
+            (removedFile)="onRemovedFileChange($event)"
+          ></odo-loaded-image-preview>
+        </div>
+      </div>
+    </div>
+
+    <div
+      *ngIf="selectedFile == false"
+      class="fileupload"
+      appDragDropFileUpload
+      (click)="fileField.click()"
+      (fileDropped)="selectFiles($event)"
+    >
+      <span class="ddinfo">Click aquí para seleccionar archivos</span>
+      <label class="btn btn-default p-0">
+        <input
+          #fileField
+          type="file"
+          (change)="selectFiles($event)"
+          [accept]="fileFormatsArray"
+          hidden
+        />
+      </label>
+    </div>
+  </div>
+</section>

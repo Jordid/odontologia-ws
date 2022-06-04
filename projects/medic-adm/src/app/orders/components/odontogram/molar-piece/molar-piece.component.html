@@ -1,0 +1,11 @@
+<div class="molarPieceContainer">
+  <div class="code">
+    {{ molarCode }}
+  </div>
+  <div class="molar">
+    <mat-checkbox
+      (change)="selecPiece($event)"
+      [checked]="isSelected"
+    ></mat-checkbox>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="menuTableContainer">
+
+  <div class="titleSearchContainer">
+    <div class="titleContainer">
+      <h5>Ordenes</h5>
+    </div>
+
+    <div class="searcherContainer">
+      <odo-text-searcher
+        (queryParamsChange)="onQueryParamsChange($event)"
+      ></odo-text-searcher>
+    </div>
+  </div>
+
+  <div class="actionsContainer mb-3">
+    <button mat-mini-fab color="none" aria-label="Filtros tabla de ordenes">
+      <mat-icon>filter_list</mat-icon>
+    </button>
+
+    <button
+      class="plusIcon"
+      mat-mini-fab
+      aria-label="Agregar orden"
+      [routerLink]="['/admin/orders/create']"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>

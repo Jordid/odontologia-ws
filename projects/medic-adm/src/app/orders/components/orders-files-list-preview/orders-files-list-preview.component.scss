@@ -1,0 +1,26 @@
+section {
+  min-height: 120px;
+  width: 100%;
+  .card {
+    .headerMarginBottom {
+      margin-bottom: 16px;
+    }
+    .headerNoMarginBottom {
+      margin-bottom: 0px;
+    }
+  }
+}
+.containerList {
+  margin-left: 16px;
+  margin-right: 16px;
+  margin-top: 16px;
+  .fileListContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .fileContainer {
+      margin-bottom: 16px;
+      margin-right: 16px;
+    }
+  }
+}

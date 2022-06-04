@@ -1,0 +1,31 @@
+<div class="avatarMenuContainer" [matMenuTriggerFor]="menu">
+  <odo-user-avatar-with-name
+    [avatarUrl]="avatarUrl"
+    [userName]="userName"
+  ></odo-user-avatar-with-name>
+
+  <button mat-icon-button>
+    <mat-icon>keyboard_arrow_down</mat-icon>
+  </button>
+</div>
+
+<mat-menu #menu="matMenu">
+  <div class="itemContainer">
+    <button mat-menu-item>
+      <mat-icon>account_circle</mat-icon>
+      <span>Perfil</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>settings</mat-icon>
+      <span>Configuración</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>help</mat-icon>
+      <span>Ayuda</span>
+    </button>
+    <button mat-menu-item [routerLink]="['/auth/logout']">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Salir</span>
+    </button>
+  </div>
+</mat-menu>
