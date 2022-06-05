@@ -4,7 +4,9 @@
   </div>
 
   <div class="searcherContainer">
-    <odo-medic-text-searcher (queryParamsChange)="onQueryParamsChange($event)"></odo-medic-text-searcher>
+    <odo-medic-text-searcher
+      (queryParamsChange)="onQueryParamsChange($event)"
+    ></odo-medic-text-searcher>
   </div>
 
   <div class="actionsContainer">
@@ -12,7 +14,12 @@
       <mat-icon>filter_list</mat-icon>
     </button>
 
-    <button class="plusIcon" mat-mini-fab aria-label="Agregar médico" [routerLink]="['/admin/medics/create']">
+    <button
+      color="primary"
+      mat-mini-fab
+      aria-label="Agregar médico"
+      [routerLink]="['/admin/medics/create']"
+    >
       <mat-icon>add</mat-icon>
     </button>
   </div>

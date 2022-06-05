@@ -1,11 +1,12 @@
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Params } from '@angular/router';
 import { finalize, Observable, Subject } from 'rxjs';
 import { CommonsHttpService } from '../../core/services/commons/commons-http/commons-http.service';
-import { ClientsHttpService } from './clients-http.service';
 import { PaginationLinks } from '../../core/types/pagination-links';
+import { ProgressBarService } from '../../shared/services/progress-bar/progress-bar.service';
 import { IClient } from '../types/client.interface';
-import { Params } from '@angular/router';
+import { ClientsHttpService } from './clients-http.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,16 +17,17 @@ export class ClientsService {
   protected readonly deletedClientSubject = new Subject<boolean>();
   constructor(
     private clientsHttp: ClientsHttpService,
-    private commonsHttp: CommonsHttpService
+    private commonsHttp: CommonsHttpService,
+    private progressBarService: ProgressBarService
   ) {}
   protected readonly paginationLinksSubject = new Subject<PaginationLinks>();
 
   private enableLoading(): void {
-    //this.allApp.progressBar.show();
+    this.progressBarService.show();
   }
 
   private disableLoading(): void {
-    //this.allApp.prog/ressBar.hide();
+    this.progressBarService.hide();
   }
 
   // Pagination Links
@@ -108,11 +110,15 @@ export class ClientsService {
   }
 
   public getClients(params?: Params): void {
+    this.enableLoading();
     /*  if (this.oAuthStorage.hasOAuth) { */
-    this.clientsHttp.getClients$(params).subscribe({
-      next: this.nextGetClients,
-      error: this.errorGetClients,
-    });
+    this.clientsHttp
+      .getClients$(params)
+      .pipe(finalize(() => this.disableLoading()))
+      .subscribe({
+        next: this.nextGetClients,
+        error: this.errorGetClients,
+      });
     /* } */
   }
 

@@ -1,20 +1,21 @@
 import {
   HttpErrorResponse,
   HttpEvent,
-  HttpResponse
+  HttpResponse,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Params } from '@angular/router';
 import { finalize, Observable, Subject } from 'rxjs';
 import { CommonsHttpService } from '../../core/services/commons/commons-http/commons-http.service';
 import { PaginationLinks } from '../../core/types/pagination-links';
+import { ProgressBarService } from '../../shared/services/progress-bar/progress-bar.service';
 import { IExam } from '../types/exam.interface';
 import { IFile } from '../types/file.interface';
 import {
   ICreateExam,
   ICreateOrder,
   IOrder,
-  IUpdateOrder
+  IUpdateOrder,
 } from '../types/order.interface';
 import { IRadiographyType } from '../types/radiography-type.interface';
 import { OrdersHttpService } from './orders-http.service';
@@ -37,15 +38,16 @@ export class OrdersService {
   constructor(
     private ordersHttp: OrdersHttpService,
     private commonsHttp: CommonsHttpService,
-    public orderSnackbars: OrdersSnackbarsService
+    public orderSnackbars: OrdersSnackbarsService,
+    private progressBarService: ProgressBarService
   ) {}
 
   private enableLoading(): void {
-    //this.allApp.progressBar.show();
+    this.progressBarService.show();
   }
 
   private disableLoading(): void {
-    //this.allApp.prog/ressBar.hide();
+    this.progressBarService.hide();
   }
 
   // Pagination Links
@@ -136,11 +138,15 @@ export class OrdersService {
   }
 
   public getOrders(params?: Params): void {
+    this.enableLoading();
     /*  if (this.oAuthStorage.hasOAuth) { */
-    this.ordersHttp.getOrders$(params).subscribe({
-      next: this.nextGetOrders,
-      error: this.errorGetOrders,
-    });
+    this.ordersHttp
+      .getOrders$(params)
+      .pipe(finalize(() => this.disableLoading()))
+      .subscribe({
+        next: this.nextGetOrders,
+        error: this.errorGetOrders,
+      });
     /* } */
   }
 

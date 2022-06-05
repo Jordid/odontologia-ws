@@ -29,6 +29,11 @@
 
   <mat-sidenav-content>
     <odo-admin-toolbar></odo-admin-toolbar>
+    <mat-progress-bar
+      *ngIf="progressBar$ | async"
+      color="accent"
+      mode="indeterminate"
+    ></mat-progress-bar>
     <ng-container>
       <router-outlet></router-outlet>
     </ng-container>
