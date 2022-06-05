@@ -3,7 +3,7 @@ import {
   Component,
   Input,
   OnInit,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -20,6 +20,8 @@ import { IOrder, IUpdateOrder } from '../../types/order.interface';
   styleUrls: ['./orders-table.component.scss'],
 })
 export class OrdersTableComponent implements OnInit, AfterViewInit {
+  private clientId: string = this.route.snapshot.paramMap.get('clientId');
+
   OrderStatusEnum = OrderStatusEnum;
   private subs: Subscription = new Subscription();
 
@@ -82,10 +84,12 @@ export class OrdersTableComponent implements OnInit, AfterViewInit {
     } else {
       this.ordersService.orderSnackbars.failureSentOrder();
     }
-    this.ordersService.getOrders(this.params);
+    this.ordersService.getOrders(this.clientId, this.params);
   };
 
-  viewOrder(oder: IOrder): void {}
+  viewOrder(order: IOrder): void {
+    console.log('order: ', order);
+  }
 
   send(order: IOrder): void {
     if (order?.orderId) {

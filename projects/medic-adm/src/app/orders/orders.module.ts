@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { AutocompletesModule } from '../shared/components/autocompletes/autocompletes.module';
 import { DialogsModule } from '../shared/components/dialogs/dialogs.module';
 import { FilesModule } from '../shared/components/files/files.module';
@@ -38,8 +39,8 @@ import { OrdersComponent } from './components/orders/orders.component';
 import { UploadImagesComponent } from './components/upload-images/upload-images.component';
 import { OrderRoutingModule } from './order-routing.module';
 import { ExamCategoryPipe } from './pipes/exam-category.pipe';
-import { RadiographyTypePipe } from './pipes/radiography-type.pipe';
 import { OrderStatusPipe } from './pipes/order-status.pipe';
+import { RadiographyTypePipe } from './pipes/radiography-type.pipe';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { OrderStatusPipe } from './pipes/order-status.pipe';
     MatPaginatorModule,
     MatSelectModule,
     MatTableModule,
+    MatTooltipModule,
     FormsModule,
     ReactiveFormsModule,
     UserModule,

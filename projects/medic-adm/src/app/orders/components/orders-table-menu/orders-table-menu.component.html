@@ -1,29 +1,32 @@
-<div class="menuTableContainer">
-  <div class="titleSearchContainer">
-    <div class="titleContainer">
-      <h5>Ordenes</h5>
-    </div>
+<div class="row menuTableContainer">
+  <div class="col">
+    <div class="row titleSearchContainer">
+      <div class="col-auto titleContainer">
+        <h5>Ordenes</h5>
+      </div>
 
-    <div class="searcherContainer">
-      <odo-text-searcher
-        (queryParamsChange)="onQueryParamsChange($event)"
-      ></odo-text-searcher>
+      <div class="col searcherContainer">
+        <odo-text-searcher
+          (queryParamsChange)="onQueryParamsChange($event)"
+        ></odo-text-searcher>
+      </div>
     </div>
   </div>
+  <div class="col-auto">
+    <div class="actionsContainer my-1">
+      <button mat-mini-fab color="none" aria-label="Filtros tabla de ordenes">
+        <mat-icon>filter_list</mat-icon>
+      </button>
 
-  <div class="actionsContainer mb-3">
-    <button mat-mini-fab color="none" aria-label="Filtros tabla de ordenes">
-      <mat-icon>filter_list</mat-icon>
-    </button>
-
-    <button
-      color="primary"
-      mat-mini-fab
-      class="addButton"
-      aria-label="Agregar orden"
-      [routerLink]="['/admin/orders/create']"
-    >
-      <mat-icon>add</mat-icon>
-    </button>
+      <button
+        color="primary"
+        mat-mini-fab
+        class="addButton"
+        aria-label="Agregar orden"
+        [routerLink]="['/admin/orders/create']"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
   </div>
 </div>

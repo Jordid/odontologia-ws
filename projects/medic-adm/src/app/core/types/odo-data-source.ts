@@ -21,7 +21,7 @@ export abstract class OdoDataSource<T = any> extends DataSource<T> {
 
   public subs: Subscription = new Subscription();
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(public route: ActivatedRoute, private router: Router) {
     super();
   }
 

@@ -137,11 +137,11 @@ export class OrdersService {
     return this.ordersSubject.asObservable();
   }
 
-  public getOrders(params?: Params): void {
+  public getOrders(clientId?: string | number, params?: Params): void {
     this.enableLoading();
     /*  if (this.oAuthStorage.hasOAuth) { */
     this.ordersHttp
-      .getOrders$(params)
+      .getOrders$(clientId, params)
       .pipe(finalize(() => this.disableLoading()))
       .subscribe({
         next: this.nextGetOrders,

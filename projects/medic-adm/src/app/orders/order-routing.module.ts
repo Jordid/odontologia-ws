@@ -14,6 +14,10 @@ const routes: Routes = [
         component: OrdersComponent,
       },
       {
+        path: ':clientId',
+        component: OrdersComponent,
+      },
+      {
         path: 'create',
         component: CreateOrderFormComponent,
       },

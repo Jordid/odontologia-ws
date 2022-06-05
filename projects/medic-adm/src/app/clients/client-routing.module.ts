@@ -22,6 +22,13 @@ const routes: Routes = [
         path: ':clientId/update',
         component: UpdateClientFormComponent,
       },
+
+      {
+        path: ':clientId/orders',
+        loadChildren: () =>
+          import('../orders/orders.module').then((m) => m.OrdersModule),
+      },
+
     ],
   },
 ];
