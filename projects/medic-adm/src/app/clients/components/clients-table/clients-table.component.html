@@ -28,7 +28,12 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           Tipo de documento
         </th>
-        <td mat-cell *matCellDef="let row">{{ row?.person?.documentType }}</td>
+        <td mat-cell *matCellDef="let row">
+          <ng-container *ngIf="row?.person?.documentType">
+            {{ row?.person?.documentType }}
+          </ng-container>
+          <ng-container *ngIf="!row?.person?.documentType"> - </ng-container>
+        </td>
       </ng-container>
 
       <!-- document Column -->
@@ -41,20 +46,28 @@
       <ng-container matColumnDef="email">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Correo</th>
         <td mat-cell *matCellDef="let row">
-          {{ row?.person?.user?.email }}
+          <ng-container *ngIf="row?.person?.user?.email">
+            {{ row?.person?.user?.email }}
+          </ng-container>
+          <ng-container *ngIf="!row?.person?.user?.email"> - </ng-container>
         </td>
       </ng-container>
 
-      <!-- specialty Column -->
-      <ng-container matColumnDef="specialty">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Espacialidad</th>
-        <td mat-cell *matCellDef="let row">{{ row?.specialty }}</td>
+      <!-- gender Column -->
+      <ng-container matColumnDef="gender">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Género</th>
+        <td mat-cell *matCellDef="let row">{{ row?.person?.gender }}</td>
       </ng-container>
 
       <!-- age Column -->
       <ng-container matColumnDef="age">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Edad</th>
-        <td mat-cell *matCellDef="let row">{{ row?.person?.age }}</td>
+        <td mat-cell *matCellDef="let row">
+          <ng-container *ngIf="row?.person?.age">
+            {{ row?.person?.age }}
+          </ng-container>
+          <ng-container *ngIf="!row?.person?.age"> - </ng-container>
+        </td>
       </ng-container>
 
       <!-- status Column -->

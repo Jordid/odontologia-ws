@@ -46,7 +46,8 @@ export class OrdersHttpService {
   ): Observable<HttpResponse<any>> {
     let url = `${ApiRadiografEnv.baseUrl}/orders`;
     if (clientId) {
-      url = url.concat('/').concat(clientId + '');
+      url = `${ApiRadiografEnv.baseUrl}/clients`;
+      url = url.concat('/').concat(clientId.toString()).concat('/orders');
     }
     return this.http.get(url, { observe: 'response', params });
   }
