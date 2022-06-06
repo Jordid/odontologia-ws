@@ -62,7 +62,7 @@ export class OrdersService {
     return this.orderSubject.asObservable();
   }
 
-  public getOrder(orderId: number): void {
+  public getOrder(orderId: number | string): void {
     /*  if (this.oAuthStorage.hasOAuth) { */
     this.ordersHttp.getOrder$(orderId).subscribe({
       next: this.nextGetOrder,

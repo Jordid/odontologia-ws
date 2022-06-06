@@ -35,7 +35,7 @@ export class OrdersHttpService {
     return this.http.patch(url, updateOrderJson, { observe: 'response' });
   }
 
-  public getOrder$(orderId: number): Observable<HttpResponse<any>> {
+  public getOrder$(orderId: number | string): Observable<HttpResponse<any>> {
     const url = `${ApiRadiografEnv.baseUrl}/orders/${orderId}`;
     return this.http.get(url, { observe: 'response' });
   }

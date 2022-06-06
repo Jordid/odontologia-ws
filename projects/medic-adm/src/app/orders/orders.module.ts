@@ -41,6 +41,7 @@ import { OrderRoutingModule } from './order-routing.module';
 import { ExamCategoryPipe } from './pipes/exam-category.pipe';
 import { OrderStatusPipe } from './pipes/order-status.pipe';
 import { RadiographyTypePipe } from './pipes/radiography-type.pipe';
+import { OrderDetailsComponent } from './components/order-details/order-details/order-details.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { RadiographyTypePipe } from './pipes/radiography-type.pipe';
     ToothPieceComponent,
     UploadImagesComponent,
     OrderStatusPipe,
+    OrderDetailsComponent,
   ],
   imports: [
     CommonModule,
