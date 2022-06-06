@@ -39,7 +39,7 @@ export class ClientsTableComponent implements OnInit, AfterViewInit {
     'documentType',
     'document',
     'email',
-    'specialty',
+    'gender',
     'age',
     'status',
     'actions',

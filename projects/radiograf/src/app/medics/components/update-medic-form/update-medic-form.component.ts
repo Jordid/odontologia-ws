@@ -20,8 +20,6 @@ export class UpdateMedicFormComponent
 
   private subs: Subscription = new Subscription();
 
-  private formSent = false;
-
   constructor(
     private medicsService: MedicsService,
     private router: Router,

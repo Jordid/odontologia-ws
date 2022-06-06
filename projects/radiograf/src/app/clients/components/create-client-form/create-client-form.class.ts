@@ -22,6 +22,7 @@ export class CreateClientForm {
   };
 
   submitting = false;
+  formSent = false;
 
   createClientForm: FormGroup = this.fb.group(this.createClientSkeleton, {
     validators: PasswordValidator.matchPassword,

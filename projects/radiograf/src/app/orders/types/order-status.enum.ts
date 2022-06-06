@@ -10,6 +10,8 @@ export const OrderStatusInfo = [
     [OrderStatusEnum.CREATED]: {
       name: 'Creado',
     },
+  },
+  {
     [OrderStatusEnum.SENT]: {
       name: 'Enviado',
     },

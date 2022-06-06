@@ -44,13 +44,16 @@ export class CreateClientFormComponent
   public onSubmit(): void {
     if (this.validatedForm) {
       this.prepateFormToSend();
+      this.formSent = true;
       this.clientsService.createClient(this.createClientForm.getRawValue());
     }
   }
 
   private prepateFormToSend(): void {
     if (this.birthDate.value && moment(this.birthDate.value).isValid()) {
-      this.birthDate.setValue(moment(this.birthDate.value).format('YYYY-MM-DD'));
+      this.birthDate.setValue(
+        moment(this.birthDate.value).format('YYYY-MM-DD')
+      );
     }
   }
 

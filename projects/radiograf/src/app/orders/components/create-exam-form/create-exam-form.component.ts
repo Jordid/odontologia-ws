@@ -172,8 +172,6 @@ export class CreateExamFormComponent
   }
 
   createExam(): void {
-    console.log('validatedForm: ', this.createExamForm.getRawValue());
-
     if (this.validatedForm && this.uploadedFile) {
       let categoryType: IRadiographyType = null;
       if (this.examType.value) {
@@ -198,7 +196,6 @@ export class CreateExamFormComponent
   private getExam = (exam: IExam): void => {
     if (this.submitting) {
       if (exam) {
-        console.log('Created exam. ', exam);
         this.sentCreateExam.emit(true);
       }
       this.submitting = false;
@@ -225,13 +222,13 @@ export class CreateExamFormComponent
       this.examType.setValidators([Validators.required]);
     } else {
       this.showExamType = false;
+      this.examType.setValue(null);
       this.examType.removeValidators([Validators.required]);
     }
     this.examType.updateValueAndValidity();
   }
 
   public onExamTypeChange(event: MatSelectChange): void {
-    console.log('event: ', event);
     this.selectedExamCategoryType = event?.value?.type;
     if (ExamCategoryTypeEnum.WITH_STUDY !== this.selectedExamCategoryType) {
       this.isAddStudio.setValue(false);
