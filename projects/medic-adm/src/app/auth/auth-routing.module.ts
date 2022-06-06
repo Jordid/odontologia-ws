@@ -35,11 +35,11 @@ const routes: Routes = [
         component: PasswordComponent,
         canActivate: [NotOAuthGuard],
       },*/
-      {
+      /* {
         path: 'sign-up',
         component: SignUpComponent,
         //canActivate: [NotOAuthGuard],
-      },
+      }, */
      /* {
         path: 'sign-up/success',
         component: SignUpSuccessComponent,

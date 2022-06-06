@@ -64,9 +64,6 @@ export class UpdateMedicFormComponent
     if (medic?.doctorId > 0) {
       this.medicsService.medicSnackbars.successUpdated();
       this.populateMedicForm(medic?.person);
-      if (this.formSent) {
-        this.router.navigate(['/admin/medics']);
-      }
     }
     this.disableLoading();
   };

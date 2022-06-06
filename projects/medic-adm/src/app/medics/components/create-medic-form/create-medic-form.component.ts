@@ -45,7 +45,6 @@ export class CreateMedicFormComponent
   private getMedic = (medic: IMedic): void => {
     if (medic?.doctorId > 0) {
       this.medicsService.medicSnackbars.successRegister();
-      this.router.navigate(['/admin/medics']);
     } else {
       this.disableLoading();
     }

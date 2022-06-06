@@ -82,12 +82,6 @@ export class MedicsTableComponent implements OnInit, AfterViewInit {
     }
   }
 
-  editMedic(medic: IMedic): void {
-    if (medic?.doctorId) {
-      this.router.navigate([`/admin/medics/${medic?.doctorId}/update`]);
-    }
-  }
-
   deleteMedic(medic: IMedic): void {
     if (medic?.doctorId) {
       const data: ConfirmationDialogData = {

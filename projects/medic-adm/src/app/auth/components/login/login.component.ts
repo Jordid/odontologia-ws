@@ -86,7 +86,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private getOAuth = (oAuth: OAuth): void => {
     if (oAuth) {
-      this.router.navigate(['/admin/medics']);
+      this.router.navigate(['/admin/clients']);
     } else {
       this.disableLoading();
     }

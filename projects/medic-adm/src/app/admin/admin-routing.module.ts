@@ -10,26 +10,11 @@ const routes: Routes = [
     //canActivate: [OAuthGuard],
     children: [
       {
-        path: 'dashboard',
-        //canLoad: [OAuthGuard],
-        loadChildren: () =>
-          import('../dashboard/dashboard.module').then(
-            (m) => m.DashboardModule
-          ),
-      },
-      {
         path: 'clients',
         //canLoad: [OAuthGuard],
         loadChildren: () =>
           import('../clients/clients.module').then((m) => m.ClientsModule),
       },
-      {
-        path: 'medics',
-        //canLoad: [OAuthGuard],
-        loadChildren: () =>
-          import('../medics/medics.module').then((m) => m.MedicsModule),
-      },
-
       {
         path: 'orders',
         //canLoad: [OAuthGuard],
