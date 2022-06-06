@@ -7,7 +7,7 @@
     [opened]="(isSmall$ | async) === false"
   >
     <div class="logoMedicContainer">
-      <div class="appLogo">Radiograf</div>
+      <div class="appLogo">Radiography</div>
 
       <div class="medicInfoBlockContainer">
         <odo-medic-info-block
@@ -17,7 +17,9 @@
         ></odo-medic-info-block>
 
         <div class="actionsContainer">
-          <mat-icon>exit_to_app</mat-icon>
+          <a mat-list-item [routerLink]="['/auth/logout']">
+            <mat-icon>exit_to_app</mat-icon>
+          </a>
         </div>
       </div>
     </div>
