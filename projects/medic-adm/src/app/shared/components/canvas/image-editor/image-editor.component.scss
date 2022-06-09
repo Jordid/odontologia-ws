@@ -1,0 +1,28 @@
+.parentContainer {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+  border: 1px solid gray;
+  padding: 16px;
+  .canvascontainer {
+  }
+  .filtersEditorPanelContainer {
+  }
+}
+
+canvas {
+  border: 2px solid rgba(0, 0, 0, 0.12);
+  transition: 300ms;
+  border-radius: 4px;
+  width: 100%;
+}
+
+canvas:hover {
+  border: 2px solid rgba(0, 0, 0, 0.54);
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+}

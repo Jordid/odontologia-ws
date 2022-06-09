@@ -1,0 +1,9 @@
+.slidersContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  padding-bottom: 0px;
+  .sliderContainer {
+    margin-bottom: 16px;
+  }
+}

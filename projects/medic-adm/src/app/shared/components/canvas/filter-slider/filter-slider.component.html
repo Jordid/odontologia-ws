@@ -1,0 +1,17 @@
+<div class="sliderContainer">
+  <div class="labelsContainer">
+    <span class="key">{{ leftLabel }}: </span>
+    <span>{{ rightLabel }}</span>
+  </div>
+
+  <div class="matSliderContainer">
+    <mat-slider
+      thumbLabel
+      step="1"
+      [min]="min"
+      [max]="max"
+      color="primary"
+      (input)="onSliderInputChange($event)"
+    ></mat-slider>
+  </div>
+</div>

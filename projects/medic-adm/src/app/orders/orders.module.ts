@@ -14,6 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AutocompletesModule } from '../shared/components/autocompletes/autocompletes.module';
+import { CanvasModule } from '../shared/components/canvas/canvas.module';
 import { DialogsModule } from '../shared/components/dialogs/dialogs.module';
 import { FilesModule } from '../shared/components/files/files.module';
 import { SearchersModule } from '../shared/components/searchers/searchers.module';
@@ -22,6 +23,7 @@ import { UserModule } from '../shared/components/user/user.module';
 import { PipesModule } from '../shared/pipes/pipes.module';
 import { CreateExamFormComponent } from './components/create-exam-form/create-exam-form.component';
 import { CreateOrderFormComponent } from './components/create-order-form/create-order-form.component';
+import { ExamViewerComponent } from './components/exam-viewer/exam-viewer.component';
 import { LoadedImagePreviewComponent } from './components/loaded-image-preview/loaded-image-preview.component';
 import { OderPatientAndMedicPreviewComponent } from './components/oder-patient-and-medic-preview/oder-patient-and-medic-preview.component';
 import { MolarPieceComponent } from './components/odontogram/molar-piece/molar-piece.component';
@@ -29,6 +31,7 @@ import { OdontogramDialogComponent } from './components/odontogram/odontogram-di
 import { OdontogramComponent } from './components/odontogram/odontogram/odontogram.component';
 import { PiecesBlockComponent } from './components/odontogram/pieces-block/pieces-block.component';
 import { ToothPieceComponent } from './components/odontogram/tooth-piece/tooth-piece.component';
+import { OrderDetailsComponent } from './components/order-details/order-details/order-details.component';
 import { OrdersFilesListPreviewComponent } from './components/orders-files-list-preview/orders-files-list-preview.component';
 import { OrdersInitComponent } from './components/orders-init/orders-init.component';
 import { OrdersMenuPanelComponent } from './components/orders-menu-panel/orders-menu-panel.component';
@@ -41,7 +44,6 @@ import { OrderRoutingModule } from './order-routing.module';
 import { ExamCategoryPipe } from './pipes/exam-category.pipe';
 import { OrderStatusPipe } from './pipes/order-status.pipe';
 import { RadiographyTypePipe } from './pipes/radiography-type.pipe';
-import { OrderDetailsComponent } from './components/order-details/order-details/order-details.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +68,7 @@ import { OrderDetailsComponent } from './components/order-details/order-details/
     UploadImagesComponent,
     OrderStatusPipe,
     OrderDetailsComponent,
+    ExamViewerComponent,
   ],
   imports: [
     CommonModule,
@@ -91,6 +94,7 @@ import { OrderDetailsComponent } from './components/order-details/order-details/
     SearchersModule,
     AutocompletesModule,
     FilesModule,
+    CanvasModule,
   ],
 })
 export class OrdersModule {}

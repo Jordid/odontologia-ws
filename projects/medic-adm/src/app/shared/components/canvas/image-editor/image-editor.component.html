@@ -1,0 +1,10 @@
+<div class="row parentContainer">
+  <div class="col-12 col-xxl-8 canvascontainer">
+    <canvas #canvasElement class="image-fluid"></canvas>
+  </div>
+
+  <div class="col-12 col-xxl-4 filtersEditorPanelContainer">
+    <odo-filters-editor-panel (filters)="onFiltersChange($event)">
+    </odo-filters-editor-panel>
+  </div>
+</div>
