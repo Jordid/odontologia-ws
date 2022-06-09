@@ -2,7 +2,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ConfirmationDialogData } from '../../../../core/types/dialogs/confirmation-dialog-data';
 import { OdontogramDialogComponent } from '../../../../orders/components/odontogram/odontogram-dialog/odontogram-dialog.component';
-import { IExam } from '../../../../orders/types/exam.interface';
 
 @Component({
   selector: 'odo-exam-preview-dialog',
@@ -10,7 +9,7 @@ import { IExam } from '../../../../orders/types/exam.interface';
   styleUrls: ['./exam-preview-dialog.component.scss'],
 })
 export class ExamPreviewDialogComponent implements OnInit {
-  exam: IExam;
+  urFile: string;
 
   constructor(
     public dialogRef: MatDialogRef<OdontogramDialogComponent>,
@@ -18,14 +17,10 @@ export class ExamPreviewDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.exam = this.data?.data;
+    this.urFile = this.data?.data;
   }
 
-  cancel(): void {
-    this.dialogRef.close(null);
-  }
-
-  accept(): void {
+  cerrar(): void {
     this.dialogRef.close(null);
   }
 }

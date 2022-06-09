@@ -1,7 +1,7 @@
 <div
-  class="imageContainer mat-elevation-z2"
-  *ngIf="exam?.miniatureUrl"
+  class="imageContainer"
+  *ngIf="urlMineatureFile"
   (click)="showPreview()"
 >
-  <img [src]="exam?.miniatureUrl" class="img-fluid" />
+  <img [src]="urlMineatureFile" class="img-fluid" />
 </div>

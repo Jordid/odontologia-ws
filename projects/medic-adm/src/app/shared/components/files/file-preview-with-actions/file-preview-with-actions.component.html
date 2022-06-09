@@ -1,0 +1,21 @@
+<div class="fileActionsContainer mat-elevation-z2" *ngIf="urlFile">
+  <odo-file-preview
+    [urlFile]="urlFile"
+    [urlMineatureFile]="urlMineatureFile"
+  ></odo-file-preview>
+
+  <div class="actions">
+    <button
+      mat-mini-fab
+      color="none"
+      aria-label="Previsualizar"
+      (click)="showPreview()"
+    >
+      <mat-icon color="primary">panorama</mat-icon>
+    </button>
+
+    <button mat-mini-fab color="none" aria-label="Ver en el editor">
+      <mat-icon color="primary" (click)="gotToEditor()">colorize</mat-icon>
+    </button>
+  </div>
+</div>

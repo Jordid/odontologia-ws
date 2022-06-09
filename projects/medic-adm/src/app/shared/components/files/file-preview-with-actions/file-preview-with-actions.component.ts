@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { ConfirmationDialogData } from '../../../../core/types/dialogs/confirmation-dialog-data';
@@ -6,13 +6,14 @@ import { OdoDialogConfig } from '../../../../core/types/dialogs/odo-dialog-confi
 import { ExamPreviewDialogComponent } from '../../dialogs/exam-preview-dialog/exam-preview-dialog.component';
 
 @Component({
-  selector: 'odo-file-preview',
-  templateUrl: './file-preview.component.html',
-  styleUrls: ['./file-preview.component.scss'],
+  selector: 'odo-file-preview-with-actions',
+  templateUrl: './file-preview-with-actions.component.html',
+  styleUrls: ['./file-preview-with-actions.component.scss'],
 })
-export class FilePreviewComponent {
+export class FilePreviewWithActionsComponent {
   @Input() urlFile: string;
   @Input() urlMineatureFile: string;
+  @Output() goToEditorClicked = new EventEmitter<boolean>();
 
   constructor(private dialog: MatDialog) {}
 
@@ -35,5 +36,9 @@ export class FilePreviewComponent {
       ConfirmationDialogData,
       string[]
     >(ExamPreviewDialogComponent, dialogConfig);
+  }
+
+  gotToEditor(): void {
+    this.goToEditorClicked.emit(true);
   }
 }

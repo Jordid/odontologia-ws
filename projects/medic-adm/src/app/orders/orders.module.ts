@@ -23,7 +23,6 @@ import { UserModule } from '../shared/components/user/user.module';
 import { PipesModule } from '../shared/pipes/pipes.module';
 import { CreateExamFormComponent } from './components/create-exam-form/create-exam-form.component';
 import { CreateOrderFormComponent } from './components/create-order-form/create-order-form.component';
-import { ExamViewerComponent } from './components/exam-viewer/exam-viewer.component';
 import { LoadedImagePreviewComponent } from './components/loaded-image-preview/loaded-image-preview.component';
 import { OderPatientAndMedicPreviewComponent } from './components/oder-patient-and-medic-preview/oder-patient-and-medic-preview.component';
 import { MolarPieceComponent } from './components/odontogram/molar-piece/molar-piece.component';
@@ -39,6 +38,7 @@ import { OrdersTableMenuComponent } from './components/orders-table-menu/orders-
 import { OrdersTableWithMenuComponent } from './components/orders-table-with-menu/orders-table-with-menu.component';
 import { OrdersTableComponent } from './components/orders-table/orders-table.component';
 import { OrdersComponent } from './components/orders/orders.component';
+import { RadiographyEditorComponent } from './components/radiography-editor/radiography-editor.component';
 import { UploadImagesComponent } from './components/upload-images/upload-images.component';
 import { OrderRoutingModule } from './order-routing.module';
 import { ExamCategoryPipe } from './pipes/exam-category.pipe';
@@ -68,7 +68,7 @@ import { RadiographyTypePipe } from './pipes/radiography-type.pipe';
     UploadImagesComponent,
     OrderStatusPipe,
     OrderDetailsComponent,
-    ExamViewerComponent,
+    RadiographyEditorComponent,
   ],
   imports: [
     CommonModule,

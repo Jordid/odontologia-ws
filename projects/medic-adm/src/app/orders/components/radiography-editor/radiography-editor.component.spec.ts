@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ExamViewerComponent } from './exam-viewer.component';
+import { RadiographyEditorComponent } from './radiography-editor.component';
 
-describe('ExamViewerComponent', () => {
-  let component: ExamViewerComponent;
-  let fixture: ComponentFixture<ExamViewerComponent>;
+describe('RadiographyEditorComponent', () => {
+  let component: RadiographyEditorComponent;
+  let fixture: ComponentFixture<RadiographyEditorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ExamViewerComponent ]
+      declarations: [ RadiographyEditorComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ExamViewerComponent);
+    fixture = TestBed.createComponent(RadiographyEditorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

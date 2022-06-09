@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { IExam } from '../../types/exam.interface';
 
 @Component({
@@ -8,4 +9,14 @@ import { IExam } from '../../types/exam.interface';
 })
 export class OrdersFilesListPreviewComponent {
   @Input() exams: IExam[];
+
+  constructor(private router: Router) {}
+
+  onGoToEditorClickedChange(clicked: boolean, exam: IExam): void {
+    if (clicked === true) {
+      this.router.navigate([
+        `/admin/clients/${exam?.order?.clientId}/orders/${exam?.orderId}/details/radiography/${exam?.radiographyId}`,
+      ]);
+    }
+  }
 }

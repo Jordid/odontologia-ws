@@ -1,25 +1,25 @@
 <div class="dialogContainer">
   <div class="headerDialog">
-    <div class="mat-dialog-title dialogTitle">Odontograma</div>
-    <button mat-button type="button" class="closeIcon" (click)="cancel()">
+    <div class="mat-dialog-title dialogTitle">Previsialización del exámen</div>
+    <button mat-button type="button" class="closeIcon" (click)="cerrar()">
       <mat-icon>close</mat-icon>
     </button>
   </div>
   <mat-dialog-content class="text-center">
-    <div class="imageContainer mat-elevation-z2" *ngIf="exam?.imageUrl">
-      <img [src]="exam?.imageUrl" class="img-fluid" />
+    <div class="imageContainer mat-elevation-z2" *ngIf="urFile">
+      <img [src]="urFile" class="img-fluid" />
     </div>
   </mat-dialog-content>
   <mat-dialog-actions align="center">
     <div class="row justify-content-center">
       <div class="col-auto col-md-6 mb-3 mb-md-0">
         <button
-          mat-raised-button
-          color="primary"
+          mat-stroked-button
+          color="warn"
           class="rightButton"
-          (click)="accept()"
+          (click)="cerrar()"
         >
-          Aceptar
+          Cerrar
         </button>
       </div>
     </div>
