@@ -63,11 +63,15 @@ export class OrdersService {
   }
 
   public getOrder(orderId: number | string): void {
+    this.enableLoading();
     /*  if (this.oAuthStorage.hasOAuth) { */
-    this.ordersHttp.getOrder$(orderId).subscribe({
-      next: this.nextGetOrder,
-      error: this.errorGetOrder,
-    });
+    this.ordersHttp
+      .getOrder$(orderId)
+      .pipe(finalize(() => this.disableLoading()))
+      .subscribe({
+        next: this.nextGetOrder,
+        error: this.errorGetOrder,
+      });
     /* } */
   }
 
@@ -235,11 +239,15 @@ export class OrdersService {
   }
 
   public getExams(orderId: number): void {
+    this.enableLoading();
     /*  if (this.oAuthStorage.hasOAuth) { */
-    this.ordersHttp.getExams$(orderId).subscribe({
-      next: this.nextGetExams,
-      error: this.errorGetExams,
-    });
+    this.ordersHttp
+      .getExams$(orderId)
+      .pipe(finalize(() => this.disableLoading()))
+      .subscribe({
+        next: this.nextGetExams,
+        error: this.errorGetExams,
+      });
     /* } */
   }
 
@@ -259,6 +267,35 @@ export class OrdersService {
   private errorGetExams = (error: HttpErrorResponse): void => {
     this.examsSubject.next(null);
     this.paginationLinksSubject.next(null);
+    this.commonsHttp.errorsHttp.communication(error);
+  };
+
+  /** Get exam. */
+  public getExam(orderId: number | string, examId: number | string): void {
+    this.enableLoading();
+    /*  if (this.oAuthStorage.hasOAuth) { */
+    this.ordersHttp
+      .getExam$(orderId, examId)
+      .pipe(finalize(() => this.disableLoading()))
+      .subscribe({
+        next: this.nextGetExam,
+        error: this.errorGetExam,
+      });
+    /* } */
+  }
+
+  private nextGetExam = (data: HttpResponse<any>): void => {
+    if (this.commonsHttp.validationsHttp.verifyStatus200(data)) {
+      const exam: IExam = data.body.result?.[0];
+      this.examSubject.next(exam);
+    } else {
+      this.examSubject.next(null);
+      this.commonsHttp.errorsHttp.apiInvalidResponse(data);
+    }
+  };
+
+  private errorGetExam = (error: HttpErrorResponse): void => {
+    this.examSubject.next(null);
     this.commonsHttp.errorsHttp.communication(error);
   };
 

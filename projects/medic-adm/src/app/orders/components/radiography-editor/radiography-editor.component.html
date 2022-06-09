@@ -1,1 +1,3 @@
-<odo-image-editor></odo-image-editor>
+<ng-container *ngIf="exam?.imageUrl">
+  <odo-image-editor [imageSrc]="exam?.imageUrl"></odo-image-editor>
+</ng-container>

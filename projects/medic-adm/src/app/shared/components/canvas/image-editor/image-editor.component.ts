@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  ViewChild
+} from '@angular/core';
 
 @Component({
   selector: 'odo-image-editor',
@@ -6,10 +12,10 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
   styleUrls: ['./image-editor.component.scss'],
 })
 export class ImageEditorComponent implements AfterViewInit {
-  private imageSrc =
-    'https://rayodent.com/home/fzuzahde/public_html/Radiografias/2022-06-07/0705380657/1/0705380657_ANDREA%20MARISOL%20CHAMBA_Panorama_20220604141144-c0.jpg';
+  @Input() imageSrc: string;
 
-  public filtersString = 'brightness(100%) contrast(100%) invert(100%) sepia(100%)';
+  public filtersString =
+    'brightness(100%) contrast(100%) invert(100%) sepia(100%)';
   private image = null;
   private espacioW: number = 0;
   private espacioH: number = 0;
@@ -26,6 +32,8 @@ export class ImageEditorComponent implements AfterViewInit {
     ).getContext('2d');
 
     this.image = new Image();
+    console.log("imageSrc: ", this.imageSrc);
+
     this.image.src = this.imageSrc;
     this.image.onload = () => this.drawImage(this.image, this.canvasElement);
   }
