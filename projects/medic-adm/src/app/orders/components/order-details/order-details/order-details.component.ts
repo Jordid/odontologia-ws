@@ -36,8 +36,6 @@ export class OrderDetailsComponent implements OnInit, OnDestroy {
   }
 
   private getOrder = (order: IOrder) => {
-    console.log("order: ", order);
-
     this.order = order;
     if (order?.orderId) {
       this.ordersService.getExams(this.order?.orderId);

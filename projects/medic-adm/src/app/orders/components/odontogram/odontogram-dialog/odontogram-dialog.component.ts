@@ -27,7 +27,6 @@ export class OdontogramDialogComponent implements OnInit {
 
   onChangePiecesCodeListOutput(piecesCodeListOutput: string[]): void {
     this.piecesCodeList = piecesCodeListOutput;
-    console.log('cambios: ', this.piecesCodeList);
   }
 
   cancel(): void {

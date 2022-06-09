@@ -56,7 +56,6 @@ export class ImageEditorComponent implements AfterViewInit {
     if (this.context.canvas.width > 10 && this.context.canvas.height > 10) {
       // filtroColor('#4a0');
     }
-    console.log('this.context.filter: ', this.context.filter);
   }
 
   onFiltersChange(filters: string) {

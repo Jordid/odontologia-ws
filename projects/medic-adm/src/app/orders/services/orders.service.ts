@@ -186,8 +186,6 @@ export class OrdersService {
   }
 
   private nextUploadFile = (data: HttpResponse<any>): void => {
-    console.log('uploaded: ', data);
-
     /* if (this.commonsHttp.validationsHttp.verifyStatus201(data)) {
       const order: IOrder = data.body.result[0];
       this.fileSubject.next(order);

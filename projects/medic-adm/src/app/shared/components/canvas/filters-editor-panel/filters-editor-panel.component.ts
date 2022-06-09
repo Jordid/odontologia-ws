@@ -68,8 +68,6 @@ export class FiltersEditorPanelComponent
         filtersAcum = sepiaValue;
       }
     }
-    console.log("filtersAcum: ", filtersAcum);
-
     this.filters.emit(filtersAcum);
   }
 

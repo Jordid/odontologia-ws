@@ -3,7 +3,7 @@ import {
   Component,
   Input,
   OnInit,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -89,9 +89,15 @@ export class OrdersTableComponent implements OnInit, AfterViewInit {
 
   viewOrder(order: IOrder): void {
     if (order?.orderId && order?.client?.clientId) {
-      const route = `/admin/clients/${order?.client?.clientId}/orders/${order?.orderId}/details`;
-      console.log('route :', route);
-      this.router.navigate([route]);
+      let route = null;
+      if (this.clientId) {
+        route = `/admin/clients/${order?.client?.clientId}/orders/${order?.orderId}`;
+      } else {
+        route = `/admin/orders/${order?.orderId}`;
+      }
+      if (route) {
+        this.router.navigate([route]);
+      }
     }
   }
 

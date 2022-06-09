@@ -15,15 +15,11 @@ const routes: Routes = [
         component: OrdersComponent,
       },
       {
-        path: ':clientId',
-        component: OrdersComponent,
-      },
-      {
-        path: ':orderId/details',
+        path: ':orderId',
         component: OrderDetailsComponent,
       },
       {
-        path: ':orderId/details/radiography/:radiographyId',
+        path: ':orderId/radiography/:radiographyId',
         component: RadiographyEditorComponent,
       },
     ],
