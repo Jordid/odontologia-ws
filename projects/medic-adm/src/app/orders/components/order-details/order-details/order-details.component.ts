@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ProgressBarService } from '../../../../shared/services/progress-bar/progress-bar.service';
 import { OrdersService } from '../../../services/orders.service';
 import { IExam } from '../../../types/exam.interface';
 import { IOrder } from '../../../types/order.interface';
@@ -20,13 +21,15 @@ export class OrderDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private ordersService: OrdersService
+    private ordersService: OrdersService,
+    private progressBarService: ProgressBarService
   ) {}
 
   ngOnInit(): void {
     this.subs.add(this.ordersService.getOrder$().subscribe(this.getOrder));
     this.subs.add(this.ordersService.getExams$().subscribe(this.getExams));
     if (this.orderId) {
+      this.enableLoading();
       this.ordersService.getOrder(this.orderId);
     }
   }
@@ -35,9 +38,19 @@ export class OrderDetailsComponent implements OnInit, OnDestroy {
     this.subs.unsubscribe();
   }
 
+  private enableLoading(): void {
+    this.progressBarService.show();
+  }
+
+  private disableLoading(): void {
+    this.progressBarService.hide();
+  }
+
   private getOrder = (order: IOrder) => {
     this.order = order;
+    this.disableLoading();
     if (order?.orderId) {
+      this.enableLoading();
       this.ordersService.getExams(this.order?.orderId);
     } else {
       this.ordersService.orderSnackbars.failureGetOrder();
@@ -46,5 +59,6 @@ export class OrderDetailsComponent implements OnInit, OnDestroy {
 
   private getExams = (exams: IExam[]): void => {
     this.exams = exams;
+    this.disableLoading();
   };
 }

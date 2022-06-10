@@ -1,7 +1,7 @@
 import {
   HttpErrorResponse,
   HttpEvent,
-  HttpResponse,
+  HttpResponse
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Params } from '@angular/router';
@@ -15,7 +15,7 @@ import {
   ICreateExam,
   ICreateOrder,
   IOrder,
-  IUpdateOrder,
+  IUpdateOrder
 } from '../types/order.interface';
 import { IRadiographyType } from '../types/radiography-type.interface';
 import { OrdersHttpService } from './orders-http.service';
@@ -63,15 +63,11 @@ export class OrdersService {
   }
 
   public getOrder(orderId: number | string): void {
-    this.enableLoading();
     /*  if (this.oAuthStorage.hasOAuth) { */
-    this.ordersHttp
-      .getOrder$(orderId)
-      .pipe(finalize(() => this.disableLoading()))
-      .subscribe({
-        next: this.nextGetOrder,
-        error: this.errorGetOrder,
-      });
+    this.ordersHttp.getOrder$(orderId).subscribe({
+      next: this.nextGetOrder,
+      error: this.errorGetOrder,
+    });
     /* } */
   }
 
@@ -272,11 +268,10 @@ export class OrdersService {
 
   /** Get exam. */
   public getExam(orderId: number | string, examId: number | string): void {
-    this.enableLoading();
     /*  if (this.oAuthStorage.hasOAuth) { */
     this.ordersHttp
       .getExam$(orderId, examId)
-      .pipe(finalize(() => this.disableLoading()))
+
       .subscribe({
         next: this.nextGetExam,
         error: this.errorGetExam,

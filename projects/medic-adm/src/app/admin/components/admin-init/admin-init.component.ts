@@ -15,6 +15,8 @@ export class AdminInitComponent implements OnInit, OnDestroy {
     .getProgressBar$()
     .pipe(shareReplay(1));
 
+  showProgressBar: boolean = false;
+
   @ViewChild('drawer') sidenav!: MatSidenav;
   avatarUrl: string;
   userName: string;
@@ -53,6 +55,7 @@ export class AdminInitComponent implements OnInit, OnDestroy {
     }
     //this.subs.add(this.userRole$.subscribe(this.getUserRole));
     this.subs.add(this.route.paramMap.subscribe(this.getParamMap));
+    this.subs.add(this.progressBar$.subscribe(this.getProgressBar));
   }
 
   ngOnDestroy(): void {
@@ -75,4 +78,8 @@ export class AdminInitComponent implements OnInit, OnDestroy {
       this.userRole = userRole;
     }
   }; */
+
+  private getProgressBar = (status: boolean): void => {
+    this.showProgressBar = status;
+  };
 }

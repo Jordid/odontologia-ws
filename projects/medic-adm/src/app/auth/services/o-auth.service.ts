@@ -2,6 +2,7 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { finalize, Observable, Subject } from 'rxjs';
 import { CommonsHttpService } from '../../core/services/commons/commons-http/commons-http.service';
+import { ProgressBarService } from '../../shared/services/progress-bar/progress-bar.service';
 import { OAuth } from '../types/o-auth';
 import { OAuthHttpService } from './o-auth-http.service';
 import { OAuthStorageService } from './o-auth-storage.service';
@@ -13,17 +14,18 @@ export class OAuthService {
   protected readonly oAuthSubject = new Subject<OAuth>();
 
   constructor(
+    private progressBarService: ProgressBarService,
     private oAuthHttp: OAuthHttpService,
     private commonsHttp: CommonsHttpService,
     public oAuthStorage: OAuthStorageService
   ) {}
 
   private enableLoading(): void {
-    //this.allApp.progressBar.show();
+    this.progressBarService.show();
   }
 
   private disableLoading(): void {
-    //this.allApp.progressBar.hide();
+    this.progressBarService.hide();
   }
 
   /* Login.  */
