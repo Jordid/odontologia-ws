@@ -1,5 +1,5 @@
-<div class="row d-flex justify-content-center">
-  <div class="col-12">
+<div class="row d-flex justify-content-center parent g-0">
+  <div class="col-11 d-flex justify-content-center">
     <div class="loginContainer">
       <div class="titleContainer">
         <img
@@ -36,13 +36,15 @@
           </div>
 
           <div class="actionsContainer">
-            <button mat-raised-button color="primary">INCIAR SESIÓN</button>
+            <button
+              mat-raised-button
+              color="primary"
+              [class.spinner]="submitting"
+              [disabled]="submitting"
+            >
+              Iniciar sesión
+            </button>
           </div>
-
-          <!-- <div class="linksContainer">
-            <span> No tengo una cuenta? </span>
-            <a [routerLink]="['/auth/sign-up']">Click aquí para crear una</a>
-          </div> -->
         </form>
       </mat-card>
     </div>

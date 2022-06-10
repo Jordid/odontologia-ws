@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     password: ['', [Validators.required, Validators.minLength(4)]],
   };
 
-  private submitting = false;
+  public submitting = false;
 
   private subs: Subscription = new Subscription();
 

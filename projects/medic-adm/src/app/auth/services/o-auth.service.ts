@@ -28,6 +28,10 @@ export class OAuthService {
     this.progressBarService.hide();
   }
 
+  get hasOAuth(): boolean {
+    return this.oAuthStorage.hasOAuth;
+  }
+
   /* Login.  */
   public getOAuth$(): Observable<OAuth> {
     return this.oAuthSubject.asObservable();

@@ -2,6 +2,7 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Params } from '@angular/router';
 import { finalize, Observable, Subject } from 'rxjs';
+import { OAuthStorageService } from '../../auth/services/o-auth-storage.service';
 import { CommonsHttpService } from '../../core/services/commons/commons-http/commons-http.service';
 import { PaginationLinks } from '../../core/types/pagination-links';
 import { ProgressBarService } from '../../shared/services/progress-bar/progress-bar.service';
@@ -18,7 +19,8 @@ export class ClientsService {
   constructor(
     private clientsHttp: ClientsHttpService,
     private commonsHttp: CommonsHttpService,
-    private progressBarService: ProgressBarService
+    private progressBarService: ProgressBarService,
+    private oAuthStorage: OAuthStorageService
   ) {}
   protected readonly paginationLinksSubject = new Subject<PaginationLinks>();
 
@@ -39,10 +41,12 @@ export class ClientsService {
 
   public createClient(client: IClient): void {
     this.enableLoading();
-    this.clientsHttp
-      .createClient$(client)
-      .pipe(finalize(() => this.disableLoading()))
-      .subscribe({ next: this.nextRegister, error: this.errorRegister });
+    if (this.oAuthStorage.hasOAuth) {
+      this.clientsHttp
+        .createClient$(client)
+        .pipe(finalize(() => this.disableLoading()))
+        .subscribe({ next: this.nextRegister, error: this.errorRegister });
+    }
   }
 
   private nextRegister = (data: HttpResponse<any>): void => {
@@ -81,12 +85,12 @@ export class ClientsService {
   }
 
   public getClientc(clientId: number): void {
-    /*  if (this.oAuthStorage.hasOAuth) { */
-    this.clientsHttp.getClient$(clientId).subscribe({
-      next: this.nextGetClient,
-      error: this.errorGetClient,
-    });
-    /* } */
+    if (this.oAuthStorage.hasOAuth) {
+      this.clientsHttp.getClient$(clientId).subscribe({
+        next: this.nextGetClient,
+        error: this.errorGetClient,
+      });
+    }
   }
 
   private nextGetClient = (data: HttpResponse<any>): void => {
@@ -111,15 +115,15 @@ export class ClientsService {
 
   public getClients(params?: Params): void {
     this.enableLoading();
-    /*  if (this.oAuthStorage.hasOAuth) { */
-    this.clientsHttp
-      .getClients$(params)
-      .pipe(finalize(() => this.disableLoading()))
-      .subscribe({
-        next: this.nextGetClients,
-        error: this.errorGetClients,
-      });
-    /* } */
+    if (this.oAuthStorage.hasOAuth) {
+      this.clientsHttp
+        .getClients$(params)
+        .pipe(finalize(() => this.disableLoading()))
+        .subscribe({
+          next: this.nextGetClients,
+          error: this.errorGetClients,
+        });
+    }
   }
 
   private nextGetClients = (data: HttpResponse<any>): void => {
@@ -142,14 +146,16 @@ export class ClientsService {
   };
 
   public updateClient(clientId: number, client: IClient): void {
-    this.enableLoading();
-    this.clientsHttp
-      .updateClient$(clientId, client)
-      .pipe(finalize(() => this.disableLoading()))
-      .subscribe({
-        next: this.nextUpdateClient,
-        error: this.errorUpdateClient,
-      });
+    if (this.oAuthStorage.hasOAuth) {
+      this.enableLoading();
+      this.clientsHttp
+        .updateClient$(clientId, client)
+        .pipe(finalize(() => this.disableLoading()))
+        .subscribe({
+          next: this.nextUpdateClient,
+          error: this.errorUpdateClient,
+        });
+    }
   }
 
   private nextUpdateClient = (data: HttpResponse<any>): void => {
@@ -173,10 +179,12 @@ export class ClientsService {
   }
 
   public deleteClient(clientId: number): void {
-    this.clientsHttp.deleteClient$(clientId).subscribe({
-      next: this.nextDeleteClient,
-      error: this.errorDeleteClient,
-    });
+    if (this.oAuthStorage.hasOAuth) {
+      this.clientsHttp.deleteClient$(clientId).subscribe({
+        next: this.nextDeleteClient,
+        error: this.errorDeleteClient,
+      });
+    }
   }
 
   private nextDeleteClient = (data: HttpResponse<any>): void => {

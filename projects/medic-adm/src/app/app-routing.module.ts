@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-//import { OAuthGuard } from '@qaroni-core/guards/o-auth/o-auth/o-auth.guard';
+import { OAuthGuard } from './core/guards/o-auth/o-auth/o-auth.guard';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'auth' },
@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    //canLoad: [OAuthGuard],
+    canLoad: [OAuthGuard],
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
   },
