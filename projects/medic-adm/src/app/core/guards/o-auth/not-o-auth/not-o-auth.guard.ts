@@ -18,7 +18,7 @@ import { GuardOAuthSnackbars } from '../snackbars/guard-o-auth-snackbars.config'
   providedIn: 'root',
 })
 export class NotOAuthGuard implements CanActivate, CanLoad {
-  private redirectTo: string[] = ['/welcome'];
+  private redirectTo: string[] = ['/auth/login'];
 
   constructor(
     private snackbar: MatSnackBar,
