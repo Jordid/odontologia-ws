@@ -6,8 +6,10 @@ import {
 import { Injectable } from '@angular/core';
 import { Params } from '@angular/router';
 import { finalize, Observable, Subject } from 'rxjs';
+import { OAuthStorageService } from '../../auth/services/o-auth-storage.service';
 import { CommonsHttpService } from '../../core/services/commons/commons-http/commons-http.service';
 import { PaginationLinks } from '../../core/types/pagination-links';
+import { ProgressBarService } from '../../shared/services/progress-bar/progress-bar.service';
 import { IExam } from '../types/exam.interface';
 import { IFile } from '../types/file.interface';
 import {
@@ -37,15 +39,17 @@ export class OrdersService {
   constructor(
     private ordersHttp: OrdersHttpService,
     private commonsHttp: CommonsHttpService,
-    public orderSnackbars: OrdersSnackbarsService
+    public orderSnackbars: OrdersSnackbarsService,
+    private progressBarService: ProgressBarService,
+    private oAuthStorage: OAuthStorageService
   ) {}
 
   private enableLoading(): void {
-    //this.allApp.progressBar.show();
+    this.progressBarService.show();
   }
 
   private disableLoading(): void {
-    //this.allApp.prog/ressBar.hide();
+    this.progressBarService.hide();
   }
 
   // Pagination Links
@@ -60,13 +64,13 @@ export class OrdersService {
     return this.orderSubject.asObservable();
   }
 
-  public getOrder(orderId: number): void {
-    /*  if (this.oAuthStorage.hasOAuth) { */
-    this.ordersHttp.getOrder$(orderId).subscribe({
-      next: this.nextGetOrder,
-      error: this.errorGetOrder,
-    });
-    /* } */
+  public getOrder(orderId: number | string): void {
+    if (this.oAuthStorage.hasOAuth) {
+      this.ordersHttp.getOrder$(orderId).subscribe({
+        next: this.nextGetOrder,
+        error: this.errorGetOrder,
+      });
+    }
   }
 
   private nextGetOrder = (data: HttpResponse<any>): void => {
@@ -85,11 +89,16 @@ export class OrdersService {
   };
 
   public createOrder(createOrderJson: ICreateOrder): void {
-    this.enableLoading();
-    this.ordersHttp
-      .createOrder$(createOrderJson)
-      .pipe(finalize(() => this.disableLoading()))
-      .subscribe({ next: this.nextCreateOrder, error: this.errorCreateOrder });
+    if (this.oAuthStorage.hasOAuth) {
+      this.enableLoading();
+      this.ordersHttp
+        .createOrder$(createOrderJson)
+        .pipe(finalize(() => this.disableLoading()))
+        .subscribe({
+          next: this.nextCreateOrder,
+          error: this.errorCreateOrder,
+        });
+    }
   }
 
   private nextCreateOrder = (data: HttpResponse<any>): void => {
@@ -108,11 +117,16 @@ export class OrdersService {
   };
 
   public updateOrder(orderId: number, updateOrderJson: IUpdateOrder): void {
-    this.enableLoading();
-    this.ordersHttp
-      .updateOrder$(orderId, updateOrderJson)
-      .pipe(finalize(() => this.disableLoading()))
-      .subscribe({ next: this.nextUpdateOrder, error: this.errorUpdateOrder });
+    if (this.oAuthStorage.hasOAuth) {
+      this.enableLoading();
+      this.ordersHttp
+        .updateOrder$(orderId, updateOrderJson)
+        .pipe(finalize(() => this.disableLoading()))
+        .subscribe({
+          next: this.nextUpdateOrder,
+          error: this.errorUpdateOrder,
+        });
+    }
   }
 
   private nextUpdateOrder = (data: HttpResponse<any>): void => {
@@ -135,13 +149,17 @@ export class OrdersService {
     return this.ordersSubject.asObservable();
   }
 
-  public getOrders(params?: Params): void {
-    /*  if (this.oAuthStorage.hasOAuth) { */
-    this.ordersHttp.getOrders$(params).subscribe({
-      next: this.nextGetOrders,
-      error: this.errorGetOrders,
-    });
-    /* } */
+  public getOrders(clientId?: string | number, params?: Params): void {
+    this.enableLoading();
+    if (this.oAuthStorage.hasOAuth) {
+      this.ordersHttp
+        .getOrders$(clientId, params)
+        .pipe(finalize(() => this.disableLoading()))
+        .subscribe({
+          next: this.nextGetOrders,
+          error: this.errorGetOrders,
+        });
+    }
   }
 
   private nextGetOrders = (data: HttpResponse<any>): void => {
@@ -169,11 +187,13 @@ export class OrdersService {
   }
 
   public uploadFile(file: File): void {
-    this.enableLoading();
-    this.ordersHttp
-      .uploadFiles$(file)
-      .pipe(finalize(() => this.disableLoading()))
-      .subscribe({ next: this.nextUploadFile, error: this.errorUploadFile });
+    if (this.oAuthStorage.hasOAuth) {
+      this.enableLoading();
+      this.ordersHttp
+        .uploadFiles$(file)
+        .pipe(finalize(() => this.disableLoading()))
+        .subscribe({ next: this.nextUploadFile, error: this.errorUploadFile });
+    }
   }
   public uploadFileAux(file: File): Observable<HttpEvent<any>> {
     return this.ordersHttp.uploadFilesAux$(file);
@@ -201,11 +221,13 @@ export class OrdersService {
 
   /* Create exam. */
   public createExam(orderId: number, createExamJson: ICreateExam): void {
-    this.enableLoading();
-    this.ordersHttp
-      .createExam$(orderId, createExamJson)
-      .pipe(finalize(() => this.disableLoading()))
-      .subscribe({ next: this.nextCreateExam, error: this.errorCreateExam });
+    if (this.oAuthStorage.hasOAuth) {
+      this.enableLoading();
+      this.ordersHttp
+        .createExam$(orderId, createExamJson)
+        .pipe(finalize(() => this.disableLoading()))
+        .subscribe({ next: this.nextCreateExam, error: this.errorCreateExam });
+    }
   }
 
   private nextCreateExam = (data: HttpResponse<any>): void => {
@@ -229,12 +251,16 @@ export class OrdersService {
   }
 
   public getExams(orderId: number): void {
-    /*  if (this.oAuthStorage.hasOAuth) { */
-    this.ordersHttp.getExams$(orderId).subscribe({
-      next: this.nextGetExams,
-      error: this.errorGetExams,
-    });
-    /* } */
+    if (this.oAuthStorage.hasOAuth) {
+      this.enableLoading();
+      this.ordersHttp
+        .getExams$(orderId)
+        .pipe(finalize(() => this.disableLoading()))
+        .subscribe({
+          next: this.nextGetExams,
+          error: this.errorGetExams,
+        });
+    }
   }
 
   private nextGetExams = (data: HttpResponse<any>): void => {
@@ -256,18 +282,46 @@ export class OrdersService {
     this.commonsHttp.errorsHttp.communication(error);
   };
 
+  /** Get exam. */
+  public getExam(orderId: number | string, examId: number | string): void {
+    if (this.oAuthStorage.hasOAuth) {
+      this.ordersHttp
+        .getExam$(orderId, examId)
+
+        .subscribe({
+          next: this.nextGetExam,
+          error: this.errorGetExam,
+        });
+    }
+  }
+
+  private nextGetExam = (data: HttpResponse<any>): void => {
+    if (this.commonsHttp.validationsHttp.verifyStatus200(data)) {
+      const exam: IExam = data.body.result?.[0];
+      this.examSubject.next(exam);
+    } else {
+      this.examSubject.next(null);
+      this.commonsHttp.errorsHttp.apiInvalidResponse(data);
+    }
+  };
+
+  private errorGetExam = (error: HttpErrorResponse): void => {
+    this.examSubject.next(null);
+    this.commonsHttp.errorsHttp.communication(error);
+  };
+
   /* Get RadiographyTypes. */
   public getRadiographyTypes$(): Observable<IRadiographyType[]> {
     return this.radiographyTypesSubject.asObservable();
   }
 
   public getRadiographyTypes(): void {
-    /*  if (this.oAuthStorage.hasOAuth) { */
-    this.ordersHttp.getRadiographyTypes$().subscribe({
-      next: this.nextGetRadiographyTypes,
-      error: this.errorGetRadiographyTypes,
-    });
-    /* } */
+    if (this.oAuthStorage.hasOAuth) {
+      this.ordersHttp.getRadiographyTypes$().subscribe({
+        next: this.nextGetRadiographyTypes,
+        error: this.errorGetRadiographyTypes,
+      });
+    }
   }
 
   private nextGetRadiographyTypes = (data: HttpResponse<any>): void => {

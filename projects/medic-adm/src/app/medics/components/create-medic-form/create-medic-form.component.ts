@@ -16,7 +16,7 @@ export class CreateMedicFormComponent
 {
   private subs: Subscription = new Subscription();
 
-  constructor(private medicsService: MedicsService, private router: Router,) {
+  constructor(private medicsService: MedicsService, private router: Router) {
     super();
   }
 
@@ -38,6 +38,7 @@ export class CreateMedicFormComponent
 
   public onSubmit(): void {
     if (this.validatedForm) {
+      this.formSent = true;
       this.medicsService.createMedic(this.createMedicForm.getRawValue());
     }
   }
@@ -45,6 +46,7 @@ export class CreateMedicFormComponent
   private getMedic = (medic: IMedic): void => {
     if (medic?.doctorId > 0) {
       this.medicsService.medicSnackbars.successRegister();
+      this.router.navigate(['/admin/medics']);
     } else {
       this.disableLoading();
     }

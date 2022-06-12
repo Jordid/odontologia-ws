@@ -2,14 +2,21 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { map, Observable, Subscription } from 'rxjs';
+import { map, Observable, shareReplay, Subscription } from 'rxjs';
 import { OAuthStorageService } from '../../../auth/services/o-auth-storage.service';
+import { ProgressBarService } from '../../../shared/services/progress-bar/progress-bar.service';
 @Component({
   selector: 'odo-admin-init',
   templateUrl: './admin-init.component.html',
   styleUrls: ['./admin-init.component.scss'],
 })
 export class AdminInitComponent implements OnInit, OnDestroy {
+  public progressBar$: Observable<boolean> = this.progressBarService
+    .getProgressBar$()
+    .pipe(shareReplay(1));
+
+  showProgressBar: boolean = false;
+
   @ViewChild('drawer') sidenav!: MatSidenav;
   avatarUrl: string;
   userName: string;
@@ -34,7 +41,9 @@ export class AdminInitComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private breakpointObserver: BreakpointObserver,
-    private oauthStorageService: OAuthStorageService /*   private workersService: WorkersService, */ /*     private oAuthStorageService: OAuthStorageService */
+    private oauthStorageService: OAuthStorageService,
+    /*   private workersService: WorkersService, */ /*     private oAuthStorageService: OAuthStorageService */
+    private progressBarService: ProgressBarService
   ) {}
 
   ngOnInit(): void {
@@ -46,6 +55,7 @@ export class AdminInitComponent implements OnInit, OnDestroy {
     }
     //this.subs.add(this.userRole$.subscribe(this.getUserRole));
     this.subs.add(this.route.paramMap.subscribe(this.getParamMap));
+    this.subs.add(this.progressBar$.subscribe(this.getProgressBar));
   }
 
   ngOnDestroy(): void {
@@ -68,4 +78,8 @@ export class AdminInitComponent implements OnInit, OnDestroy {
       this.userRole = userRole;
     }
   }; */
+
+  private getProgressBar = (status: boolean): void => {
+    this.showProgressBar = status;
+  };
 }

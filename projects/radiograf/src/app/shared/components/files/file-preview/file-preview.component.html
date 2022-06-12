@@ -1,3 +1,7 @@
-<div class="imageContainer mat-elevation-z2" *ngIf="urlFile">
-  <img [src]="urlFile" class="img-fluid" />
+<div
+  class="imageContainer"
+  *ngIf="urlMineatureFile"
+  (click)="showPreview()"
+>
+  <img [src]="urlMineatureFile" class="img-fluid" />
 </div>

@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { AutocompletesModule } from '../shared/components/autocompletes/autocompletes.module';
 import { DialogsModule } from '../shared/components/dialogs/dialogs.module';
 import { FilesModule } from '../shared/components/files/files.module';
@@ -28,6 +29,7 @@ import { OdontogramDialogComponent } from './components/odontogram/odontogram-di
 import { OdontogramComponent } from './components/odontogram/odontogram/odontogram.component';
 import { PiecesBlockComponent } from './components/odontogram/pieces-block/pieces-block.component';
 import { ToothPieceComponent } from './components/odontogram/tooth-piece/tooth-piece.component';
+import { OrderDetailsComponent } from './components/order-details/order-details/order-details.component';
 import { OrdersFilesListPreviewComponent } from './components/orders-files-list-preview/orders-files-list-preview.component';
 import { OrdersInitComponent } from './components/orders-init/orders-init.component';
 import { OrdersMenuPanelComponent } from './components/orders-menu-panel/orders-menu-panel.component';
@@ -63,6 +65,7 @@ import { OrderStatusPipe } from './pipes/order-status.pipe';
     ToothPieceComponent,
     UploadImagesComponent,
     OrderStatusPipe,
+    OrderDetailsComponent,
   ],
   imports: [
     CommonModule,
@@ -78,6 +81,7 @@ import { OrderStatusPipe } from './pipes/order-status.pipe';
     MatPaginatorModule,
     MatSelectModule,
     MatTableModule,
+    MatTooltipModule,
     FormsModule,
     ReactiveFormsModule,
     UserModule,

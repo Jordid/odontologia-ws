@@ -12,7 +12,11 @@
     <div *ngIf="exams?.length > 0" class="containerList">
       <div class="fileListContainer">
         <div *ngFor="let exam of exams" class="fileContainer">
-          <odo-file-preview [urlFile]="exam?.miniatureUrl"></odo-file-preview>
+          <odo-file-preview-with-actions
+            [urlFile]="exam?.imageUrl"
+            [urlMineatureFile]="exam?.miniatureUrl"
+            (goToEditorClicked)="onGoToEditorClickedChange($event, exam)"
+          ></odo-file-preview-with-actions>
         </div>
       </div>
     </div>

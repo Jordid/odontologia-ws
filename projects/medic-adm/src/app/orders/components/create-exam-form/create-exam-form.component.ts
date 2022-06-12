@@ -222,6 +222,7 @@ export class CreateExamFormComponent
       this.examType.setValidators([Validators.required]);
     } else {
       this.showExamType = false;
+      this.examType.setValue(null);
       this.examType.removeValidators([Validators.required]);
     }
     this.examType.updateValueAndValidity();

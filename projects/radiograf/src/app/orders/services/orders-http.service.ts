@@ -35,13 +35,20 @@ export class OrdersHttpService {
     return this.http.patch(url, updateOrderJson, { observe: 'response' });
   }
 
-  public getOrder$(orderId: number): Observable<HttpResponse<any>> {
+  public getOrder$(orderId: number | string): Observable<HttpResponse<any>> {
     const url = `${ApiRadiografEnv.baseUrl}/orders/${orderId}`;
     return this.http.get(url, { observe: 'response' });
   }
 
-  public getOrders$(params?: Params): Observable<HttpResponse<any>> {
-    const url = `${ApiRadiografEnv.baseUrl}/orders`;
+  public getOrders$(
+    clientId?: string | number,
+    params?: Params
+  ): Observable<HttpResponse<any>> {
+    let url = `${ApiRadiografEnv.baseUrl}/orders`;
+    if (clientId) {
+      url = `${ApiRadiografEnv.baseUrl}/clients`;
+      url = url.concat('/').concat(clientId.toString()).concat('/orders');
+    }
     return this.http.get(url, { observe: 'response', params });
   }
 
@@ -73,6 +80,14 @@ export class OrdersHttpService {
 
   public getExams$(orderId: number): Observable<HttpResponse<any>> {
     const url = `${ApiRadiografEnv.baseUrl}/orders/${orderId}/radiography`;
+    return this.http.get(url, { observe: 'response' });
+  }
+
+  public getExam$(
+    orderId: number | string,
+    examId: number | string
+  ): Observable<HttpResponse<any>> {
+    const url = `${ApiRadiografEnv.baseUrl}/orders/${orderId}/radiography/${examId}`;
     return this.http.get(url, { observe: 'response' });
   }
 

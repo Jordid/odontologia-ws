@@ -20,8 +20,6 @@ export class UpdateMedicFormComponent
 
   private subs: Subscription = new Subscription();
 
-  private formSent = false;
-
   constructor(
     private medicsService: MedicsService,
     private router: Router,
@@ -64,6 +62,9 @@ export class UpdateMedicFormComponent
     if (medic?.doctorId > 0) {
       this.medicsService.medicSnackbars.successUpdated();
       this.populateMedicForm(medic?.person);
+      if (this.formSent) {
+        this.router.navigate(['/admin/medics']);
+      }
     }
     this.disableLoading();
   };

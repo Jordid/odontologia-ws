@@ -18,7 +18,7 @@
       <div class="col-auto col-md-6 order-2 order-md-1">
         <button
           mat-flat-button
-          color="none"
+          color="accent"
           class="leftButton"
           type="button"
           (click)="onCancelClick()"
@@ -32,12 +32,7 @@
         </button>
       </div>
       <div class="col-auto col-md-6 order-1 order-md-2 mb-3 mb-md-0">
-        <button
-          mat-flat-button
-          color="none"
-          class="rightButton"
-          [mat-dialog-close]="true"
-        >
+        <button mat-flat-button color="primary" [mat-dialog-close]="true">
           <div class="d-flex justify-content-center align-items-center">
             <mat-icon *ngIf="data?.confirmMatIcon" class="mt-1 me-1">{{
               data?.confirmMatIcon

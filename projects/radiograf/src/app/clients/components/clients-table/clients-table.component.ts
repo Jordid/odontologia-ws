@@ -75,7 +75,8 @@ export class ClientsTableComponent implements OnInit, AfterViewInit {
   }
 
   viewClient(client: IClient): void {
-    if (client) {
+    if (client?.clientId) {
+      this.router.navigate([`/admin/clients/${client?.clientId}/orders`]);
     }
   }
 

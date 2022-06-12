@@ -7,9 +7,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { ExamPreviewDialogComponent } from './exam-preview-dialog/exam-preview-dialog.component';
 
 @NgModule({
-  declarations: [ConfirmationDialogComponent],
+  declarations: [ConfirmationDialogComponent, ExamPreviewDialogComponent],
   imports: [
     CommonModule,
     MatFormFieldModule,
@@ -22,5 +23,6 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     ReactiveFormsModule,
     MatDialogModule,
   ],
+  exports: [ExamPreviewDialogComponent],
 })
 export class DialogsModule {}

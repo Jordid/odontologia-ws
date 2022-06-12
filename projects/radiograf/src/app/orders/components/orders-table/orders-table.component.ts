@@ -20,6 +20,8 @@ import { IOrder, IUpdateOrder } from '../../types/order.interface';
   styleUrls: ['./orders-table.component.scss'],
 })
 export class OrdersTableComponent implements OnInit, AfterViewInit {
+  private clientId: string = this.route.snapshot.paramMap.get('clientId');
+
   OrderStatusEnum = OrderStatusEnum;
   private subs: Subscription = new Subscription();
 
@@ -82,10 +84,22 @@ export class OrdersTableComponent implements OnInit, AfterViewInit {
     } else {
       this.ordersService.orderSnackbars.failureSentOrder();
     }
-    this.ordersService.getOrders(this.params);
+    this.ordersService.getOrders(this.clientId, this.params);
   };
 
-  viewOrder(oder: IOrder): void {}
+  viewOrder(order: IOrder): void {
+    if (order?.orderId && order?.client?.clientId) {
+      let route = null;
+      if (this.clientId) {
+        route = `/admin/clients/${order?.client?.clientId}/orders/${order?.orderId}`;
+      } else {
+        route = `/admin/orders/${order?.orderId}`;
+      }
+      if (route) {
+        this.router.navigate([route]);
+      }
+    }
+  }
 
   send(order: IOrder): void {
     if (order?.orderId) {

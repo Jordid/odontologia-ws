@@ -22,6 +22,7 @@ export class CreateMedicForm {
   };
 
   submitting = false;
+  formSent = false;
 
   createMedicForm: FormGroup = this.fb.group(this.createMedicSkeleton, {
     validators: PasswordValidator.matchPassword,

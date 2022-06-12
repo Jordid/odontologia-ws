@@ -37,4 +37,13 @@ export const OrderSnackbars = {
       duration: SnackbarConfig.durations.danger,
     } as MatSnackBarConfig,
   },
+
+  failureGetOrder: {
+    message: `Error al recuperar los datos de la orden.`,
+    closeBtn: SnackbarConfig.strings.close,
+    config: {
+      panelClass: SnackbarConfig.classes.danger,
+      duration: SnackbarConfig.durations.danger,
+    } as MatSnackBarConfig,
+  },
 };

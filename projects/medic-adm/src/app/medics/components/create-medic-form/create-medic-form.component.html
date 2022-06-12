@@ -138,10 +138,11 @@
               </div>
 
               <div class="col-12 mb-4 d-flex justify-content-end">
-                <button *ngIf="validatedForm"
+                <button
                   mat-flat-button
-                  color="accent"
+                  color="primary"
                   type="submit"
+                  [disabled]="!validatedForm || formSent"
                 >
                   Registrar
                 </button>

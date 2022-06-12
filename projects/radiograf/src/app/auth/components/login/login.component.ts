@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ImagesConfig } from '../../../core/utils/images-config';
 import { InputValidation } from '../../../core/utils/validations/input-validation';
+import { ProgressBarService } from '../../../shared/services/progress-bar/progress-bar.service';
 import { OAuthService } from '../../services/o-auth.service';
 import { OAuth } from '../../types/o-auth';
 
@@ -26,12 +27,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     password: ['', [Validators.required, Validators.minLength(4)]],
   };
 
-  private submitting = false;
+  public submitting = false;
 
   private subs: Subscription = new Subscription();
 
   constructor(
-    //private allApp: AllAppService,
+    private progressBarService: ProgressBarService,
     private fb: FormBuilder,
     private oAuthService: OAuthService,
     private router: Router
@@ -48,12 +49,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   private enableLoading(): void {
-    //this.allApp.progressBar.show();
+    this.progressBarService.show();
     this.submitting = true;
   }
 
   private disableLoading(): void {
-    //this.allApp.progressBar.hide();
+    this.progressBarService.hide();
     this.submitting = false;
   }
 
@@ -86,7 +87,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private getOAuth = (oAuth: OAuth): void => {
     if (oAuth) {
-      this.router.navigate(['/admin/medics']);
+      this.router.navigate(['/admin/clients']);
     } else {
       this.disableLoading();
     }

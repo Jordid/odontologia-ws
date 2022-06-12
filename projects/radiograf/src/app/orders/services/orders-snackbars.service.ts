@@ -39,4 +39,12 @@ export class OrdersSnackbarsService {
       OrderSnackbars.failureSentOrder.config
     );
   }
+
+  public failureGetOrder(): void {
+    this.snackbar.open(
+      OrderSnackbars.failureGetOrder.message,
+      OrderSnackbars.failureGetOrder.closeBtn,
+      OrderSnackbars.failureGetOrder.config
+    );
+  }
 }

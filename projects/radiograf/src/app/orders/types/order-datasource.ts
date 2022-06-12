@@ -7,6 +7,8 @@ import { OrdersService } from '../services/orders.service';
 import { IOrder } from './order.interface';
 
 export class OrderDataSource extends OdoDataSource<IOrder> {
+  private clientId: string = this.route.snapshot.paramMap.get('clientId');
+
   private orders$: Observable<IOrder[]> = this.ordersService
     .getOrders$()
     .pipe(shareReplay(1));
@@ -30,6 +32,6 @@ export class OrderDataSource extends OdoDataSource<IOrder> {
 
   public getQueryParamMap = (queryParamMap: ParamMap): void => {
     super.queryParamMapActions(queryParamMap);
-    this.ordersService.getOrders(this.queryParams);
+    this.ordersService.getOrders(this.clientId, this.queryParams);
   };
 }

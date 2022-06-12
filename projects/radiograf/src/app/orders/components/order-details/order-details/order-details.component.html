@@ -1,0 +1,26 @@
+<div class="container pt-3 pb-5">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <mat-card class="bg-grey card-auth mat-elevation-z4">
+        <mat-card-title>Detalle de la orden</mat-card-title>
+        <mat-card-content>
+          <div class="row justify-content-center justify-content-sm-start">
+            <ng-container *ngIf="order?.orderId > 0">
+              <div class="previewContainer">
+                <odo-oder-patient-and-medic-preview
+                  [order]="order"
+                ></odo-oder-patient-and-medic-preview>
+              </div>
+            </ng-container>
+
+            <div class="orderFilesListContainer" *ngIf="exams?.length > 0">
+              <odo-orders-files-list-preview
+                [exams]="exams"
+              ></odo-orders-files-list-preview>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
