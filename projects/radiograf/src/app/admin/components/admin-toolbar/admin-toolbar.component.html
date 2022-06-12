@@ -1,4 +1,16 @@
 <mat-toolbar>
+  <div>
+    <button
+      *ngIf="isSmall$ | async"
+      mat-icon-button
+      type="button"
+      class="icon-toggle me-1"
+      (click)="toggleSidenav()"
+    >
+      <mat-icon class="mb-1">menu</mat-icon>
+    </button>
+  </div>
+
   <odo-toolbar-user-menu
     [avatarUrl]="avatarUrl"
     [userName]="userName"

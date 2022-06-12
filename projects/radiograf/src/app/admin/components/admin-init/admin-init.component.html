@@ -30,7 +30,7 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <odo-admin-toolbar></odo-admin-toolbar>
+    <odo-admin-toolbar (toggleEvent)="toggle()"></odo-admin-toolbar>
     <mat-progress-bar
       *ngIf="progressBar$ | async"
       color="accent"
