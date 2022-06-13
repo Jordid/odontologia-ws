@@ -14,10 +14,13 @@ const routes: Routes = [
       {
         path: '',
         component: OrdersComponent,
+        canActivate: [OAuthGuard],
       },
       {
         path: 'create',
         component: CreateOrderFormComponent,
+        canActivate: [OAuthGuard],
+
       },
       {
         path: ':orderId',

@@ -40,8 +40,8 @@ import { OrdersComponent } from './components/orders/orders.component';
 import { UploadImagesComponent } from './components/upload-images/upload-images.component';
 import { OrderRoutingModule } from './order-routing.module';
 import { ExamCategoryPipe } from './pipes/exam-category.pipe';
-import { RadiographyTypePipe } from './pipes/radiography-type.pipe';
 import { OrderStatusPipe } from './pipes/order-status.pipe';
+import { RadiographyTypePipe } from './pipes/radiography-type.pipe';
 
 @NgModule({
   declarations: [
