@@ -1,3 +1,11 @@
-<ng-container *ngIf="exam?.imageUrl">
-  <odo-image-editor [imageSrc]="exam?.imageUrl"></odo-image-editor>
+<ng-container *ngIf="loading == false; else progressSpinner">
+  <ng-container *ngIf="exam?.imageUrl">
+    <odo-image-editor [imageSrc]="exam?.imageUrl"></odo-image-editor>
+  </ng-container>
 </ng-container>
+
+<ng-template #progressSpinner>
+  <div class="my-5">
+    <odo-progress-spinner></odo-progress-spinner>
+  </div>
+</ng-template>

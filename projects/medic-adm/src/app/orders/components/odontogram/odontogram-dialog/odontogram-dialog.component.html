@@ -1,12 +1,7 @@
 <div class="dialogContainer">
   <div class="headerDialog">
     <div class="mat-dialog-title dialogTitle">Odontograma</div>
-    <button
-      mat-button
-      type="button"
-      class="closeIcon"
-      (click)="cancel()"
-    >
+    <button mat-button type="button" class="closeIcon" (click)="cancel()">
       <mat-icon>close</mat-icon>
     </button>
   </div>
@@ -14,14 +9,14 @@
     <odo-odontogram
       [piecesCodeListInput]="piecesCodeList"
       (piecesCodeListOutput)="onChangePiecesCodeListOutput($event)"
-      ></odo-odontogram>
+    ></odo-odontogram>
   </mat-dialog-content>
   <mat-dialog-actions align="center">
     <div class="row justify-content-center">
       <div class="col-auto col-md-6">
         <button
           mat-stroked-button
-          color="accent"
+          color="warn"
           class="leftButton"
           type="button"
           (click)="cancel()"

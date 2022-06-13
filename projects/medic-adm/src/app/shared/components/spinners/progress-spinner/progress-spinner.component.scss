@@ -1,0 +1,8 @@
+.spinnerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .mat-progress-spinner {
+    margin: 0 10px;
+  }
+}

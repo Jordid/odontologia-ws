@@ -1,18 +1,32 @@
-<div class="menuTableContainer">
-  <div class="titleContainer">
-    <h5>Médicos</h5>
-  </div>
+<div class="row menuTableContainer">
+  <div class="col">
+    <div class="row titleSearchContainer">
+      <div class="col-auto titleContainer">
+        <h5>Médicos</h5>
+      </div>
 
-  <div class="searcherContainer">
-    <odo-medic-text-searcher
-      (queryParamsChange)="onQueryParamsChange($event)"
-    ></odo-medic-text-searcher>
+      <div class="col searcherContainer">
+        <odo-medic-text-searcher
+          (queryParamsChange)="onQueryParamsChange($event)"
+        ></odo-medic-text-searcher>
+      </div>
+    </div>
   </div>
+  <div class="col-auto">
+    <div class="actionsContainer my-1">
+      <!-- <button mat-mini-fab color="none" aria-label="Filtros tabla de médicos">
+        <mat-icon>filter_list</mat-icon>
+      </button> -->
 
-  <div class="actionsContainer">
-    <!-- <button mat-mini-fab color="none" aria-label="Filtros tabla de médicos">
-      <mat-icon>filter_list</mat-icon>
-    </button>
- -->
+      <button
+        color="primary"
+        class="addButton"
+        mat-mini-fab
+        aria-label="Agregar médico"
+        [routerLink]="['/admin/medics/create']"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
   </div>
 </div>

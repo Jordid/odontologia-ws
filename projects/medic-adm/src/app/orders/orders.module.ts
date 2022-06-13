@@ -19,6 +19,7 @@ import { DialogsModule } from '../shared/components/dialogs/dialogs.module';
 import { FilesModule } from '../shared/components/files/files.module';
 import { SearchersModule } from '../shared/components/searchers/searchers.module';
 import { SharedMedicsModule } from '../shared/components/shared-medics/shared-medics.module';
+import { SpinnersModule } from '../shared/components/spinners/spinners.module';
 import { UserModule } from '../shared/components/user/user.module';
 import { PipesModule } from '../shared/pipes/pipes.module';
 import { CreateExamFormComponent } from './components/create-exam-form/create-exam-form.component';
@@ -95,6 +96,7 @@ import { RadiographyTypePipe } from './pipes/radiography-type.pipe';
     AutocompletesModule,
     FilesModule,
     CanvasModule,
+    SpinnersModule,
   ],
 })
 export class OrdersModule {}

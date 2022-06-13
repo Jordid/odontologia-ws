@@ -17,6 +17,7 @@ export class RadiographyEditorComponent implements OnInit {
   private subs: Subscription = new Subscription();
 
   exam: IExam;
+  loading: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,6 +27,7 @@ export class RadiographyEditorComponent implements OnInit {
   ngOnInit(): void {
     this.subs.add(this.ordersService.getExam$().subscribe(this.getExam));
     if (this.orderId && this.radiographyId) {
+      this.enableLoading();
       this.ordersService.getExam(this.orderId, this.radiographyId);
     }
   }
@@ -34,9 +36,16 @@ export class RadiographyEditorComponent implements OnInit {
     this.subs.unsubscribe();
   }
 
-  private getExam = (exam: IExam): void => {
-    this.exam = exam;
-    console.log("exam: ", exam);
+  private enableLoading(): void {
+    this.loading = true;
+  }
 
+  private disableLoading(): void {
+    this.loading = false;
+  }
+
+  private getExam = (exam: IExam): void => {
+    this.disableLoading();
+    this.exam = exam;
   };
 }

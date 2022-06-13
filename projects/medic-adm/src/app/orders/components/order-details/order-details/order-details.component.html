@@ -13,14 +13,20 @@
               </div>
             </ng-container>
 
-            <div class="orderFilesListContainer" *ngIf="exams?.length > 0">
-              <odo-orders-files-list-preview
-                [exams]="exams"
-              ></odo-orders-files-list-preview>
-            </div>
+            <ng-container *ngIf="loading == false; else progressSpinner">
+              <div class="orderFilesListContainer" *ngIf="exams?.length > 0">
+                <odo-orders-files-list-preview
+                  [exams]="exams"
+                ></odo-orders-files-list-preview>
+              </div>
+            </ng-container>
           </div>
         </mat-card-content>
       </mat-card>
     </div>
   </div>
 </div>
+
+<ng-template #progressSpinner>
+  <odo-progress-spinner></odo-progress-spinner>
+</ng-template>

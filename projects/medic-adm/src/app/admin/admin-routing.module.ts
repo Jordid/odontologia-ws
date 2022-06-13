@@ -9,6 +9,7 @@ const routes: Routes = [
     component: AdminInitComponent,
     canActivate: [OAuthGuard],
     children: [
+
       {
         path: 'clients',
         canLoad: [OAuthGuard],

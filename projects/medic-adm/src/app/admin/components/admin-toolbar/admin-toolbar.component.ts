@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { map, Observable } from 'rxjs';
 import { OAuthStorageService } from '../../../auth/services/o-auth-storage.service';
 
 @Component({
@@ -7,10 +9,19 @@ import { OAuthStorageService } from '../../../auth/services/o-auth-storage.servi
   styleUrls: ['./admin-toolbar.component.scss'],
 })
 export class AdminToolbarComponent implements OnInit {
+  @Output() toggleEvent = new EventEmitter<any>();
+
   avatarUrl: string;
   userName: string;
 
-  constructor(private oauthStorageService: OAuthStorageService) {}
+  isSmall$: Observable<boolean> = this.breakpointObserver
+    .observe([Breakpoints.HandsetPortrait, Breakpoints.TabletPortrait])
+    .pipe(map((result) => result.matches));
+
+  constructor(
+    private oauthStorageService: OAuthStorageService,
+    private breakpointObserver: BreakpointObserver
+  ) {}
 
   ngOnInit(): void {
     const user = this.oauthStorageService.getUser;
@@ -18,5 +29,9 @@ export class AdminToolbarComponent implements OnInit {
       this.avatarUrl = user?.avatarUrl;
       this.userName = user?.name;
     }
+  }
+
+  toggleSidenav(): void {
+    this.toggleEvent.emit(null);
   }
 }
