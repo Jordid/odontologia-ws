@@ -42,12 +42,13 @@ export class OrdersHttpService {
 
   public getOrders$(
     clientId?: string | number,
+    doctorId?: number,
     params?: Params
   ): Observable<HttpResponse<any>> {
     let url = `${ApiRadiografEnv.baseUrl}/orders`;
     if (clientId) {
       url = `${ApiRadiografEnv.baseUrl}/clients`;
-      url = url.concat('/').concat(clientId.toString()).concat('/orders');
+      url = url.concat('/').concat(clientId.toString());
     }
     return this.http.get(url, { observe: 'response', params });
   }

@@ -46,7 +46,12 @@ export class OAuthStorageService {
   }
 
   get hasOAuth(): boolean {
-    if (this.get() && this.get().token && this.get()?.user?.userId) {
+    if (
+      this.get() &&
+      this.get().token &&
+      this.get()?.user?.userId &&
+      this.get()?.user?.person?.doctor?.doctorId
+    ) {
       return true;
     }
     return false;
@@ -58,5 +63,9 @@ export class OAuthStorageService {
 
   get getUser(): IUser {
     return this.get()?.user;
+  }
+
+  get getDoctorID(): number {
+    return this.get()?.user?.person?.doctor?.doctorId;
   }
 }

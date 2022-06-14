@@ -25,6 +25,7 @@ import { ClientsTableComponent } from './components/clients-table/clients-table.
 import { ClientsComponent } from './components/clients/clients.component';
 import { CreateClientFormComponent } from './components/create-client-form/create-client-form.component';
 import { UpdateClientFormComponent } from './components/update-client-form/update-client-form.component';
+import { ClientStatusPipe } from './pipes/client-status.pipe';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { UpdateClientFormComponent } from './components/update-client-form/updat
     ClientsTableWithMenuComponent,
     UpdateClientFormComponent,
     ClientsMenuPanelComponent,
+    ClientStatusPipe,
   ],
   imports: [
     CommonModule,
