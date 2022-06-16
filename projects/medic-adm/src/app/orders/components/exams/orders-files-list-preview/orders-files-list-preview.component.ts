@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IExam } from '../../types/exam.interface';
+import { IExam } from '../../../types/exam.interface';
 
 @Component({
   selector: 'odo-orders-files-list-preview',
@@ -15,6 +15,19 @@ export class OrdersFilesListPreviewComponent {
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   onGoToEditorClickedChange(clicked: boolean, exam: IExam): void {
+    if (clicked === true) {
+      let route = null;
+      if (this.clientId) {
+        route = `/admin/clients/${exam?.order?.clientId}/orders/${exam?.orderId}/radiography-editor/${exam?.radiographyId}`;
+      } else {
+        route = `/admin/orders/${exam?.orderId}/radiography-editor/${exam?.radiographyId}`;
+      }
+      if (route) {
+        this.router.navigate([route]);
+      }
+    }
+  }
+  onViewDetailsClickedChange(clicked: boolean, exam: IExam): void {
     if (clicked === true) {
       let route = null;
       if (this.clientId) {

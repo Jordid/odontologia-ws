@@ -6,17 +6,17 @@
         exams?.length > 0 ? 'headerNoMarginBottom' : 'headerMarginBottom'
       "
     >
-      Archivos
+      Exámenes
     </div>
 
     <div *ngIf="exams?.length > 0" class="containerList">
-      <div class="fileListContainer">
-        <div *ngFor="let exam of exams" class="fileContainer">
-          <odo-file-preview-with-actions
-            [urlFile]="exam?.imageUrl"
-            [urlMineatureFile]="exam?.miniatureUrl"
+      <div class="examPreviewListContainer">
+        <div *ngFor="let exam of exams" class="examPreviewContainer">
+          <odo-exam-preview
+            [exam]="exam"
             (goToEditorClicked)="onGoToEditorClickedChange($event, exam)"
-          ></odo-file-preview-with-actions>
+            (viewDetailsClicked)="onViewDetailsClickedChange($event, exam)"
+          ></odo-exam-preview>
         </div>
       </div>
     </div>

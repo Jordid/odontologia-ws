@@ -22,8 +22,9 @@ import { SharedMedicsModule } from '../shared/components/shared-medics/shared-me
 import { SpinnersModule } from '../shared/components/spinners/spinners.module';
 import { UserModule } from '../shared/components/user/user.module';
 import { PipesModule } from '../shared/pipes/pipes.module';
-import { CreateExamFormComponent } from './components/create-exam-form/create-exam-form.component';
+import { CreateExamFormComponent } from './components/exams/create-exam-form/create-exam-form.component';
 import { CreateOrderFormComponent } from './components/create-order-form/create-order-form.component';
+import { ExamPreviewComponent } from './components/exams/exam-preview/exam-preview.component';
 import { LoadedImagePreviewComponent } from './components/loaded-image-preview/loaded-image-preview.component';
 import { OderPatientAndMedicPreviewComponent } from './components/oder-patient-and-medic-preview/oder-patient-and-medic-preview.component';
 import { MolarPieceComponent } from './components/odontogram/molar-piece/molar-piece.component';
@@ -32,30 +33,33 @@ import { OdontogramComponent } from './components/odontogram/odontogram/odontogr
 import { PiecesBlockComponent } from './components/odontogram/pieces-block/pieces-block.component';
 import { ToothPieceComponent } from './components/odontogram/tooth-piece/tooth-piece.component';
 import { OrderDetailsComponent } from './components/order-details/order-details/order-details.component';
-import { OrdersFilesListPreviewComponent } from './components/orders-files-list-preview/orders-files-list-preview.component';
+import { OrdersFilesListPreviewComponent } from './components/exams/orders-files-list-preview/orders-files-list-preview.component';
 import { OrdersInitComponent } from './components/orders-init/orders-init.component';
 import { OrdersMenuPanelComponent } from './components/orders-menu-panel/orders-menu-panel.component';
 import { OrdersTableMenuComponent } from './components/orders-table-menu/orders-table-menu.component';
 import { OrdersTableWithMenuComponent } from './components/orders-table-with-menu/orders-table-with-menu.component';
 import { OrdersTableComponent } from './components/orders-table/orders-table.component';
 import { OrdersComponent } from './components/orders/orders.component';
-import { RadiographyEditorComponent } from './components/radiography-editor/radiography-editor.component';
+import { RadiographyEditorComponent } from './components/exams/radiography-editor/radiography-editor.component';
 import { UploadImagesComponent } from './components/upload-images/upload-images.component';
 import { OrderRoutingModule } from './order-routing.module';
 import { ExamCategoryPipe } from './pipes/exam-category.pipe';
 import { OrderStatusPipe } from './pipes/order-status.pipe';
 import { RadiographyTypePipe } from './pipes/radiography-type.pipe';
+import { ExamDetailsComponent } from './components/exams/exam-details/exam-details.component';
 
 @NgModule({
   declarations: [
     CreateExamFormComponent,
     CreateOrderFormComponent,
     ExamCategoryPipe,
+    ExamPreviewComponent,
     LoadedImagePreviewComponent,
     MolarPieceComponent,
     OderPatientAndMedicPreviewComponent,
     OdontogramComponent,
     OdontogramDialogComponent,
+    OrderDetailsComponent,
     OrdersComponent,
     OrdersFilesListPreviewComponent,
     OrdersInitComponent,
@@ -63,13 +67,13 @@ import { RadiographyTypePipe } from './pipes/radiography-type.pipe';
     OrdersTableComponent,
     OrdersTableMenuComponent,
     OrdersTableWithMenuComponent,
+    OrderStatusPipe,
     PiecesBlockComponent,
+    RadiographyEditorComponent,
     RadiographyTypePipe,
     ToothPieceComponent,
     UploadImagesComponent,
-    OrderStatusPipe,
-    OrderDetailsComponent,
-    RadiographyEditorComponent,
+    ExamDetailsComponent,
   ],
   imports: [
     CommonModule,

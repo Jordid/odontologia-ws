@@ -2,17 +2,17 @@ import {
   AbstractControl,
   FormBuilder,
   FormGroup,
-  Validators,
+  Validators
 } from '@angular/forms';
-import { InputValidation } from '../../../core/utils/validations/input-validation';
+import { InputValidation } from '../../../../core/utils/validations/input-validation';
 import {
   ExamCategoryArray,
-  ExamCategoryEnum,
-} from '../../types/exam-category.enum';
+  ExamCategoryEnum
+} from '../../../types/exam-category.enum';
 import {
   RadiographyTypeArray,
-  RadiographyTypeEnum,
-} from '../../types/radiography-type.enum';
+  RadiographyTypeEnum
+} from '../../../types/radiography-type.enum';
 
 export class CreateExamForm {
   private fb: FormBuilder = new FormBuilder();

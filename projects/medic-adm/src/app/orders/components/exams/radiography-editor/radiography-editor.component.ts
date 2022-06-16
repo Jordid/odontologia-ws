@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { OrdersService } from '../../services/orders.service';
-import { IExam } from '../../types/exam.interface';
+import { OrdersService } from '../../../services/orders.service';
+import { IExam } from '../../../types/exam.interface';
 
 @Component({
   selector: 'odo-radiography-editor',

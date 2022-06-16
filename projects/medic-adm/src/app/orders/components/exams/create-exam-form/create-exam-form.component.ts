@@ -12,16 +12,16 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSelectChange } from '@angular/material/select';
 import { Subscription } from 'rxjs';
-import { ConfirmationDialogData } from '../../../core/types/dialogs/confirmation-dialog-data';
-import { OdoDialogConfig } from '../../../core/types/dialogs/odo-dialog-config';
-import { OrdersService } from '../../services/orders.service';
-import { ExamCategoryTypeEnum } from '../../types/exam-category-type.enum';
-import { ExamCategoryEnum } from '../../types/exam-category.enum';
-import { IExam } from '../../types/exam.interface';
-import { IFile } from '../../types/file.interface';
-import { ICreateExam } from '../../types/order.interface';
-import { IRadiographyType } from '../../types/radiography-type.interface';
-import { OdontogramDialogComponent } from '../odontogram/odontogram-dialog/odontogram-dialog.component';
+import { ConfirmationDialogData } from '../../../../core/types/dialogs/confirmation-dialog-data';
+import { OdoDialogConfig } from '../../../../core/types/dialogs/odo-dialog-config';
+import { OrdersService } from '../../../services/orders.service';
+import { ExamCategoryTypeEnum } from '../../../types/exam-category-type.enum';
+import { ExamCategoryEnum } from '../../../types/exam-category.enum';
+import { IExam } from '../../../types/exam.interface';
+import { IFile } from '../../../types/file.interface';
+import { ICreateExam } from '../../../types/order.interface';
+import { IRadiographyType } from '../../../types/radiography-type.interface';
+import { OdontogramDialogComponent } from '../../odontogram/odontogram-dialog/odontogram-dialog.component';
 import { CreateExamForm } from './create-exam-form.class';
 
 export interface IProgressInfo {
