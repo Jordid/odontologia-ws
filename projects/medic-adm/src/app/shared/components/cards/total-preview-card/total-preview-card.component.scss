@@ -1,0 +1,33 @@
+.containerTotalPreview {
+  padding: 16px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 220px;
+  height: 110px;
+  .titleContainer {
+    h3 {
+      color: #ffffff;
+      font-size: 16px;
+      margin: 0px;
+      line-height: normal;
+    }
+  }
+  .iconValueContainer {
+    display: flex;
+    justify-content: space-between;
+    mat-icon{
+      line-height: normal;
+    }
+    .valueContainer {
+      display: flex;
+      justify-content: flex-end;
+      span {
+        color: #ffffff;
+        font-size: 24px;
+        line-height: normal;
+      }
+    }
+  }
+}

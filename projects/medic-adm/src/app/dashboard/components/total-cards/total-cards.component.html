@@ -1,0 +1,50 @@
+<div class="cardsContainer d-flex justify-content-sm-center justify-content-xl-between">
+  <div class="cardContainer">
+    <odo-total-preview-card
+      [totalValue]="'1500'"
+      [title]="'Total de pacientes'"
+      [backgroundColor]="'#23c6c8'"
+      iconName="groups"
+    ></odo-total-preview-card>
+  </div>
+
+  <div class="cardContainer">
+    <odo-total-preview-card
+      [totalValue]="'1200'"
+      [title]="'Total de ordenes'"
+      [backgroundColor]="'#23c6c8'"
+    ></odo-total-preview-card>
+  </div>
+
+  <div class="cardContainer">
+    <odo-total-preview-card
+      [totalValue]="'1000'"
+      [title]="'Total de radiografías'"
+      backgroundColor="#23c6c8"
+    ></odo-total-preview-card>
+  </div>
+
+  <div class="cardContainer">
+    <odo-total-preview-card
+      [totalValue]="'900'"
+      [title]="'Radiografías realizadas'"
+      backgroundColor="#f8ac59"
+    ></odo-total-preview-card>
+  </div>
+
+  <div class="cardContainer">
+    <odo-total-preview-card
+      [totalValue]="'100'"
+      [title]="'Radiografías pendientes'"
+      backgroundColor="#ed5565"
+    ></odo-total-preview-card>
+  </div>
+
+  <div class="cardContainer">
+    <odo-total-preview-card
+      [totalValue]="'1400' | currency: 'USD':'symbol'"
+      [title]="'Total de ventas'"
+      backgroundColor="#f8ac59"
+    ></odo-total-preview-card>
+  </div>
+</div>

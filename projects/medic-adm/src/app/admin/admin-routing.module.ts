@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminInitComponent } from './components/admin-init/admin-init.component';
 import { OAuthGuard } from '../core/guards/o-auth/o-auth/o-auth.guard';
+import { AdminInitComponent } from './components/admin-init/admin-init.component';
 
 const routes: Routes = [
   {
@@ -9,7 +9,14 @@ const routes: Routes = [
     component: AdminInitComponent,
     canActivate: [OAuthGuard],
     children: [
-
+      /* {
+        path: 'dashboard',
+        canLoad: [OAuthGuard],
+        loadChildren: () =>
+          import('../dashboard/dashboard.module').then(
+            (m) => m.DashboardModule
+          ),
+      }, */
       {
         path: 'clients',
         canLoad: [OAuthGuard],
