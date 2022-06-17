@@ -12,6 +12,7 @@ import { PaginationLinks } from '../../core/types/pagination-links';
 import { ProgressBarService } from '../../shared/services/progress-bar/progress-bar.service';
 import { IExam } from '../types/exam.interface';
 import { IFile } from '../types/file.interface';
+import { OrderStatusEnum } from '../types/order-status.enum';
 import {
   ICreateExam,
   ICreateOrder,
@@ -150,6 +151,12 @@ export class OrdersService {
   }
 
   public getOrders(clientId?: string | number, params?: Params): void {
+    if (params) {
+      params['status'] = OrderStatusEnum.SENT;
+    } else {
+      params = {} as Params;
+      params['status'] = OrderStatusEnum.SENT;
+    }
     this.enableLoading();
     if (this.oAuthStorage.hasOAuth) {
       this.ordersHttp

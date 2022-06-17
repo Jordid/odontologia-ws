@@ -1,10 +1,17 @@
 <div class="container pt-3 pb-5">
   <div class="row justify-content-center">
     <div class="col-12">
-      <odo-exam-preview-details
-        [exam]="exam"
-        (goToEditorClicked)="onGoToEditorClickedChange($event, exam)"
-      ></odo-exam-preview-details>
+      <ng-container *ngIf="!loading; else progressSpinner">
+        <odo-exam-preview-details
+          [exam]="exam"
+          (goToEditorClicked)="onGoToEditorClickedChange($event, exam)"
+        ></odo-exam-preview-details>
+      </ng-container>
+      <ng-template #progressSpinner>
+        <div class="my-5">
+          <odo-progress-spinner></odo-progress-spinner>
+        </div>
+      </ng-template>
     </div>
   </div>
 </div>
