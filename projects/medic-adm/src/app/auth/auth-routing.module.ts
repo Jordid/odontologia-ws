@@ -15,7 +15,7 @@ const routes: Routes = [
       {
         path: 'login',
         component: LoginComponent,
-        //canActivate: [NotOAuthGuard],
+        canActivate: [NotOAuthGuard],
       },
 
       { path: 'logout', component: LogoutComponent, canActivate: [OAuthGuard] },

@@ -49,8 +49,7 @@ export class OAuthStorageService {
     if (
       this.get() &&
       this.get().token &&
-      this.get()?.user?.userId &&
-      this.get()?.user?.person?.doctor?.doctorId
+      this.get()?.user?.userId
     ) {
       return true;
     }
@@ -63,9 +62,5 @@ export class OAuthStorageService {
 
   get getUser(): IUser {
     return this.get()?.user;
-  }
-
-  get getDoctorID(): number {
-    return this.get()?.user?.person?.doctor?.doctorId;
   }
 }

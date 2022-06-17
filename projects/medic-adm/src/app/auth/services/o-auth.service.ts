@@ -5,6 +5,7 @@ import { CommonsHttpService } from '../../core/services/commons/commons-http/com
 import { ProgressBarService } from '../../shared/services/progress-bar/progress-bar.service';
 import { OAuth } from '../types/o-auth';
 import { OAuthHttpService } from './o-auth-http.service';
+import { OAuthSnackbarsService } from './o-auth-snackbars.service';
 import { OAuthStorageService } from './o-auth-storage.service';
 
 @Injectable({
@@ -17,7 +18,8 @@ export class OAuthService {
     private progressBarService: ProgressBarService,
     private oAuthHttp: OAuthHttpService,
     private commonsHttp: CommonsHttpService,
-    public oAuthStorage: OAuthStorageService
+    public oAuthStorage: OAuthStorageService,
+    private snackbars: OAuthSnackbarsService
   ) {}
 
   private enableLoading(): void {
@@ -58,31 +60,11 @@ export class OAuthService {
 
   private errorLogin = (error: HttpErrorResponse): void => {
     this.oAuthSubject.next(null);
-    /* if (
-      this.commonsHttp.errorsHttp.isControlledError(error) &&
-      this.commonsHttp.errorsHttp.isErrorCode(
-        error,
-        'E0012',
-        'Invalid credentials.',
-        ''
-      )
-    ) {
-      this.allApp.snackbar.open(
-        OAuthSnackbars.failureLogin.message,
-        OAuthSnackbars.failureLogin.closeBtn,
-        OAuthSnackbars.failureLogin.config
-      );
-    } else if (
-      this.commonsHttp.errorsHttp.isControlledError(error) &&
-      this.commonsHttp.errorsHttp.isErrorCode(
-        error,
-        'E0020',
-        'Resource is CREATED.',
-        'Cuenta no validada. No se puede hacer el ingreso'
-      )
-    ) {
-      this.messageSubject.next(error?.error?.errors[0]?.code);
-    } */
+    if (this.commonsHttp.errorsHttp.isControlledError(error, 'E0012')) {
+      this.snackbars.failureLoginInvalidCredentials();
+    } else {
+      this.snackbars.genericLoginError();
+    }
     this.commonsHttp.errorsHttp.communication(error);
   };
 }
