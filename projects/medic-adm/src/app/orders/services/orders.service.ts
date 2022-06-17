@@ -153,7 +153,7 @@ export class OrdersService {
     this.enableLoading();
     if (this.oAuthStorage.hasOAuth) {
       this.ordersHttp
-        .getOrders$(clientId, this.oAuthStorage.getDoctorID, params)
+        .getOrders$(clientId, params)
         .pipe(finalize(() => this.disableLoading()))
         .subscribe({
           next: this.nextGetOrders,

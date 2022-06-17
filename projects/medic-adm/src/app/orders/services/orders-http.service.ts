@@ -2,7 +2,7 @@ import {
   HttpClient,
   HttpEvent,
   HttpRequest,
-  HttpResponse
+  HttpResponse,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Params } from '@angular/router';
@@ -11,7 +11,7 @@ import { ApiRadiografEnv } from '../../core/config/apis/api-radiograf/api-radiog
 import {
   ICreateExam,
   ICreateOrder,
-  IUpdateOrder
+  IUpdateOrder,
 } from '../types/order.interface';
 
 @Injectable({
@@ -42,13 +42,12 @@ export class OrdersHttpService {
 
   public getOrders$(
     clientId?: string | number,
-    doctorId?: number,
     params?: Params
   ): Observable<HttpResponse<any>> {
     let url = `${ApiRadiografEnv.baseUrl}/orders`;
     if (clientId) {
       url = `${ApiRadiografEnv.baseUrl}/clients`;
-      url = url.concat('/').concat(clientId.toString());
+      url = url.concat('/').concat(clientId.toString()).concat('/orders');
     }
     return this.http.get(url, { observe: 'response', params });
   }

@@ -84,7 +84,7 @@ export class ClientsService {
     return this.clientSubject.asObservable();
   }
 
-  public getClientc(clientId: number): void {
+  public getClient(clientId: number): void {
     if (this.oAuthStorage.hasOAuth) {
       this.clientsHttp.getClient$(clientId).subscribe({
         next: this.nextGetClient,
