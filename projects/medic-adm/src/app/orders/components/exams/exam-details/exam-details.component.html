@@ -1,7 +1,10 @@
-<div class="examPreviewContainer">
-  <odo-exam-preview
-    [exam]="exam"
-    (goToEditorClicked)="onGoToEditorClickedChange($event, exam)"
-    (viewDetailsClicked)="onViewDetailsClickedChange($event, exam)"
-  ></odo-exam-preview>
+<div class="container pt-3 pb-5">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <odo-exam-preview-details
+        [exam]="exam"
+        (goToEditorClicked)="onGoToEditorClickedChange($event, exam)"
+      ></odo-exam-preview-details>
+    </div>
+  </div>
 </div>

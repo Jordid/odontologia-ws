@@ -47,6 +47,7 @@ import { ExamCategoryPipe } from './pipes/exam-category.pipe';
 import { OrderStatusPipe } from './pipes/order-status.pipe';
 import { RadiographyTypePipe } from './pipes/radiography-type.pipe';
 import { ExamDetailsComponent } from './components/exams/exam-details/exam-details.component';
+import { ExamPreviewDetailsComponent } from './components/exams/exam-preview-details/exam-preview-details.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { ExamDetailsComponent } from './components/exams/exam-details/exam-detai
     ToothPieceComponent,
     UploadImagesComponent,
     ExamDetailsComponent,
+    ExamPreviewDetailsComponent,
   ],
   imports: [
     CommonModule,
