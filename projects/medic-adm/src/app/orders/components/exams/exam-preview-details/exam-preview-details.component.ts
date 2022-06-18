@@ -13,4 +13,5 @@ export class ExamPreviewDetailsComponent {
   gotToEditor(): void {
     this.goToEditorClicked.emit(true);
   }
+
 }

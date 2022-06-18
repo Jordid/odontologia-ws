@@ -21,6 +21,7 @@
     font-size: 20px;
   }
   .observationContainer {
+    margin-bottom: 16px;
     h3 {
       font-weight: 500;
       margin-top: 4px;
@@ -34,14 +35,64 @@
       line-height: normal;
     }
   }
-  .actions {
-    display: flex;
-    justify-content: flex-end;
-    padding-top: 6px;
-    padding-bottom: 6px;
-    button {
-      margin-left: 4px;
-      margin-right: 4px;
-    }
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  a {
+    margin-left: 8px;
   }
+}
+
+.mat-card {
+  padding-bottom: 0px;
+}
+.patientLabel {
+  color: gray;
+  margin-bottom: 16px;
+  border-bottom: 4px dashed #ffd740;
+}
+.medicLabel {
+  color: gray;
+  margin-bottom: 16px;
+  border-bottom: 4px dashed #673ab7;
+}
+.keyValue {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  .key {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: normal;
+    min-width: 100px;
+    margin-right: 16px;
+  }
+  .value {
+    font-size: 16px;
+    line-height: normal;
+    min-width: 120px;
+  }
+  .keyObservation {
+    margin-right: 34px;
+  }
+  .keyExam {
+    margin-right: 35px;
+  }
+}
+
+.mat-card {
+  padding: 24px;
+}
+.mat-form-field {
+  width: 100% !important;
+}
+.previewContainer,
+.orderFilesListContainer {
+  margin-bottom: 25px;
+}
+
+.borderBottom {
+  border-bottom: 1px solid gray;
 }

@@ -1,7 +1,5 @@
 <div class="container mat-elevation-z2">
-  <div class="examName">
-    {{ exam?.type?.name }}
-  </div>
+  <div class="examName">Radiografía - {{ exam?.type?.name }}</div>
 
   <div
     class="imageContainer"
@@ -14,7 +12,10 @@
   <div class="observationContainer">
     <h3>Observacion</h3>
     <div class="observation">
-      {{ observation }}
+      <ng-container *ngIf="exam?.description; else noObservation">
+      </ng-container>
+
+      <ng-template #noObservation> Sin observación </ng-template>
     </div>
   </div>
 

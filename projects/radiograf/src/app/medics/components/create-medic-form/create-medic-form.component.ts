@@ -28,14 +28,6 @@ export class CreateMedicFormComponent
     this.subs.unsubscribe();
   }
 
-  private enableLoading(): void {
-    this.submitting = true;
-  }
-
-  private disableLoading(): void {
-    this.submitting = false;
-  }
-
   public onSubmit(): void {
     if (this.validatedForm) {
       this.formSent = true;
@@ -48,7 +40,7 @@ export class CreateMedicFormComponent
       this.medicsService.medicSnackbars.successRegister();
       this.router.navigate(['/admin/medics']);
     } else {
-      this.disableLoading();
+      this.formSent = false;
     }
   };
 }

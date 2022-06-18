@@ -1,22 +1,61 @@
-<div class="container mat-elevation-z2">
-  <div class="examName">
-    {{ exam?.type?.name }}
-  </div>
+<mat-card class="mat-elevation-z4">
+  <mat-card-title>Detalle del exámen</mat-card-title>
+  <mat-card-content>
+    <div class="row borderBottom">
+      <div class="col-10 mb-3">
+        <div class="keyValue">
+          <div class="key keyExam">
+            <label>Exámen: </label>
+          </div>
+          <div class="value">
+            <span> radiografía </span>
+          </div>
+        </div>
+        <div class="keyValue mt-1">
+          <div class="key">
+            <label>Tipo de exámen: </label>
+          </div>
+          <div class="value">
+            <span> {{ exam?.type?.name }} </span>
+          </div>
+        </div>
+        <div class="keyValue mt-1">
+          <div class="key keyObservation">
+            <label>Observación: </label>
+          </div>
+          <div class="value">
+            <span
+              ><ng-container *ngIf="exam?.description; else noObservation">
+              </ng-container>
 
-  <div class="imageContainer" *ngIf="exam?.miniatureUrl">
-    <img [src]="exam?.miniatureUrl" class="img-fluid" />
-  </div>
+              <ng-template #noObservation> Sin observación </ng-template>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="actions">
+          <button mat-mini-fab color="none" matTooltip="Ver en el editor">
+            <mat-icon color="primary" (click)="gotToEditor()"
+              >colorize</mat-icon
+            >
+          </button>
 
-  <div class="observationContainer">
-    <h3>Observacion</h3>
-    <div class="observation">
-      {{ exam?.description }}
+          <a [href]="exam?.imageUrl" target="_blank">
+            <button mat-mini-fab color="none" matTooltip="Ver imagen completa">
+              <mat-icon color="primary">panorama</mat-icon>
+            </button></a
+          >
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="actions">
-    <button mat-mini-fab color="none" matTooltip="Ver en el editor">
-      <mat-icon color="primary" (click)="gotToEditor()">colorize</mat-icon>
-    </button>
-  </div>
-</div>
+    <div class="imageContainer" *ngIf="exam?.imageUrl">
+      <img [src]="exam?.imageUrl" class="img-fluid" />
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<ng-template #progressSpinner>
+  <odo-progress-spinner></odo-progress-spinner>
+</ng-template>
