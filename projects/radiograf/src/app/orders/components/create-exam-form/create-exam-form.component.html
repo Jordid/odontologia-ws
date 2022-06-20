@@ -9,65 +9,68 @@
           autocomplete="off"
         >
           <div class="row justify-content-center justify-content-sm-start">
-            <!-- Categoría de exámen. -->
-            <div class="col-12 col-md-6">
-              <mat-form-field>
-                <mat-label>Categoría</mat-label>
-                <mat-select
-                  formControlName="examCatergory"
-                  (selectionChange)="onExamCategoryChange($event)"
-                >
-                  <mat-option
-                    *ngFor="let examCategory of ExamCategoryArray"
-                    [value]="examCategory"
-                  >
-                    {{ examCategory | examCategory }}
-                  </mat-option>
-                </mat-select>
+            <div class="col-12">
+              <div class="row">
+                <!-- Categoría de exámen. -->
+                <div class="col-12 col-md-6">
+                  <mat-form-field>
+                    <mat-label>Categoría</mat-label>
+                    <mat-select
+                      formControlName="examCatergory"
+                      (selectionChange)="onExamCategoryChange($event)"
+                    >
+                      <mat-option
+                        *ngFor="let examCategory of ExamCategoryArray"
+                        [value]="examCategory"
+                      >
+                        {{ examCategory | examCategory }}
+                      </mat-option>
+                    </mat-select>
 
-                <!-- <mat-error
-                    align="start"
-                    *ngIf="InputValidation.checkInputErrors(examCatergory)"
-                  > -->
-                <!-- <span>Error categoría de exámen</span> -->
-                <!--  <qaroni-input-error-messages
-                      [fc]="examCatergory"
-                    ></qaroni-input-error-messages> -->
-                <!-- </mat-error> -->
-              </mat-form-field>
+                    <!-- <mat-error
+                      align="start"
+                      *ngIf="InputValidation.checkInputErrors(examCatergory)"
+                    > -->
+                    <!-- <span>Error categoría de exámen</span> -->
+                    <!--  <qaroni-input-error-messages
+                        [fc]="examCatergory"
+                      ></qaroni-input-error-messages> -->
+                    <!-- </mat-error> -->
+                  </mat-form-field>
+                </div>
+                <!-- Tipo de radiografía. -->
+                <div *ngIf="showExamType" class="col-12 col-md-6">
+                  <mat-form-field>
+                    <mat-label>Exámen</mat-label>
+                    <mat-select
+                      formControlName="examType"
+                      (selectionChange)="onExamTypeChange($event)"
+                    >
+                      <mat-option
+                        *ngFor="let examType of radiographyTypes"
+                        [value]="examType"
+                      >
+                        {{ examType.name }}
+                      </mat-option>
+                    </mat-select>
+
+                    <!--  <mat-error
+                          align="start"
+                          *ngIf="InputValidation.checkInputErrors(examType)"
+                        > -->
+                    <!-- <span>Error tipo de ex´men</span> -->
+                    <!--  <qaroni-input-error-messages
+                            [fc]="examType"
+                          ></qaroni-input-error-messages> -->
+                    <!--  </mat-error> -->
+                  </mat-form-field>
+                </div>
+              </div>
             </div>
 
             <ng-container *ngIf="showForm === true">
-              <!-- Tipo de radiografía. -->
-              <div *ngIf="showExamType" class="col-12 col-md-6">
-                <mat-form-field>
-                  <mat-label>Exámen</mat-label>
-                  <mat-select
-                    formControlName="examType"
-                    (selectionChange)="onExamTypeChange($event)"
-                  >
-                    <mat-option
-                      *ngFor="let examType of radiographyTypes"
-                      [value]="examType"
-                    >
-                      {{ examType.name }}
-                    </mat-option>
-                  </mat-select>
-
-                  <!--  <mat-error
-                    align="start"
-                    *ngIf="InputValidation.checkInputErrors(examType)"
-                  > -->
-                  <!-- <span>Error tipo de ex´men</span> -->
-                  <!--  <qaroni-input-error-messages
-                      [fc]="examType"
-                    ></qaroni-input-error-messages> -->
-                  <!--  </mat-error> -->
-                </mat-form-field>
-              </div>
-
               <!-- Precio del exámen. -->
-              <div class="col-12 col-md-4 col-lg-3 col-xl-2 colPriceExamInput">
+              <div class="col-6 col-md-3 colPriceExamInput">
                 <mat-form-field appearance="outline" hideRequiredMarker>
                   <mat-label> Precio </mat-label>
                   <input
@@ -89,7 +92,7 @@
               </div>
 
               <!-- Es adicional. -->
-              <div class="col-12 col-md-4 col-lg-3 col-xl-2 mb-3 mb-md-0">
+              <div class="col-6 col-md-3 isAditionalContainer">
                 <mat-checkbox
                   formControlName="isAdditional"
                   (change)="onIsAdditonalChange($event)"
@@ -139,7 +142,7 @@
               </div>
 
               <!-- Observación. -->
-              <div class="col-12 mt-3 colPriceExamInput">
+              <div class="col-12 mt-3 colObservationInput">
                 <mat-form-field appearance="outline" hideRequiredMarker>
                   <mat-label> Observación </mat-label>
                   <input
@@ -147,6 +150,7 @@
                     formControlName="observation"
                     autocomplete="off"
                     type="text"
+                    maxlength="2500"
                   />
                   <mat-error
                     align="start"
@@ -157,6 +161,12 @@
                    ></qaroni-input-error-messages> -->
                   </mat-error>
                 </mat-form-field>
+                <p
+                  *ngIf="observation.value?.length > 0"
+                  class="observationLength"
+                >
+                  {{ observation.value?.length }} de 2500.
+                </p>
               </div>
 
               <div class="col-12 mb-2">
@@ -170,16 +180,20 @@
             </ng-container>
 
             <div class="col-12 d-flex justify-content-end">
-              <button mat-stroked-button color="accent" (click)="cancel()">
+              <button
+                mat-stroked-button
+                color="accent"
+                [disabled]="submitting"
+                (click)="cancel()"
+              >
                 Cancelar
               </button>
               <button
-                *ngIf="
-                  validatedForm && fileList?.length > 0 && submitting === false
-                "
                 class="submitButton"
+                [class.mini-spinner]="submitting"
                 mat-flat-button
                 color="primary"
+                [disabled]="!(validatedForm && fileList?.length > 0)"
                 type="submit"
               >
                 Guardar

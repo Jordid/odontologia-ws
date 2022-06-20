@@ -94,6 +94,7 @@ export class CreateExamFormComponent
     if (fileList?.length < 1) {
       return;
     }
+    this.submitting = true;
     for (const file of fileList) {
       this.progressInfo = { value: 0, fileName: file.name };
       this.uploadedError = false;
@@ -109,6 +110,7 @@ export class CreateExamFormComponent
               this.uploadedFile = array[0];
             }
             this.uploaded = true;
+            this.submitting = false;
             this.createExam();
           }
         },
@@ -140,7 +142,9 @@ export class CreateExamFormComponent
     >(OdontogramDialogComponent, dialogConfig);
     this.subs.add(
       dialog.afterClosed().subscribe((result) => {
-        this.piecesCodeList = result;
+        if (result) {
+          this.piecesCodeList = result;
+        }
       })
     );
   }

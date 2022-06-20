@@ -16,9 +16,19 @@
         <ng-container *ngIf="options">
           <div *ngIf="counterFilteredOptions > 0" class="counterContainer">
             <span>{{ counterFilteredOptions }}</span>
-            <span *ngIf="autocompleteData?.counterMessage">
-              &nbsp;{{ autocompleteData?.counterMessage }}</span
+
+            <ng-container
+              *ngIf="counterFilteredOptions < 2; else pluralMessage"
             >
+              <span *ngIf="autocompleteData?.counterMessageSingular">
+                &nbsp;{{ autocompleteData?.counterMessageSingular }}</span
+              >
+            </ng-container>
+            <ng-template #pluralMessage>
+              <span *ngIf="autocompleteData?.counterMessageSingular">
+                &nbsp;{{ autocompleteData?.counterMessagePlural }}</span
+              >
+            </ng-template>
           </div>
           <mat-option
             (click)="selectOption()"
@@ -44,6 +54,7 @@
         type="button"
         aria-label="Limpiar"
         *ngIf="searcher.value"
+        [disabled]="disableInput"
         (click)="onClear()"
       >
         <mat-icon>close</mat-icon>

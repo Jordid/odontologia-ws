@@ -42,6 +42,7 @@ import { OrderRoutingModule } from './order-routing.module';
 import { ExamCategoryPipe } from './pipes/exam-category.pipe';
 import { OrderStatusPipe } from './pipes/order-status.pipe';
 import { RadiographyTypePipe } from './pipes/radiography-type.pipe';
+import { CreateStudioFormComponent } from './components/studio/create-studio-form/create-studio-form.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { RadiographyTypePipe } from './pipes/radiography-type.pipe';
     UploadImagesComponent,
     OrderStatusPipe,
     OrderDetailsComponent,
+    CreateStudioFormComponent,
   ],
   imports: [
     CommonModule,

@@ -5,5 +5,6 @@ export interface AutocompleteOptionData {
 export interface AutocompleteData {
   optionsList: AutocompleteOptionData[];
   placeholder?: string;
-  counterMessage?: string;
+  counterMessageSingular?: string;
+  counterMessagePlural?: string;
 }

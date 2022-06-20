@@ -1,9 +1,10 @@
 import {
   Component,
   EventEmitter,
+  Input,
   OnDestroy,
   OnInit,
-  Output,
+  Output
 } from '@angular/core';
 import { Params } from '@angular/router';
 import { Observable, shareReplay, Subscription } from 'rxjs';
@@ -11,7 +12,7 @@ import { MedicsService } from '../../../../medics/services/medics.service';
 import { IMedic } from '../../../../medics/types/medic.interface';
 import {
   AutocompleteData,
-  AutocompleteOptionData,
+  AutocompleteOptionData
 } from '../autocomplete/autocomplete-data.interface';
 
 @Component({
@@ -20,6 +21,7 @@ import {
   styleUrls: ['./medics-autocomplete.component.scss'],
 })
 export class MedicsAutocompleteComponent implements OnInit, OnDestroy {
+  @Input() disableInput: boolean;
   @Output() medicId = new EventEmitter<string>();
 
   private medics$: Observable<IMedic[]> = this.medicsService
@@ -49,7 +51,8 @@ export class MedicsAutocompleteComponent implements OnInit, OnDestroy {
     this.autocompleteData = {
       placeholder: 'Buscar médico',
       optionsList: optionsList as AutocompleteOptionData[],
-      counterMessage: 'médicos encontrados',
+      counterMessageSingular: 'médico encontrado',
+      counterMessagePlural: 'médicos encontrados',
     };
     this.parserData();
   }

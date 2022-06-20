@@ -10,13 +10,14 @@ import { ICreateOrder, IOrder } from '../../types/order.interface';
   styleUrls: ['./create-order-form.component.scss'],
 })
 export class CreateOrderFormComponent implements OnInit, OnDestroy {
-  medicId: number = null;
-  clientId: number = null;
+  medicId: number;
+  clientId: number;
   order: IOrder;
   formSent: boolean = false;
   showContinueButton: boolean = false;
   showCreateExamForm: boolean = false;
   exams: IExam[];
+  gettingExams: boolean = false;
 
   private subs: Subscription = new Subscription();
 
@@ -44,14 +45,14 @@ export class CreateOrderFormComponent implements OnInit, OnDestroy {
     if (medicId) {
       this.medicId = parseInt(medicId);
     } else {
-      this.medicId = null;
+      this.medicId = 0;
     }
   }
   onClientIdChange(clientId: string): void {
     if (clientId) {
       this.clientId = parseInt(clientId);
     } else {
-      this.clientId = null;
+      this.clientId = 0;
     }
   }
 
@@ -81,11 +82,13 @@ export class CreateOrderFormComponent implements OnInit, OnDestroy {
   onSentCreateExamChange(sentCreateExam: boolean) {
     this.showCreateExamForm = false;
     if (this.order?.orderId && sentCreateExam === true) {
+      this.gettingExams = true;
       this.ordersService.getExams(this.order?.orderId);
     }
   }
 
   private getExams = (exams: IExam[]): void => {
     this.exams = exams;
+    this.gettingExams = false;
   };
 }

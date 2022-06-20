@@ -14,25 +14,33 @@
               </div>
             </ng-container>
 
-            <div class="orderFilesListContainer" *ngIf="exams?.length > 0">
-              <odo-orders-files-list-preview
-                [exams]="exams"
-              ></odo-orders-files-list-preview>
-            </div>
+            <!-- Lista de exámenes. -->
+            <ng-container *ngIf="!gettingExams; else spinner">
+              <ng-container *ngIf="exams?.length > 0">
+                <div class="orderFilesListContainer">
+                  <odo-orders-files-list-preview
+                    [exams]="exams"
+                  ></odo-orders-files-list-preview>
+                </div>
+              </ng-container>
+            </ng-container>
+            <ng-template #spinner> Loading...</ng-template>
 
             <!-- Si aún no se genera la orden se muestra los buscadores de paciente y médico. -->
             <ng-template #buscadores>
               <div class="col-12 col-lg-6">
-                <span class="y-2">Médico {{ medicId }}</span>
-                <odo-medics-autocomplete
-                  (medicId)="onMedicIdChange($event)"
-                ></odo-medics-autocomplete>
-              </div>
-              <div class="col-12 col-lg-6">
-                <span class="my-2">Paciente {{ clientId }}</span>
+                <span class="my-2">Paciente</span>
                 <odo-clients-autocomplete
+                  [disableInput]="formSent"
                   (clientId)="onClientIdChange($event)"
                 ></odo-clients-autocomplete>
+              </div>
+              <div class="col-12 col-lg-6">
+                <span class="my-2">Médico</span>
+                <odo-medics-autocomplete
+                  [disableInput]="formSent"
+                  (medicId)="onMedicIdChange($event)"
+                ></odo-medics-autocomplete>
               </div>
             </ng-template>
 
