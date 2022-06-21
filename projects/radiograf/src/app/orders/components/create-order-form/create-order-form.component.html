@@ -20,6 +20,7 @@
                 <div class="orderFilesListContainer">
                   <odo-orders-files-list-preview
                     [exams]="exams"
+                    (addStudioClicked)="onAddStudioClickedChange($event)"
                   ></odo-orders-files-list-preview>
                 </div>
               </ng-container>
@@ -80,6 +81,13 @@
                 [orderId]="order?.orderId"
                 (sentCreateExam)="onSentCreateExamChange($event)"
               ></odo-create-exam-form>
+            </div>
+
+            <!-- Se muestra el formulario de creación de studio cuando se hace clic en el boton agregar studio. -->
+            <div *ngIf="true" class="col-12">
+              <odo-create-studio-form
+                (cancel)="onCancelCreateStudioClicked($event)"
+              ></odo-create-studio-form>
             </div>
           </div>
         </mat-card-content>

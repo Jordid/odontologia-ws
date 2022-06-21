@@ -1,0 +1,11 @@
+.inputsContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 8px;
+  .inputImageContainer,
+  .inputHtmlContainer {
+    margin: 8px;
+    min-width: 200px;
+  }
+}

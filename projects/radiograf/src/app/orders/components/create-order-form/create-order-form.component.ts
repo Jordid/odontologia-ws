@@ -18,6 +18,7 @@ export class CreateOrderFormComponent implements OnInit, OnDestroy {
   showCreateExamForm: boolean = false;
   exams: IExam[];
   gettingExams: boolean = false;
+  showCreateStudioForm: boolean = false;
 
   private subs: Subscription = new Subscription();
 
@@ -69,6 +70,7 @@ export class CreateOrderFormComponent implements OnInit, OnDestroy {
 
   addExam(): void {
     this.showCreateExamForm = true;
+    this.showCreateStudioForm = false;
   }
 
   onImageUploadedChange(uploaded: boolean): void {
@@ -91,4 +93,14 @@ export class CreateOrderFormComponent implements OnInit, OnDestroy {
     this.exams = exams;
     this.gettingExams = false;
   };
+
+  onAddStudioClickedChange(clicked: boolean): void {
+   this.showCreateStudioForm = true;
+   this.showCreateExamForm = false;
+  }
+
+  onCancelCreateStudioClicked(cancel: boolean){
+    this.showCreateStudioForm = false;
+  }
+
 }

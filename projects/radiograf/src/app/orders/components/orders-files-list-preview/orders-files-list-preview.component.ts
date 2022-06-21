@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IExam } from '../../types/exam.interface';
 
@@ -11,12 +11,14 @@ export class OrdersFilesListPreviewComponent {
   private clientId: string = this.route.snapshot.paramMap.get('clientId');
 
   @Input() exams: IExam[];
+  @Output() addStudioClicked = new EventEmitter<boolean>();
+
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   onGoToEditorClickedChange(clicked: boolean, exam: IExam): void {
     if (clicked === true) {
-      let route = null;
+      let route;
       if (this.clientId) {
         route = `/admin/clients/${exam?.order?.clientId}/orders/${exam?.orderId}/radiography/${exam?.radiographyId}`;
       } else {
@@ -27,4 +29,9 @@ export class OrdersFilesListPreviewComponent {
       }
     }
   }
+
+  onAddStudioClickedChange(clicked: boolean): void {
+    this.addStudioClicked.emit(clicked);
+  }
+
 }

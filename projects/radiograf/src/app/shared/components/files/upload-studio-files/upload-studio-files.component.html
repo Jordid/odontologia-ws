@@ -1,0 +1,17 @@
+<odo-upload-files-container>
+  <div class="row inputsContainer">
+    <div class="col-12 col-sm-6 col-lg-4 inputImageContainer">
+      <odo-selector-file-input
+        [messageIndicator]="'Seleccionar imagen'"
+        [fileFormatsArray]="imgStudiofileFormatsArray"
+      ></odo-selector-file-input>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-4 inputHtmlContainer">
+      <odo-selector-file-input
+        [messageIndicator]="'Seleccionar archivo HTML'"
+        [fileFormatsArray]="htmlStudiofileFormatsArray"
+      ></odo-selector-file-input>
+    </div>
+  </div>
+</odo-upload-files-container>

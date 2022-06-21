@@ -14,6 +14,7 @@ export class FilePreviewWithActionsComponent {
   @Input() urlFile: string;
   @Input() urlMineatureFile: string;
   @Output() goToEditorClicked = new EventEmitter<boolean>();
+  @Output() addStudioClicked = new EventEmitter<boolean>();
 
   constructor(private dialog: MatDialog) {}
 
@@ -40,5 +41,9 @@ export class FilePreviewWithActionsComponent {
 
   gotToEditor(): void {
     this.goToEditorClicked.emit(true);
+  }
+
+  addStudio(): void {
+    this.addStudioClicked.emit(true);
   }
 }

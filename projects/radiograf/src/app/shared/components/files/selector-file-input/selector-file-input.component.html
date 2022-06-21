@@ -1,0 +1,26 @@
+<div
+  *ngIf="selectedFile == false"
+  class="fileupload"
+  appDragDropFileUpload
+  (click)="fileField.click()"
+  (fileDropped)="selectFiles($event)"
+>
+  <span class="ddinfo">
+    <ng-container *ngIf="messageIndicator; else defaultMessageIndicator">
+      {{ messageIndicator }}
+    </ng-container>
+    <ng-template #defaultMessageIndicator>
+      Click aquí para seleccionar archivos
+    </ng-template>
+  </span>
+
+  <label class="btn btn-default p-0">
+    <input
+      #fileField
+      type="file"
+      (change)="selectFiles($event)"
+      [accept]="fileFormatsArray"
+      hidden
+    />
+  </label>
+</div>
