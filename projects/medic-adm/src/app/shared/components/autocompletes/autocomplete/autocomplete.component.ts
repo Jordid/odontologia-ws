@@ -27,6 +27,7 @@ import {
 })
 export class AutocompleteComponent implements OnChanges, OnDestroy {
   @Input() autocompleteData: AutocompleteData;
+  @Input() disableInput: boolean = false;
   @Output() enteredTextEmit = new EventEmitter<string>();
   @Output() clearEmit = new EventEmitter<boolean>();
 
@@ -84,6 +85,11 @@ export class AutocompleteComponent implements OnChanges, OnDestroy {
   };
 
   processData(): void {
+    if (this.disableInput) {
+      this.searcher.disable();
+    } else {
+      this.searcher.enable();
+    }
     this.options = this.autocompleteData?.optionsList;
   }
 

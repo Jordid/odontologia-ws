@@ -18,6 +18,7 @@ export class OrderDetailsComponent implements OnInit, OnDestroy {
 
   exams: IExam[];
   order: IOrder;
+  loading: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -39,10 +40,12 @@ export class OrderDetailsComponent implements OnInit, OnDestroy {
   }
 
   private enableLoading(): void {
+    this.loading = true;
     this.progressBarService.show();
   }
 
   private disableLoading(): void {
+    this.loading = false;
     this.progressBarService.hide();
   }
 

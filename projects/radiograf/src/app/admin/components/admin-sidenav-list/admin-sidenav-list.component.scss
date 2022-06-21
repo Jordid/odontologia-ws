@@ -19,7 +19,7 @@
 
     &:hover {
       background: #212939 !important;
-      border-radius: 25px;
+
       color: #fff;
     }
 
@@ -36,11 +36,7 @@
 
   .activedRoute {
     background: #3f51b5 !important;
-    border-radius: 25px;
+
     color: #fff;
   }
-}
-
-::ng-deep .mat-list-item-ripple {
-  border-radius: 25px;
 }

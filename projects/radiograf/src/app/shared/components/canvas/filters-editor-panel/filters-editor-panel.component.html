@@ -1,0 +1,45 @@
+<div class="slidersContainer mat-elevation-z3">
+  <h3>Filtros</h3>
+
+  <form [formGroup]="filtersEditorPanelForm">
+    <div class="sliderContainer">
+      <odo-filter-slider
+        leftLabel="Brillo"
+        type="%"
+        [min]="50"
+        [max]="200"
+        (selectedValue)="onBrilloChange($event)"
+      ></odo-filter-slider>
+    </div>
+
+    <div class="sliderContainer">
+      <odo-filter-slider
+        leftLabel="Contraste"
+        type="%"
+        [min]="50"
+        [max]="300"
+        (selectedValue)="onContrasteChange($event)"
+      ></odo-filter-slider>
+    </div>
+
+    <div class="sliderContainer">
+      <odo-filter-slider
+        leftLabel="Invertir"
+        type="%"
+        [min]="0"
+        [max]="100"
+        (selectedValue)="onInvertirChange($event)"
+      ></odo-filter-slider>
+    </div>
+
+    <div class="sliderContainer">
+      <odo-filter-slider
+        leftLabel="Sepia"
+        type="%"
+        [min]="0"
+        [max]="100"
+        (selectedValue)="onSepiaChange($event)"
+      ></odo-filter-slider>
+    </div>
+  </form>
+</div>

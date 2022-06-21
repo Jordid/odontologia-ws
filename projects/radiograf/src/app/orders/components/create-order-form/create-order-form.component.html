@@ -25,7 +25,6 @@
                 </div>
               </ng-container>
             </ng-container>
-            <ng-template #spinner> Loading...</ng-template>
 
             <!-- Si aún no se genera la orden se muestra los buscadores de paciente y médico. -->
             <ng-template #buscadores>
@@ -95,3 +94,9 @@
     </div>
   </div>
 </div>
+
+<ng-template #spinner>
+  <div class="spinnerContainer">
+    <odo-progress-spinner></odo-progress-spinner>
+  </div>
+</ng-template>

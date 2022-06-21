@@ -2,6 +2,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { OAuthStorageService } from '../../../auth/services/o-auth-storage.service';
+import { StringUtils } from '../../../shared/utils/StringUtils';
 
 @Component({
   selector: 'odo-admin-toolbar',
@@ -27,7 +28,7 @@ export class AdminToolbarComponent implements OnInit {
     const user = this.oauthStorageService.getUser;
     if (user) {
       this.avatarUrl = user?.avatarUrl;
-      this.userName = user?.name;
+      this.userName = StringUtils.cutAddingThreePointsAtEnd(user?.name, 18);
     }
   }
 

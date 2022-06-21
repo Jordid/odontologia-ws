@@ -1,0 +1,12 @@
+<ng-container *ngIf="imageSrc">
+  <div class="row parentContainer">
+    <div class="col-12 col-xxl-9">
+      <canvas #canvasElement></canvas>
+    </div>
+
+    <div class="col-12 col-xxl-3">
+      <odo-filters-editor-panel (filters)="onFiltersChange($event)">
+      </odo-filters-editor-panel>
+    </div>
+  </div>
+</ng-container>

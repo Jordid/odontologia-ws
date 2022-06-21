@@ -13,3 +13,40 @@ table {
   display: flex;
   flex-wrap: nowrap;
 }
+
+table.mat-table {
+  .cdk-column-avatar.mat-column-avatar {
+    min-width: 70px;
+  }
+  .cdk-column-firstName.mat-column-firstName {
+    min-width: 150px;
+  }
+  .cdk-column-lastName.mat-column-lastName {
+    min-width: 150px;
+  }
+  .cdk-column-documentType.mat-column-documentType {
+    min-width: 90px;
+  }
+  .cdk-column-document.mat-column-document {
+    min-width: 90px;
+  }
+  .cdk-column-email.mat-column-email {
+    min-width: 150px;
+  }
+  .cdk-column-gender.mat-column-gender {
+    min-width: 90px;
+  }
+  .cdk-column-age.mat-column-age {
+    min-width: 40px;
+  }
+  .cdk-column-status.mat-column-status {
+    min-width: 60px;
+  }
+  .cdk-column-actions.mat-column-actions {
+    min-width: 90px;
+  }
+}
+
+.pl8px {
+  padding-left: 8px;
+}

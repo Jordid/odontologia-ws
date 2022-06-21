@@ -1,6 +1,7 @@
 import {
   Component,
   EventEmitter,
+  Input,
   OnDestroy,
   OnInit,
   Output
@@ -19,6 +20,7 @@ import {
   styleUrls: ['./clients-autocomplete.component.scss'],
 })
 export class ClientsAutocompleteComponent implements OnInit, OnDestroy {
+  @Input() disableInput: boolean;
   @Output() clientId = new EventEmitter<string>();
 
   private clients$: Observable<IClient[]> = this.clientsService
@@ -48,7 +50,8 @@ export class ClientsAutocompleteComponent implements OnInit, OnDestroy {
     this.autocompleteData = {
       placeholder: 'Buscar cliente',
       optionsList: optionsList as AutocompleteOptionData[],
-      counterMessage: 'pacientes encontrados',
+      counterMessageSingular: 'paciente encontrado',
+      counterMessagePlural: 'pacientes encontrados',
     };
     this.parserData();
   }

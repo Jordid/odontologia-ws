@@ -2,7 +2,7 @@ import {
   HttpClient,
   HttpEvent,
   HttpRequest,
-  HttpResponse,
+  HttpResponse
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Params } from '@angular/router';
@@ -11,7 +11,7 @@ import { ApiRadiografEnv } from '../../core/config/apis/api-radiograf/api-radiog
 import {
   ICreateExam,
   ICreateOrder,
-  IUpdateOrder,
+  IUpdateOrder
 } from '../types/order.interface';
 
 @Injectable({
