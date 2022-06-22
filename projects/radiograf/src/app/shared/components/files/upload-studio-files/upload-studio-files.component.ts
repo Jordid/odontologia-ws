@@ -8,4 +8,61 @@ import { Component } from '@angular/core';
 export class UploadStudioFilesComponent {
   imgStudiofileFormatsArray = ['.jpg', '.png'];
   htmlStudiofileFormatsArray = ['.html'];
+  selectedFiles: File[] = [];
+
+  onSelectedImgFileListChange(files: any): void {
+    this.addFilesToList(files);
+  }
+
+  onSelectedHtmlFileListChange(files: any): void {
+    this.addFilesToList(files);
+  }
+
+  addFilesToList(files: File[]): void {
+    if (files?.length > 0) {
+      for (const file of files) {
+        this.selectedFiles.push(file);
+      }
+    }
+  }
+
+  onRemovedFileChange(fileToDelete: File): void {
+    if (fileToDelete?.name && this.selectedFiles?.length > 0) {
+      const indexFile: number = this.selectedFiles.findIndex(
+        (e) => e.name === fileToDelete?.name
+      );
+      if (indexFile >= 0) {
+        this.selectedFiles.splice(indexFile, 1);
+      }
+    }
+  }
+
+  showImageSelector(): boolean {
+    return !this.arrayContainerFileByExtension(['jpg', 'png']);
+  }
+  showHtmlSelector(): boolean {
+    return !this.arrayContainerFileByExtension(['html']);
+  }
+
+  arrayContainerFileByExtension(extensions: string[]): boolean {
+    let exist: boolean = false;
+    if (this.selectedFiles?.length && extensions?.length > 0) {
+      for (const file of this.selectedFiles) {
+        const fileName = file.name;
+        if (fileName && file.name.includes('.')) {
+          const array = file.name.split('.');
+          if (array?.length > 0) {
+            const fileExtension = array[array.length - 1];
+            if (extensions.includes(fileExtension)) {
+              exist = true;
+              break;
+            }
+          }
+        }
+      }
+    } else {
+      exist = false;
+    }
+    return exist;
+  }
 }

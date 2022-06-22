@@ -5,6 +5,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { DialogsModule } from '../dialogs/dialogs.module';
 import { FilePreviewWithActionsComponent } from './file-preview-with-actions/file-preview-with-actions.component';
 import { FilePreviewComponent } from './file-preview/file-preview.component';
+import { LoadedFilePreviewComponent } from './loaded-file-preview/loaded-file-preview.component';
+import { SelectedFileListPreviewComponent } from './selected-file-list-preview/selected-file-list-preview.component';
 import { SelectorFileInputComponent } from './selector-file-input/selector-file-input.component';
 import { UploadFilesContainerComponent } from './upload-files-container/upload-files-container.component';
 import { UploadStudioFilesComponent } from './upload-studio-files/upload-studio-files.component';
@@ -13,6 +15,8 @@ import { UploadStudioFilesComponent } from './upload-studio-files/upload-studio-
   declarations: [
     FilePreviewComponent,
     FilePreviewWithActionsComponent,
+    LoadedFilePreviewComponent,
+    SelectedFileListPreviewComponent,
     SelectorFileInputComponent,
     UploadFilesContainerComponent,
     UploadStudioFilesComponent,

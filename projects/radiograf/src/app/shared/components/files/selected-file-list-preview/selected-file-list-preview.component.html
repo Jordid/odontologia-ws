@@ -1,0 +1,12 @@
+<div *ngIf="files?.length > 0" class="listContainer">
+  <div class="fileListContainer">
+    <div *ngFor="let file of files" class="fileContainer">
+      <odo-loaded-file-preview
+        [progressValue]="progressValue"
+        [uploadedError]="uploadedError"
+        [file]="file"
+        (removedFile)="onRemovedFileChange($event, file)"
+      ></odo-loaded-file-preview>
+    </div>
+  </div>
+</div>

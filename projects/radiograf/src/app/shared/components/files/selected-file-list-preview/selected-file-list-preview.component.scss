@@ -1,0 +1,10 @@
+.listContainer {
+  .fileListContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .fileContainer {
+      margin: 8px;
+    }
+  }
+}

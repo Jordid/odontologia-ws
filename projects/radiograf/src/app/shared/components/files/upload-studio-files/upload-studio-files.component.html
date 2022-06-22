@@ -1,16 +1,36 @@
 <odo-upload-files-container>
-  <div class="row inputsContainer">
-    <div class="col-12 col-sm-6 col-lg-4 inputImageContainer">
+  <div class="row">
+    <div class="col-12">
+      <odo-selected-file-list-preview
+        [files]="selectedFiles"
+        (removedFile)="onRemovedFileChange($event)"
+      ></odo-selected-file-list-preview>
+    </div>
+  </div>
+
+  <div
+    *ngIf="showImageSelector() || showHtmlSelector()"
+    class="row inputsContainer"
+  >
+    <div
+      *ngIf="showImageSelector()"
+      class="col-12 col-sm-6 col-lg-4 inputImageContainer"
+    >
       <odo-selector-file-input
         [messageIndicator]="'Seleccionar imagen'"
         [fileFormatsArray]="imgStudiofileFormatsArray"
+        (selectedFileList)="onSelectedImgFileListChange($event)"
       ></odo-selector-file-input>
     </div>
 
-    <div class="col-12 col-sm-6 col-lg-4 inputHtmlContainer">
+    <div
+      *ngIf="showHtmlSelector()"
+      class="col-12 col-sm-6 col-lg-4 inputHtmlContainer"
+    >
       <odo-selector-file-input
         [messageIndicator]="'Seleccionar archivo HTML'"
         [fileFormatsArray]="htmlStudiofileFormatsArray"
+        (selectedFileList)="onSelectedHtmlFileListChange($event)"
       ></odo-selector-file-input>
     </div>
   </div>
