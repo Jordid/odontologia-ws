@@ -17,6 +17,7 @@ export class CreateStudioFormComponent
   progressInfo: IProgressInfo;
   uploadedError: boolean = false;
   fileFormatsArray: string[];
+  uploadFiles: boolean = false;
 
   constructor() {
     super();
@@ -29,12 +30,13 @@ export class CreateStudioFormComponent
   }
 
   public onSubmit(): void {
-    /*if (this.validatedForm && this.fileList?.length > 0) {
-      this.uploadFile(this.fileList);
-    }*/
+    if (this.validatedForm && this.fileList?.length > 0) {
+      //this.uploadFile(this.fileList);
+      this.uploadFiles = true;
+    }
   }
 
-  onFileListChange(fileList: File[]): void {
+  onSelectedFilesOutChange(fileList: File[]): void {
     this.fileList = fileList;
   }
 }

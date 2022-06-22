@@ -30,13 +30,10 @@
             </div>
 
             <div class="col-12 mb-2">
-              <!-- <odo-upload-images
-                [progressValue]="progressInfo?.value"
-                [uploadedError]="uploadedError"
-                [fileFormatsArray]="fileFormatsArray"
-                (fileList)="onFileListChange($event)"
-              ></odo-upload-images> -->
-              <odo-upload-studio-files></odo-upload-studio-files>
+              <odo-upload-studio-files
+                [uploadFiles]="uploadFiles"
+                (selectedFilesOut)="onSelectedFilesOutChange($event)"
+              ></odo-upload-studio-files>
             </div>
 
             <div class="col-12 d-flex justify-content-end">
@@ -65,4 +62,3 @@
     </mat-card>
   </div>
 </div>
-<pre>{{ createStudioForm.getRawValue() | json }}</pre>

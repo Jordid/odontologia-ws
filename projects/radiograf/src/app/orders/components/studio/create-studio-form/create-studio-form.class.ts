@@ -19,7 +19,6 @@ export class CreateStudioForm {
 
   get validatedForm(): boolean {
     return (
-      this.createStudioForm.dirty &&
       this.createStudioForm.valid &&
       !this.submitting
     );
