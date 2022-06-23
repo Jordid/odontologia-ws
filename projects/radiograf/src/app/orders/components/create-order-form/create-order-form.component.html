@@ -83,9 +83,12 @@
             </div>
 
             <!-- Se muestra el formulario de creación de studio cuando se hace clic en el boton agregar studio. -->
-            <div *ngIf="true" class="col-12">
+            <div *ngIf="showCreateStudyForm" class="col-12">
               <odo-create-studio-form
+                [orderId]="order?.orderId"
+                [radiographyId]="radiographyId"
                 (cancel)="onCancelCreateStudioClicked($event)"
+                (sentCreateStudy)="onSentCreateStudyChange($event)"
               ></odo-create-studio-form>
             </div>
           </div>

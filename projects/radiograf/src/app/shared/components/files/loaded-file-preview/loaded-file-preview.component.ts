@@ -9,6 +9,7 @@ export class LoadedFilePreviewComponent  implements OnChanges {
   @Input() progressValue: number;
   @Input() uploadedError: boolean;
   @Input() file: File;
+  @Input() disabledRemoveButton: boolean;
   @Output() removedFile = new EventEmitter<boolean>();
 
   urlFile: string | ArrayBuffer;
@@ -23,7 +24,9 @@ export class LoadedFilePreviewComponent  implements OnChanges {
       var reader = new FileReader();
       reader.readAsDataURL(this.file);
       reader.onload = (_event) => {
-        this.urlFile = reader.result;
+        if (reader.result) {
+          this.urlFile = reader.result;
+        }
       };
     }
   }

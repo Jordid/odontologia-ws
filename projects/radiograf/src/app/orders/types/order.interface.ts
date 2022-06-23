@@ -25,12 +25,3 @@ export interface ICreateOrder {
 export interface IUpdateOrder {
   status: OrderStatusEnum;
 }
-
-export interface ICreateExam {
-  description: string;
-  isAddional: boolean;
-  storageId: string;
-  teeth: string;
-  typeId: number;
-  price: number;
-}

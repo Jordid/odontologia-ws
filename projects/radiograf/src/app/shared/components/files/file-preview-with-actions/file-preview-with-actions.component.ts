@@ -11,10 +11,11 @@ import { ExamPreviewDialogComponent } from '../../dialogs/exam-preview-dialog/ex
   styleUrls: ['./file-preview-with-actions.component.scss'],
 })
 export class FilePreviewWithActionsComponent {
+  @Input() id: number;
   @Input() urlFile: string;
   @Input() urlMineatureFile: string;
   @Output() goToEditorClicked = new EventEmitter<boolean>();
-  @Output() addStudioClicked = new EventEmitter<boolean>();
+  @Output() addStudioClicked = new EventEmitter<number>();
 
   constructor(private dialog: MatDialog) {}
 
@@ -44,6 +45,6 @@ export class FilePreviewWithActionsComponent {
   }
 
   addStudio(): void {
-    this.addStudioClicked.emit(true);
+    this.addStudioClicked.emit(this.id);
   }
 }

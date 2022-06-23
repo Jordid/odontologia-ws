@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { IProgressInfo } from '../../../../orders/components/create-exam-form/create-exam-form.component';
 import { OrdersService } from '../../../../orders/services/orders.service';
+import { IFile } from '../../../../orders/types/file.interface';
 
 @Component({
   selector: 'odo-selected-file-list-preview',
@@ -19,6 +20,7 @@ export class SelectedFileListPreviewComponent implements OnChanges {
   @Input() files: File[];
   @Input() uploadFiles: boolean;
   @Output() removedFile = new EventEmitter<File>();
+  @Output() uploadedFile = new EventEmitter<IFile | null>();
 
   progressInfo: IProgressInfo;
   uploadedError: boolean;
@@ -41,7 +43,6 @@ export class SelectedFileListPreviewComponent implements OnChanges {
     if (fileList?.length < 1) {
       return;
     }
-    //this.submitting = true;
     for (const file of fileList) {
       this.progressInfo = { value: 0, fileName: file.name };
       this.uploadedError = false;
@@ -54,17 +55,14 @@ export class SelectedFileListPreviewComponent implements OnChanges {
           } else if (event instanceof HttpResponse) {
             const array = event?.body?.result;
             if (array?.length > 0) {
-              //this.uploadedFile = array[0];
+              this.uploadedFile.emit(array[0]);
             }
-            /*  this.uploaded = true;
-            this.submitting = false; */
-            //this.createExam();
           }
         },
         error: (err: any) => {
           this.progressInfo.value = 0;
-          // this.uploaded = false;
           this.uploadedError = true;
+          this.uploadedFile.emit(null);
         },
       });
     }

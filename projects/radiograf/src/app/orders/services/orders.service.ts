@@ -10,15 +10,11 @@ import { OAuthStorageService } from '../../auth/services/o-auth-storage.service'
 import { CommonsHttpService } from '../../core/services/commons/commons-http/commons-http.service';
 import { PaginationLinks } from '../../core/types/pagination-links';
 import { ProgressBarService } from '../../shared/services/progress-bar/progress-bar.service';
-import { IExam } from '../types/exam.interface';
+import { ICreateExam, IExam } from '../types/exam.interface';
 import { IFile } from '../types/file.interface';
-import {
-  ICreateExam,
-  ICreateOrder,
-  IOrder,
-  IUpdateOrder
-} from '../types/order.interface';
+import { ICreateOrder, IOrder, IUpdateOrder } from '../types/order.interface';
 import { IRadiographyType } from '../types/radiography-type.interface';
+import { ICreateStudy, IStudy } from '../types/studio.interface';
 import { OrdersHttpService } from './orders-http.service';
 import { OrdersSnackbarsService } from './orders-snackbars.service';
 
@@ -35,6 +31,7 @@ export class OrdersService {
   >();
   protected readonly fileSubject = new Subject<IFile>();
   protected readonly paginationLinksSubject = new Subject<PaginationLinks>();
+  protected readonly studySubject = new Subject<IStudy>();
 
   constructor(
     private ordersHttp: OrdersHttpService,
@@ -336,6 +333,44 @@ export class OrdersService {
 
   private errorGetRadiographyTypes = (error: HttpErrorResponse): void => {
     this.radiographyTypesSubject.next(null);
+    this.commonsHttp.errorsHttp.communication(error);
+  };
+
+  /* Get study. */
+  public getStudy$(): Observable<IStudy> {
+    return this.studySubject.asObservable();
+  }
+
+  /* Create study. */
+  public createStudy(
+    orderId: number,
+    radiographyId: number,
+    createStudyJson: ICreateStudy
+  ): void {
+    if (this.oAuthStorage.hasOAuth) {
+      this.enableLoading();
+      this.ordersHttp
+        .createStudy$(orderId, radiographyId, createStudyJson)
+        .pipe(finalize(() => this.disableLoading()))
+        .subscribe({
+          next: this.nextCreateStudy,
+          error: this.errorCreateStudy,
+        });
+    }
+  }
+
+  private nextCreateStudy = (data: HttpResponse<any>): void => {
+    if (this.commonsHttp.validationsHttp.verifyStatus201(data)) {
+      const study: IStudy = data.body.result[0];
+      this.studySubject.next(study);
+    } else {
+      this.studySubject.next(null);
+      this.commonsHttp.errorsHttp.apiInvalidResponse(data);
+    }
+  };
+
+  private errorCreateStudy = (error: HttpErrorResponse): void => {
+    this.studySubject.next(null);
     this.commonsHttp.errorsHttp.communication(error);
   };
 }

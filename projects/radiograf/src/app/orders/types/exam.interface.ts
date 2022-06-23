@@ -11,3 +11,12 @@ export interface IExam {
   radiographyId: number;
   type: IExamType;
 }
+
+export interface ICreateExam {
+  description: string;
+  isAddional: boolean;
+  storageId: string;
+  teeth: string;
+  typeId: number;
+  price: number;
+}

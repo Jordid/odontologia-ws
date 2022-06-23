@@ -31,8 +31,9 @@
 
             <div class="col-12 mb-2">
               <odo-upload-studio-files
-                [uploadFiles]="uploadFiles"
+                [uploadFiles]="submitting"
                 (selectedFilesOut)="onSelectedFilesOutChange($event)"
+                (uploadedFile)="onUploadedFileChange($event)"
               ></odo-upload-studio-files>
             </div>
 

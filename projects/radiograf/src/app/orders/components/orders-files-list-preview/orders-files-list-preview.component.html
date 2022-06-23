@@ -13,6 +13,7 @@
       <div class="fileListContainer">
         <div *ngFor="let exam of exams" class="fileContainer">
           <odo-file-preview-with-actions
+            [id]="exam?.radiographyId"
             [urlFile]="exam?.imageUrl"
             [urlMineatureFile]="exam?.miniatureUrl"
             (goToEditorClicked)="onGoToEditorClickedChange($event, exam)"

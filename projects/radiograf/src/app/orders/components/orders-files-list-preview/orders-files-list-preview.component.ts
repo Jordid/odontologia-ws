@@ -11,7 +11,7 @@ export class OrdersFilesListPreviewComponent {
   private clientId: string = this.route.snapshot.paramMap.get('clientId');
 
   @Input() exams: IExam[];
-  @Output() addStudioClicked = new EventEmitter<boolean>();
+  @Output() addStudioClicked = new EventEmitter<number>();
 
 
   constructor(private router: Router, private route: ActivatedRoute) {}
@@ -30,8 +30,8 @@ export class OrdersFilesListPreviewComponent {
     }
   }
 
-  onAddStudioClickedChange(clicked: boolean): void {
-    this.addStudioClicked.emit(clicked);
+  onAddStudioClickedChange(id: number): void {
+    this.addStudioClicked.emit(id);
   }
 
 }

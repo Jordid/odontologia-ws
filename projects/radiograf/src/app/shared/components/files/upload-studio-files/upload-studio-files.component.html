@@ -5,6 +5,7 @@
         [uploadFiles]="uploadFiles"
         [files]="selectedFiles"
         (removedFile)="onRemovedFileChange($event)"
+        (uploadedFile)="onUploadedFileChange($event)"
       ></odo-selected-file-list-preview>
     </div>
   </div>
@@ -24,7 +25,7 @@
       ></odo-selector-file-input>
     </div>
 
-    <div
+    <!--  <div
       *ngIf="showHtmlSelector()"
       class="col-12 col-sm-6 col-lg-4 inputHtmlContainer"
     >
@@ -33,6 +34,6 @@
         [fileFormatsArray]="htmlStudiofileFormatsArray"
         (selectedFileList)="onSelectedHtmlFileListChange($event)"
       ></odo-selector-file-input>
-    </div>
+    </div> -->
   </div>
 </odo-upload-files-container>

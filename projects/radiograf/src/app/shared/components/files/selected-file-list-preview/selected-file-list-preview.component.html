@@ -5,6 +5,7 @@
         [progressValue]="progressInfo?.value"
         [uploadedError]="uploadedError"
         [file]="file"
+        [disabledRemoveButton]="uploadFiles"
         (removedFile)="onRemovedFileChange($event, file)"
       ></odo-loaded-file-preview>
     </div>

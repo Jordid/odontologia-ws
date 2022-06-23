@@ -1,8 +1,5 @@
-import {
-  Component,
-  EventEmitter,
-  Input, Output
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { IFile } from '../../../../orders/types/file.interface';
 
 @Component({
   selector: 'odo-upload-studio-files',
@@ -12,6 +9,8 @@ import {
 export class UploadStudioFilesComponent {
   @Input() uploadFiles: boolean;
   @Output() selectedFilesOut = new EventEmitter<File[]>();
+  @Output() uploadedFile = new EventEmitter<IFile | null>();
+
   imgStudiofileFormatsArray = ['.jpg', '.png'];
   htmlStudiofileFormatsArray = ['.html'];
   selectedFiles: File[] = [];
@@ -43,6 +42,10 @@ export class UploadStudioFilesComponent {
         this.selectedFilesOut.emit(this.selectedFiles);
       }
     }
+  }
+
+  onUploadedFileChange(uploadedFile: IFile): void {
+    this.uploadedFile.emit(uploadedFile);
   }
 
   showImageSelector(): boolean {

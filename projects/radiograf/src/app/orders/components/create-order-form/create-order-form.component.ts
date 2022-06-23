@@ -16,9 +16,10 @@ export class CreateOrderFormComponent implements OnInit, OnDestroy {
   formSent: boolean = false;
   showContinueButton: boolean = false;
   showCreateExamForm: boolean = false;
+  radiographyId: number;
   exams: IExam[];
   gettingExams: boolean = false;
-  showCreateStudioForm: boolean = false;
+  showCreateStudyForm: boolean = false;
 
   private subs: Subscription = new Subscription();
 
@@ -70,7 +71,7 @@ export class CreateOrderFormComponent implements OnInit, OnDestroy {
 
   addExam(): void {
     this.showCreateExamForm = true;
-    this.showCreateStudioForm = false;
+    this.showCreateStudyForm = false;
   }
 
   onImageUploadedChange(uploaded: boolean): void {
@@ -94,13 +95,21 @@ export class CreateOrderFormComponent implements OnInit, OnDestroy {
     this.gettingExams = false;
   };
 
-  onAddStudioClickedChange(clicked: boolean): void {
-   this.showCreateStudioForm = true;
-   this.showCreateExamForm = false;
+  onAddStudioClickedChange(radiographyId: number): void {
+    this.showCreateStudyForm = true;
+    this.showCreateExamForm = false;
+    this.radiographyId = radiographyId;
   }
 
-  onCancelCreateStudioClicked(cancel: boolean){
-    this.showCreateStudioForm = false;
+  onCancelCreateStudioClicked(cancel: boolean) {
+    this.showCreateStudyForm = false;
   }
 
+  onSentCreateStudyChange(sentCreateStudy: boolean) {
+    this.showCreateStudyForm = false;
+    if (this.order?.orderId && sentCreateStudy === true) {
+      this.gettingExams = true;
+      this.ordersService.getExams(this.order?.orderId);
+    }
+  }
 }

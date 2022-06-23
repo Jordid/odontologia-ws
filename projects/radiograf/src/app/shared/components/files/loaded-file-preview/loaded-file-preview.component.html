@@ -6,7 +6,9 @@
       mat-icon-button
       aria-label="Quitar"
       class="removeButton"
+      [ngClass]="{ disabledRemovedButton: disabledRemoveButton }"
       type="button"
+      [disabled]="disabledRemoveButton"
       (click)="removeFile()"
     >
       <mat-icon>delete_forever</mat-icon>
