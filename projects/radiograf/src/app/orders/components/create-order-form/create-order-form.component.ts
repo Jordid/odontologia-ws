@@ -14,6 +14,7 @@ export class CreateOrderFormComponent implements OnInit, OnDestroy {
   clientId: number;
   order: IOrder;
   formSent: boolean = false;
+  submitting: boolean = false;
   showContinueButton: boolean = false;
   showCreateExamForm: boolean = false;
   radiographyId: number;
@@ -35,6 +36,7 @@ export class CreateOrderFormComponent implements OnInit, OnDestroy {
   }
 
   private getOrder = (order: IOrder) => {
+    this.submitting = false;
     this.order = order;
     if (order?.orderId) {
       this.ordersService.orderSnackbars.successGeneratedOrder();
@@ -65,6 +67,7 @@ export class CreateOrderFormComponent implements OnInit, OnDestroy {
         doctorId: this.medicId,
       } as ICreateOrder;
       this.formSent = true;
+      this.submitting = true;
       this.ordersService.createOrder(createOrderJson);
     }
   }

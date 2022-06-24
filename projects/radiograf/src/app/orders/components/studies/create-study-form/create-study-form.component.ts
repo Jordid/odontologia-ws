@@ -4,15 +4,15 @@ import { OrdersService } from '../../../services/orders.service';
 import { IFile } from '../../../types/file.interface';
 import { ICreateStudy, IStudy } from '../../../types/studio.interface';
 import { IProgressInfo } from '../../create-exam-form/create-exam-form.component';
-import { CreateStudioForm } from './create-studio-form.class';
+import { CreateStudyForm } from './create-study-form.class';
 
 @Component({
-  selector: 'odo-create-studio-form',
-  templateUrl: './create-studio-form.component.html',
-  styleUrls: ['./create-studio-form.component.scss'],
+  selector: 'odo-create-study-form',
+  templateUrl: './create-study-form.component.html',
+  styleUrls: ['./create-study-form.component.scss'],
 })
-export class CreateStudioFormComponent
-  extends CreateStudioForm
+export class CreateStudyFormComponent
+  extends CreateStudyForm
   implements OnInit
 {
   @Input() orderId: number;

@@ -38,23 +38,26 @@ import { OrdersTableMenuComponent } from './components/orders-table-menu/orders-
 import { OrdersTableWithMenuComponent } from './components/orders-table-with-menu/orders-table-with-menu.component';
 import { OrdersTableComponent } from './components/orders-table/orders-table.component';
 import { OrdersComponent } from './components/orders/orders.component';
+import { CreateStudyFormComponent } from './components/studies/create-study-form/create-study-form.component';
 import { UploadImagesComponent } from './components/upload-images/upload-images.component';
 import { OrderRoutingModule } from './order-routing.module';
 import { ExamCategoryPipe } from './pipes/exam-category.pipe';
 import { OrderStatusPipe } from './pipes/order-status.pipe';
 import { RadiographyTypePipe } from './pipes/radiography-type.pipe';
-import { CreateStudioFormComponent } from './components/studio/create-studio-form/create-studio-form.component';
+import { StudyTypePipe } from './pipes/study-type.pipe';
 
 @NgModule({
   declarations: [
     CreateExamFormComponent,
     CreateOrderFormComponent,
+    CreateStudyFormComponent,
     ExamCategoryPipe,
     LoadedImagePreviewComponent,
     MolarPieceComponent,
     OderPatientAndMedicPreviewComponent,
     OdontogramComponent,
     OdontogramDialogComponent,
+    OrderDetailsComponent,
     OrdersComponent,
     OrdersFilesListPreviewComponent,
     OrdersInitComponent,
@@ -62,13 +65,12 @@ import { CreateStudioFormComponent } from './components/studio/create-studio-for
     OrdersTableComponent,
     OrdersTableMenuComponent,
     OrdersTableWithMenuComponent,
+    OrderStatusPipe,
     PiecesBlockComponent,
     RadiographyTypePipe,
+    StudyTypePipe,
     ToothPieceComponent,
     UploadImagesComponent,
-    OrderStatusPipe,
-    OrderDetailsComponent,
-    CreateStudioFormComponent,
   ],
   imports: [
     CommonModule,

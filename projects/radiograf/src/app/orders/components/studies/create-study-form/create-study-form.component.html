@@ -4,13 +4,28 @@
       <mat-card-title>Agregar estudio</mat-card-title>
       <mat-card-content>
         <form
-          [formGroup]="createStudioForm"
+          [formGroup]="createStudyForm"
           (ngSubmit)="onSubmit()"
           autocomplete="off"
         >
           <div class="row justify-content-center justify-content-sm-start">
+            <!-- Study type. -->
+            <div class="col-12 col-md-6 col-lg-4 mt-2">
+              <mat-form-field class="ff-no-bottom-space moz-suffix">
+                <mat-label>Estudio</mat-label>
+                <mat-select formControlName="studyType">
+                  <mat-option
+                    *ngFor="let studyType of StudyTypeArray; last as isLast"
+                    [value]="studyType"
+                  >
+                    {{ studyType | studyType }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
             <!-- Observación. -->
-            <div class="col-12 mt-3 colObservationInput">
+            <div class="col-12 mb-2 colObservationInput">
               <mat-form-field appearance="outline" hideRequiredMarker>
                 <mat-label> Observación </mat-label>
                 <input
