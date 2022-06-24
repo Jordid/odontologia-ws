@@ -66,7 +66,7 @@ export class CreateStudyFormComponent
       const createStudyJson: ICreateStudy = {
         description: this.observation.value,
         storageId: uploadedFile?.storageId,
-        type: 'RICKETTS',
+        type: this.studyType.value,
       };
       this.ordersService.createStudy(
         this.orderId,

@@ -1,4 +1,4 @@
-import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StudyTypeArray, StudyTypeEnum } from '../../../types/study-type.enum';
 
 export class CreateStudyForm {
@@ -6,7 +6,7 @@ export class CreateStudyForm {
 
   /* Skeleton del formulario de study. */
   private createStudySkeleton = {
-    studyType: [null],
+    studyType: [null, Validators.required],
     observation: [null],
   };
 
