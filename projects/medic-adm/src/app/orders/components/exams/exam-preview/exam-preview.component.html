@@ -1,39 +1,43 @@
-<div class="container mat-elevation-z2">
-  <div class="examName">Radiografía - {{ exam?.type?.name }}</div>
-
-  <div
-    class="imageContainer"
-    *ngIf="exam?.miniatureUrl"
-    (click)="showPreview()"
-  >
-    <img [src]="exam?.miniatureUrl" class="img-fluid" />
-  </div>
-
-  <div class="observationContainer">
-    <h3>Observacion</h3>
-    <div class="observation">
-      <ng-container *ngIf="exam?.description; else noObservation">
-      </ng-container>
-
-      <ng-template #noObservation> Sin observación </ng-template>
+<div class="odoContainer mat-elevation-z2">
+  <div class="nameAndImageContainer">
+    <div class="examName">Radiografía - {{ exam?.type?.name }}</div>
+    <div
+      class="imageContainer"
+      *ngIf="exam?.miniatureUrl"
+      (click)="showPreview()"
+    >
+      <img [src]="exam?.miniatureUrl" class="img-fluid" />
     </div>
   </div>
 
-  <div class="actions">
-    <button
-      mat-mini-fab
-      color="none"
-      matTooltip="Previsualizar"
-      (click)="showPreview()"
-    >
-      <mat-icon color="primary">panorama</mat-icon>
-    </button>
+  <div class="observationAndActionsContainer">
+    <div class="observationContainer">
+      <span class="observationLabel">Observación:</span>
+      <span class="observation">
+        <ng-container *ngIf="exam?.description; else noObservation">
+          {{ observation }}
+        </ng-container>
 
-    <button mat-mini-fab color="none" matTooltip="Ver en el editor">
-      <mat-icon color="primary" (click)="gotToEditor()">colorize</mat-icon>
-    </button>
-    <button mat-mini-fab color="none" matTooltip="Ver detalle del exámen">
-      <mat-icon color="primary" (click)="viewDetails()">view_day</mat-icon>
-    </button>
+        <ng-template #noObservation> Sin observación </ng-template>
+      </span>
+    </div>
+
+    <div class="actions">
+      <button
+        mat-mini-fab
+        color="none"
+        matTooltip="Previsualizar"
+        (click)="showPreview()"
+      >
+        <mat-icon color="primary">panorama</mat-icon>
+      </button>
+
+      <button mat-mini-fab color="none" matTooltip="Ver en el editor">
+        <mat-icon color="primary" (click)="gotToEditor()">colorize</mat-icon>
+      </button>
+      <button mat-mini-fab color="none" matTooltip="Ver detalle del exámen">
+        <mat-icon color="primary" (click)="viewDetails()">view_day</mat-icon>
+      </button>
+    </div>
   </div>
 </div>

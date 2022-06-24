@@ -28,10 +28,10 @@ export class ExamPreviewComponent implements OnChanges {
   constructor(private dialog: MatDialog) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.observation = StringUtils.cutAddingThreePointsAtEnd(
+    this.observation = this.exam?.description;/* StringUtils.cutAddingThreePointsAtEnd(
       this.exam?.description,
       120
-    );
+    );*/
   }
 
   private subs: Subscription = new Subscription();
