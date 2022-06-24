@@ -6,6 +6,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./upload-images.component.scss'],
 })
 export class UploadImagesComponent {
+  @Input() submitting: boolean;
   @Input() progressValue: number;
   @Input() uploadedError: boolean;
   @Input() fileFormatsArray: string[];

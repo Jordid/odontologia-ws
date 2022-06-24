@@ -100,18 +100,6 @@
                 >
               </div>
 
-              <!-- Agregar estudio. -->
-              <!-- <div
-              *ngIf="
-                ExamCategoryTypeEnum.WITH_STUDY === selectedExamCategoryType
-              "
-              class="col-12 col-md-4 col-lg-3 col-xl-2"
-            >
-              <mat-checkbox formControlName="isAddStudio"
-                >Agregar estudio</mat-checkbox
-              >
-            </div> -->
-
               <div class="col-12 mt-2 mt-md-0">
                 <div class="linkAndPiecestextContainer">
                   <div class="linkContainer">
@@ -171,6 +159,7 @@
 
               <div class="col-12 mb-2">
                 <odo-upload-images
+                  [submitting]="submitting"
                   [progressValue]="progressInfo?.value"
                   [uploadedError]="uploadedError"
                   [fileFormatsArray]="fileFormatsArray"

@@ -18,6 +18,7 @@
           class="imageContainer"
         >
           <odo-loaded-image-preview
+            [disabledRemoveButton]="submitting"
             [progressValue]="progressValue"
             [uploadedError]="uploadedError"
             [file]="selectedImage"

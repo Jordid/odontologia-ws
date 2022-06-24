@@ -27,7 +27,11 @@
       [disabled]="disableAddStudioButton"
       (click)="addStudio()"
     >
-      <mat-icon color="primary">note_add</mat-icon>
+      <mat-icon
+        color="primary"
+        [ngClass]="{ disableAddStudioButton: disableAddStudioButton }"
+        >note_add</mat-icon
+      >
     </button>
   </div>
 </div>
