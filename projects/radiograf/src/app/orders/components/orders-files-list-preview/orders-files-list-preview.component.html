@@ -10,15 +10,14 @@
     </div>
 
     <div *ngIf="exams?.length > 0" class="containerList">
-      <div class="fileListContainer">
-        <div *ngFor="let exam of exams" class="fileContainer">
-          <odo-file-preview-with-actions
+      <div class="examPreviewListContainer">
+        <div *ngFor="let exam of exams" class="examPreviewContainer">
+          <odo-exam-preview
             [id]="exam?.radiographyId"
-            [urlFile]="exam?.imageUrl"
-            [urlMineatureFile]="exam?.miniatureUrl"
+            [exam]="exam"
             (goToEditorClicked)="onGoToEditorClickedChange($event, exam)"
             (addStudioClicked)="onAddStudioClickedChange($event)"
-          ></odo-file-preview-with-actions>
+          ></odo-exam-preview>
         </div>
       </div>
     </div>

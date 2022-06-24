@@ -1,0 +1,33 @@
+<div class="odoContainer mat-elevation-z2">
+  <div class="nameAndImageContainer">
+    <div class="examName">Radiografía - {{ exam?.type?.name }}</div>
+    <div
+      class="imageContainer"
+      *ngIf="exam?.miniatureUrl"
+      (click)="showPreview()"
+    >
+      <img [src]="exam?.miniatureUrl" class="img-fluid" />
+    </div>
+  </div>
+
+  <div class="actions">
+    <button
+      mat-mini-fab
+      color="none"
+      matTooltip="Previsualizar"
+      (click)="showPreview()"
+    >
+      <mat-icon color="primary">panorama</mat-icon>
+    </button>
+
+    <button
+      mat-mini-fab
+      color="none"
+      matTooltip="Agregar estudio"
+      [disabled]="disableAddStudioButton"
+      (click)="addStudio()"
+    >
+      <mat-icon color="primary">note_add</mat-icon>
+    </button>
+  </div>
+</div>

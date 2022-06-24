@@ -13,6 +13,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ExamPreviewComponent } from '../orders/components/exams/exam-preview/exam-preview.component';
 import { AutocompletesModule } from '../shared/components/autocompletes/autocompletes.module';
 import { DialogsModule } from '../shared/components/dialogs/dialogs.module';
 import { FilesModule } from '../shared/components/files/files.module';
@@ -52,6 +53,7 @@ import { StudyTypePipe } from './pipes/study-type.pipe';
     CreateOrderFormComponent,
     CreateStudyFormComponent,
     ExamCategoryPipe,
+    ExamPreviewComponent,
     LoadedImagePreviewComponent,
     MolarPieceComponent,
     OderPatientAndMedicPreviewComponent,

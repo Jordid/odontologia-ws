@@ -1,6 +1,8 @@
+import { ExamCategoryTypeEnum } from './exam-category-type.enum';
 import { IOrder } from './order.interface';
 export interface IExamType {
   name: string;
+  type: ExamCategoryTypeEnum;
 }
 export interface IExam {
   description: string;
