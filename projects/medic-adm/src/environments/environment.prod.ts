@@ -7,5 +7,6 @@ export const appEnvironment = {
 };
 
 export const apiRadioGrafEnvironment = {
-  baseUrl: 'https://app.rayodent.com/api',
+  //baseUrl: 'https://app.rayodent.com/api',
+  baseUrl: 'https://3.228.155.148/api',
 };

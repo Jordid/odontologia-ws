@@ -53,7 +53,7 @@ export class ImageEditorComponent implements AfterViewChecked {
       this.context.filter = this.filtersString;
     }
 
-    this.context.drawImage(this.image, 0, 0, this.width, this.height);
+    this.context.drawImage(this.image, 0, 0, this.width/12, this.height/12);
     if (this.context.canvas.width > 10 && this.context.canvas.height > 10) {
       //  filtroColor('#4a0');
     }
