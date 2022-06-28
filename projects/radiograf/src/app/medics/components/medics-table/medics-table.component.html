@@ -27,7 +27,14 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
         Tipo de documento
       </th>
-      <td mat-cell *matCellDef="let row">{{ row?.person?.documentType }}</td>
+      <td mat-cell *matCellDef="let row">
+        <ng-container *ngIf="row?.person?.documentType">
+          {{ row?.person?.documentType }}
+        </ng-container>
+        <ng-container *ngIf="!row?.person?.documentType">
+          <div class="pl8px">-</div>
+        </ng-container>
+      </td>
     </ng-container>
 
     <!-- document Column -->
@@ -53,7 +60,12 @@
     <!-- age Column -->
     <ng-container matColumnDef="age">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Edad</th>
-      <td mat-cell *matCellDef="let row">{{ row?.person?.age }}</td>
+      <td mat-cell *matCellDef="let row">
+        <ng-container *ngIf="row?.person?.age">
+          {{ row?.person?.age }}
+        </ng-container>
+        <ng-container *ngIf="!row?.person?.age"> - </ng-container>
+      </td>
     </ng-container>
 
     <!-- status Column -->

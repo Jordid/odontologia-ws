@@ -2,8 +2,9 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnChanges, Output,
-  SimpleChanges
+  OnChanges,
+  Output,
+  SimpleChanges,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
@@ -25,6 +26,8 @@ export class ExamPreviewComponent implements OnChanges {
   @Input() exam: IExam;
   @Output() goToEditorClicked = new EventEmitter<boolean>();
   @Output() addStudioClicked = new EventEmitter<number>();
+  @Output() deleteExamClicked = new EventEmitter<number>();
+  @Output() viewStudiesClicked = new EventEmitter<number>();
   disableAddStudioButton: boolean = true;
 
   constructor(private dialog: MatDialog) {}
@@ -63,5 +66,13 @@ export class ExamPreviewComponent implements OnChanges {
 
   addStudio(): void {
     this.addStudioClicked.emit(this.id);
+  }
+
+  deleteExam(): void {
+    this.deleteExamClicked.emit(this.id);
+  }
+
+  viewStudies(): void {
+    this.viewStudiesClicked.emit(this.id);
   }
 }

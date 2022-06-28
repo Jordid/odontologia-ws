@@ -1,5 +1,6 @@
 import { ExamCategoryTypeEnum } from './exam-category-type.enum';
 import { IOrder } from './order.interface';
+import { IStudy } from './studio.interface';
 export interface IExamType {
   name: string;
   type: ExamCategoryTypeEnum;
@@ -12,6 +13,7 @@ export interface IExam {
   orderId: number;
   radiographyId: number;
   type: IExamType;
+  studies: IStudy[]
 }
 
 export interface ICreateExam {

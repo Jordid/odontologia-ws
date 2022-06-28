@@ -1,6 +1,15 @@
 <div class="odoContainer mat-elevation-z2">
   <div class="nameAndImageContainer">
-    <div class="examName">Radiografía - {{ exam?.type?.name }}</div>
+    <div class="examNameIcon">
+      <div class="examName">Radiografía - {{ exam?.type?.name }}</div>
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with a menu"
+      >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+    </div>
     <div
       class="imageContainer"
       *ngIf="exam?.miniatureUrl"
@@ -11,27 +20,54 @@
   </div>
 
   <div class="actions">
-    <button
-      mat-mini-fab
-      color="none"
-      matTooltip="Previsualizar"
-      (click)="showPreview()"
-    >
-      <mat-icon color="primary">panorama</mat-icon>
-    </button>
-
-    <button
-      mat-mini-fab
-      color="none"
-      matTooltip="Agregar estudio"
-      [disabled]="disableAddStudioButton"
-      (click)="addStudio()"
-    >
-      <mat-icon
-        color="primary"
-        [ngClass]="{ disableAddStudioButton: disableAddStudioButton }"
-        >note_add</mat-icon
+    <div class="budgets">
+      <span
+        *ngIf="exam?.studies?.length > 0"
+        class="studies"
+        matTooltip="Total de estudios"
       >
-    </button>
+        {{ exam.studies.length }}
+      </span>
+    </div>
+
+    <div class="buttons">
+      <button
+        mat-mini-fab
+        color="none"
+        matTooltip="Previsualizar"
+        (click)="showPreview()"
+      >
+        <mat-icon color="primary">panorama</mat-icon>
+      </button>
+
+      <button
+        mat-mini-fab
+        color="none"
+        matTooltip="Agregar estudio"
+        [disabled]="disableAddStudioButton"
+        (click)="addStudio()"
+      >
+        <mat-icon
+          color="primary"
+          [ngClass]="{ disableAddStudioButton: disableAddStudioButton }"
+          >note_add</mat-icon
+        >
+      </button>
+    </div>
   </div>
 </div>
+
+<mat-menu #menu="matMenu">
+  <button
+    *ngIf="exam?.studies?.length > 0"
+    mat-menu-item
+    (click)="viewStudies()"
+  >
+    <mat-icon>format_list_numbered</mat-icon>
+    <span>Ver estudios</span>
+  </button>
+  <button mat-menu-item (click)="deleteExam()">
+    <mat-icon>close</mat-icon>
+    <span>Eliminar</span>
+  </button>
+</mat-menu>

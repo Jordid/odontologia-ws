@@ -7,7 +7,7 @@
   width: 100%;
   min-height: 285px;
   .nameAndImageContainer {
-    max-height: 201px;
+    max-height: 237px;
     .imageContainer {
       display: flex;
       flex-direction: column;
@@ -19,23 +19,68 @@
         border-radius: 4px;
       }
     }
-    .examName {
-      padding-bottom: 6px;
-      font-weight: 500;
+    .examNameIcon {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       line-height: normal;
+      .examName {
+        font-weight: 500;
+        line-height: normal;
+        font-size: 14px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        min-width: calc(100% - 30px);
+      }
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 30px;
+        width: 30px;
+      }
+      margin-bottom: 6px;
     }
   }
 
   .actions {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: flex-end;
     padding-top: 6px;
     padding-bottom: 6px;
-    button {
-      margin-left: 4px;
-      margin-right: 4px;
-      .disableAddStudioButton {
-        color: gray;
+    margin-top: 6px;
+    .budgets {
+      .studies {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        line-height: normal;
+        border-radius: 50%;
+        background-color: #ff4081;
+        color: white;
+        padding: 4px;
+        font-size: 14px;
+        font-weight: 500;
+        width: 28px;
+        height: 28px;
+      }
+    }
+    .buttons {
+      display: flex;
+      justify-content: flex-end;
+      button {
+        margin-left: 4px;
+        margin-right: 4px;
+        height: 34px;
+        width: 34px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .disableAddStudioButton {
+          color: gray;
+        }
       }
     }
   }

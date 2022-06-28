@@ -115,4 +115,11 @@ export class CreateOrderFormComponent implements OnInit, OnDestroy {
       this.ordersService.getExams(this.order?.orderId);
     }
   }
+
+  onDeleteStudioClickedChange(id: number): void {
+    console.log('delete studio: ', id);
+  }
+  onViewStudiesClickedChange(id: number): void {
+    console.log('view studios: ', id);
+  }
 }
