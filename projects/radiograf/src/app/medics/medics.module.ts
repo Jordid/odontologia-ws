@@ -9,10 +9,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { DialogsModule } from '../shared/components/dialogs/dialogs.module';
 import { SharedMedicsModule } from '../shared/components/shared-medics/shared-medics.module';
 import { UserModule } from '../shared/components/user/user.module';
 import { PipesModule } from '../shared/pipes/pipes.module';
-import { DialogsModule } from '../shared/components/dialogs/dialogs.module';
 import { CreateMedicFormComponent } from './components/create-medic-form/create-medic-form.component';
 import { MedicsInitComponent } from './components/medics-init/medics-init.component';
 import { MedicsTableMenuComponent } from './components/medics-table-menu/medics-table-menu.component';
@@ -46,10 +47,11 @@ import { MedicsRoutingModule } from './medic-routing.module';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatTooltipModule,
     UserModule,
     SharedMedicsModule,
     PipesModule,
-    DialogsModule
+    DialogsModule,
   ],
 })
 export class MedicsModule {}

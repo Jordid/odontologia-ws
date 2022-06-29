@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { OrdersService } from '../../services/orders.service';
-import { IExam } from '../../types/exam.interface';
 import { ICreateOrder, IOrder } from '../../types/order.interface';
 @Component({
   selector: 'odo-create-order-form',
@@ -15,12 +14,6 @@ export class CreateOrderFormComponent implements OnInit, OnDestroy {
   order: IOrder;
   formSent: boolean = false;
   submitting: boolean = false;
-  showContinueButton: boolean = false;
-  showCreateExamForm: boolean = false;
-  radiographyId: number;
-  exams: IExam[];
-  gettingExams: boolean = false;
-  showCreateStudyForm: boolean = false;
 
   private subs: Subscription = new Subscription();
 
@@ -28,8 +21,6 @@ export class CreateOrderFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subs.add(this.ordersService.getOrder$().subscribe(this.getOrder));
-    this.subs.add(this.ordersService.getExams$().subscribe(this.getExams));
-    this.subs.add(this.ordersService.getDeleted$().subscribe(this.getDeleted));
   }
 
   ngOnDestroy(): void {
@@ -41,6 +32,7 @@ export class CreateOrderFormComponent implements OnInit, OnDestroy {
     this.order = order;
     if (order?.orderId) {
       this.ordersService.orderSnackbars.successGeneratedOrder();
+      this.router.navigate([`/admin/orders/${order?.orderId}/edit-order`]);
     } else {
       this.ordersService.orderSnackbars.failureGeneratedOrder();
     }
@@ -71,66 +63,5 @@ export class CreateOrderFormComponent implements OnInit, OnDestroy {
       this.submitting = true;
       this.ordersService.createOrder(createOrderJson);
     }
-  }
-
-  addExam(): void {
-    this.showCreateExamForm = true;
-    this.showCreateStudyForm = false;
-  }
-
-  onImageUploadedChange(uploaded: boolean): void {
-    this.showContinueButton = true;
-  }
-
-  continue(): void {
-    this.router.navigate(['/admin/orders']);
-  }
-
-  onSentCreateExamChange(sentCreateExam: boolean) {
-    this.showCreateExamForm = false;
-    if (this.order?.orderId && sentCreateExam === true) {
-      this.gettingExams = true;
-      this.ordersService.getExams(this.order?.orderId);
-    }
-  }
-
-  private getExams = (exams: IExam[]): void => {
-    this.exams = exams;
-    this.gettingExams = false;
-  };
-
-  private getDeleted = (deleted: boolean): void => {
-    if (deleted) {
-      this.ordersService.orderSnackbars.successDeleteExam();
-      this.ordersService.getExams(this.order?.orderId);
-    } else {
-      this.ordersService.orderSnackbars.failureDeleteExam();
-    }
-  };
-
-  onAddStudioClickedChange(radiographyId: number): void {
-    this.showCreateStudyForm = true;
-    this.showCreateExamForm = false;
-    this.radiographyId = radiographyId;
-  }
-
-  onCancelCreateStudioClicked(cancel: boolean) {
-    this.showCreateStudyForm = false;
-  }
-
-  onSentCreateStudyChange(sentCreateStudy: boolean) {
-    this.showCreateStudyForm = false;
-    if (this.order?.orderId && sentCreateStudy === true) {
-      this.gettingExams = true;
-      this.ordersService.getExams(this.order?.orderId);
-    }
-  }
-
-  onDeleteStudioClickedChange(exam: IExam): void {
-    this.ordersService.deleteExam(exam?.orderId, exam?.radiographyId);
-  }
-
-  onViewStudiesClickedChange(id: number): void {
-    console.log('view studios: ', id);
   }
 }

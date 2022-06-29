@@ -1,0 +1,85 @@
+<div class="container pt-3 pb-5">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <mat-card class="mat-elevation-z4">
+        <mat-card-title>Editar orden</mat-card-title>
+        <mat-card-content>
+          <div class="row justify-content-center justify-content-sm-start">
+            <!-- Si ya se generó la orden se muestra los datos del paciente y médico. -->
+            <ng-container *ngIf="order?.orderId > 0; else spinner">
+              <div class="previewContainer">
+                <odo-oder-patient-and-medic-preview
+                  [order]="order"
+                ></odo-oder-patient-and-medic-preview>
+              </div>
+            </ng-container>
+
+            <!-- Lista de exámenes. -->
+            <ng-container *ngIf="!gettingExams; else spinner">
+              <ng-container
+                *ngIf="
+                  exams?.length > 0 &&
+                  !showCreateExamForm &&
+                  !showCreateStudyForm
+                "
+              >
+                <div class="orderFilesListContainer">
+                  <odo-orders-files-list-preview
+                    [exams]="exams"
+                    (addStudioClicked)="onAddStudioClickedChange($event)"
+                    (deleteExamClicked)="onDeleteStudioClickedChange($event)"
+                    (viewStudiesClicked)="onViewStudiesClickedChange($event)"
+                  ></odo-orders-files-list-preview>
+                </div>
+              </ng-container>
+            </ng-container>
+
+            <!-- Se muestra botón Agregar exmane cuando ya se generó la orden. -->
+            <div
+              *ngIf="
+                order?.orderId > 0 &&
+                !showCreateExamForm &&
+                !showCreateStudyForm &&
+                !gettingExams
+              "
+              class="col-12 d-flex justify-content-end"
+            >
+              <button
+                mat-stroked-button
+                color="accent"
+                type="button"
+                (click)="addExam()"
+              >
+                Agregar exámen
+              </button>
+            </div>
+
+            <!-- Se muestra el formulario de creación de exámen cuando se hace clic en el boton agregar exámen. -->
+            <div *ngIf="showCreateExamForm" class="col-12">
+              <odo-create-exam-form
+                [orderId]="order?.orderId"
+                (sentCreateExam)="onSentCreateExamChange($event)"
+              ></odo-create-exam-form>
+            </div>
+
+            <!-- Se muestra el formulario de creación de studio cuando se hace clic en el boton agregar studio. -->
+            <div *ngIf="showCreateStudyForm" class="col-12">
+              <odo-create-study-form
+                [orderId]="order?.orderId"
+                [radiographyId]="radiographyId"
+                (cancel)="onCancelCreateStudioClicked($event)"
+                (sentCreateStudy)="onSentCreateStudyChange($event)"
+              ></odo-create-study-form>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<ng-template #spinner>
+  <div class="spinnerContainer mt-3">
+    <odo-progress-spinner></odo-progress-spinner>
+  </div>
+</ng-template>

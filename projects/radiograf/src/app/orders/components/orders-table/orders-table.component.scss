@@ -12,6 +12,7 @@ table {
 .actionsRow {
   display: flex;
   flex-wrap: nowrap;
+  justify-content: flex-end;
 }
 
 table.mat-table {

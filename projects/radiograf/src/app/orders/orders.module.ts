@@ -25,6 +25,7 @@ import { UserModule } from '../shared/components/user/user.module';
 import { PipesModule } from '../shared/pipes/pipes.module';
 import { CreateExamFormComponent } from './components/create-exam-form/create-exam-form.component';
 import { CreateOrderFormComponent } from './components/create-order-form/create-order-form.component';
+import { EditOrderComponent } from './components/edit-order/edit-order.component';
 import { LoadedImagePreviewComponent } from './components/loaded-image-preview/loaded-image-preview.component';
 import { OderPatientAndMedicPreviewComponent } from './components/oder-patient-and-medic-preview/oder-patient-and-medic-preview.component';
 import { MolarPieceComponent } from './components/odontogram/molar-piece/molar-piece.component';
@@ -74,6 +75,7 @@ import { StudyTypePipe } from './pipes/study-type.pipe';
     StudyTypePipe,
     ToothPieceComponent,
     UploadImagesComponent,
+    EditOrderComponent,
   ],
   imports: [
     CommonModule,
