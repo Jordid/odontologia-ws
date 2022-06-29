@@ -47,4 +47,20 @@ export class OrdersSnackbarsService {
       OrderSnackbars.failureGetOrder.config
     );
   }
+
+  public successDeleteExam(): void {
+    this.snackbar.open(
+      OrderSnackbars.successDeleteExam.message,
+      OrderSnackbars.successDeleteExam.closeBtn,
+      OrderSnackbars.successDeleteExam.config
+    );
+  }
+
+  public failureDeleteExam(): void {
+    this.snackbar.open(
+      OrderSnackbars.failureDeleteExam.message,
+      OrderSnackbars.failureDeleteExam.closeBtn,
+      OrderSnackbars.failureDeleteExam.config
+    );
+  }
 }

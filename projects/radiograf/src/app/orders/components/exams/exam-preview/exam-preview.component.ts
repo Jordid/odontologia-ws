@@ -26,7 +26,7 @@ export class ExamPreviewComponent implements OnChanges {
   @Input() exam: IExam;
   @Output() goToEditorClicked = new EventEmitter<boolean>();
   @Output() addStudioClicked = new EventEmitter<number>();
-  @Output() deleteExamClicked = new EventEmitter<number>();
+  @Output() deleteExamClicked = new EventEmitter<IExam>();
   @Output() viewStudiesClicked = new EventEmitter<number>();
   disableAddStudioButton: boolean = true;
 
@@ -69,7 +69,7 @@ export class ExamPreviewComponent implements OnChanges {
   }
 
   deleteExam(): void {
-    this.deleteExamClicked.emit(this.id);
+    this.deleteExamClicked.emit(this.exam);
   }
 
   viewStudies(): void {

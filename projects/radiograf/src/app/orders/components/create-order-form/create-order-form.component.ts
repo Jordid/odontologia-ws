@@ -29,6 +29,7 @@ export class CreateOrderFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subs.add(this.ordersService.getOrder$().subscribe(this.getOrder));
     this.subs.add(this.ordersService.getExams$().subscribe(this.getExams));
+    this.subs.add(this.ordersService.getDeleted$().subscribe(this.getDeleted));
   }
 
   ngOnDestroy(): void {
@@ -98,6 +99,15 @@ export class CreateOrderFormComponent implements OnInit, OnDestroy {
     this.gettingExams = false;
   };
 
+  private getDeleted = (deleted: boolean): void => {
+    if (deleted) {
+      this.ordersService.orderSnackbars.successDeleteExam();
+      this.ordersService.getExams(this.order?.orderId);
+    } else {
+      this.ordersService.orderSnackbars.failureDeleteExam();
+    }
+  };
+
   onAddStudioClickedChange(radiographyId: number): void {
     this.showCreateStudyForm = true;
     this.showCreateExamForm = false;
@@ -116,9 +126,10 @@ export class CreateOrderFormComponent implements OnInit, OnDestroy {
     }
   }
 
-  onDeleteStudioClickedChange(id: number): void {
-    console.log('delete studio: ', id);
+  onDeleteStudioClickedChange(exam: IExam): void {
+    this.ordersService.deleteExam(exam?.orderId, exam?.radiographyId);
   }
+
   onViewStudiesClickedChange(id: number): void {
     console.log('view studios: ', id);
   }

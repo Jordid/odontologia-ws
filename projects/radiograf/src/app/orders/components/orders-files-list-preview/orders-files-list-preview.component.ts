@@ -12,7 +12,7 @@ export class OrdersFilesListPreviewComponent {
 
   @Input() exams: IExam[];
   @Output() addStudioClicked = new EventEmitter<number>();
-  @Output() deleteExamClicked = new EventEmitter<number>();
+  @Output() deleteExamClicked = new EventEmitter<IExam>();
   @Output() viewStudiesClicked = new EventEmitter<number>();
 
   constructor(private router: Router, private route: ActivatedRoute) {}
@@ -34,8 +34,8 @@ export class OrdersFilesListPreviewComponent {
   onAddStudioClickedChange(id: number): void {
     this.addStudioClicked.emit(id);
   }
-  onDeleteStudioClickedChange(id: number): void {
-    this.deleteExamClicked.emit(id);
+  onDeleteStudioClickedChange(exam: IExam): void {
+    this.deleteExamClicked.emit(exam);
   }
   onViewStudiesClickedChange(id: number): void {
     this.viewStudiesClicked.emit(id);

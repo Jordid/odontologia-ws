@@ -32,6 +32,7 @@ export class OrdersService {
   protected readonly fileSubject = new Subject<IFile>();
   protected readonly paginationLinksSubject = new Subject<PaginationLinks>();
   protected readonly studySubject = new Subject<IStudy>();
+  protected readonly deletedSubject = new Subject<boolean>();
 
   constructor(
     private ordersHttp: OrdersHttpService,
@@ -47,6 +48,10 @@ export class OrdersService {
 
   private disableLoading(): void {
     this.progressBarService.hide();
+  }
+
+  public getDeleted$(): Observable<boolean> {
+    return this.deletedSubject.asObservable();
   }
 
   // Pagination Links
@@ -371,6 +376,33 @@ export class OrdersService {
 
   private errorCreateStudy = (error: HttpErrorResponse): void => {
     this.studySubject.next(null);
+    this.commonsHttp.errorsHttp.communication(error);
+  };
+
+  public deleteExam(orderId: number, radiographyId: number): void {
+    if (this.oAuthStorage.hasOAuth) {
+      this.enableLoading();
+      this.ordersHttp
+        .deleteExam$(orderId, radiographyId)
+        .pipe(finalize(() => this.disableLoading()))
+        .subscribe({
+          next: this.nextDeleteExam,
+          error: this.errorDeleteExam,
+        });
+    }
+  }
+
+  private nextDeleteExam = (data: HttpResponse<any>): void => {
+    if (this.commonsHttp.validationsHttp.verifyStatus204(data)) {
+      this.deletedSubject.next(true);
+    } else {
+      this.deletedSubject.next(false);
+      this.commonsHttp.errorsHttp.apiInvalidResponse(data);
+    }
+  };
+
+  private errorDeleteExam = (error: HttpErrorResponse): void => {
+    this.deletedSubject.next(true);
     this.commonsHttp.errorsHttp.communication(error);
   };
 }
