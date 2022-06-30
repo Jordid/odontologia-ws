@@ -26,7 +26,6 @@ const routes: Routes = [
         component: UpdateClientFormComponent,
         canActivate: [OAuthGuard],
       },
-
       {
         path: ':clientId/orders',
         loadChildren: () =>

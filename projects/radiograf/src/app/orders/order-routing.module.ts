@@ -32,6 +32,12 @@ const routes: Routes = [
         component: EditOrderComponent,
         canActivate: [OAuthGuard],
       },
+      {
+        path: ':orderId/exams',
+        loadChildren: () =>
+          import('../exams/exams.module').then((m) => m.ExamsModule),
+        canLoad: [OAuthGuard],
+      },
     ],
   },
 ];
