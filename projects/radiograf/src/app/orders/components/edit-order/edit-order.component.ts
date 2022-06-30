@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ProgressBarService } from '../../../shared/services/progress-bar/progress-bar.service';
 import { OrdersService } from '../../services/orders.service';
@@ -27,7 +27,8 @@ export class EditOrderComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private ordersService: OrdersService,
-    private progressBarService: ProgressBarService
+    private progressBarService: ProgressBarService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -114,7 +115,7 @@ export class EditOrderComponent implements OnInit {
     this.ordersService.deleteExam(exam?.orderId, exam?.radiographyId);
   }
 
-  onViewStudiesClickedChange(id: number): void {
-    console.log('view studios: ', id);
+  onViewStudiesClickedChange(exam: IExam): void {
+    this.router.navigate([`/admin/orders/${exam?.orderId}/exams/${exam?.radiographyId}/studies`]);
   }
 }

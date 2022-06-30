@@ -27,7 +27,7 @@ export class ExamPreviewComponent implements OnChanges {
   @Output() goToEditorClicked = new EventEmitter<boolean>();
   @Output() addStudioClicked = new EventEmitter<number>();
   @Output() deleteExamClicked = new EventEmitter<IExam>();
-  @Output() viewStudiesClicked = new EventEmitter<number>();
+  @Output() viewStudiesClicked = new EventEmitter<IExam>();
   disableAddStudioButton: boolean = true;
 
   constructor(private dialog: MatDialog) {}
@@ -73,6 +73,6 @@ export class ExamPreviewComponent implements OnChanges {
   }
 
   viewStudies(): void {
-    this.viewStudiesClicked.emit(this.id);
+    this.viewStudiesClicked.emit(this.exam);
   }
 }

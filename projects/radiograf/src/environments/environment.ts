@@ -21,7 +21,7 @@ export const appEnvironment = {
 
 export const apiRadioGrafEnvironment = {
   //baseUrl: 'https://radiograf.jivsoft.com/api',
-  //baseUrl: 'https://app.rayodent.com/api',
+  baseUrl: 'https://app.rayodent.com/api',
   //baseUrl: 'https://3.228.155.148/api',
-  baseUrl: 'https://api.3dentalcompany.com/api',
+  //baseUrl: 'https://api.3dentalcompany.com/api',
 };

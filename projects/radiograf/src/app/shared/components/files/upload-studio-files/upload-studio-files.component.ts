@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { IFile } from '../../../../orders/types/file.interface';
+import { IFile } from '../../../../shared/types/files/file.interface';
 
 @Component({
   selector: 'odo-upload-studio-files',

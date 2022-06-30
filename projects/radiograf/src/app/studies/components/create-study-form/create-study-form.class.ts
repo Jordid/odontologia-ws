@@ -1,5 +1,10 @@
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { StudyTypeArray, StudyTypeEnum } from '../../../types/study-type.enum';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  Validators
+} from '@angular/forms';
+import { StudyTypeArray, StudyTypeEnum } from '../../types/study-type.enum';
 
 export class CreateStudyForm {
   private fb: FormBuilder = new FormBuilder();

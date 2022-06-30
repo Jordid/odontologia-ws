@@ -7,9 +7,9 @@ import {
   Output,
   SimpleChanges
 } from '@angular/core';
-import { IProgressInfo } from '../../../../orders/components/create-exam-form/create-exam-form.component';
 import { OrdersService } from '../../../../orders/services/orders.service';
-import { IFile } from '../../../../orders/types/file.interface';
+import { IFile } from '../../../../shared/types/files/file.interface';
+import { IProgressInfo } from '../../../../shared/types/files/progress-info.interface';
 
 @Component({
   selector: 'odo-selected-file-list-preview',

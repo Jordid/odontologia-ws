@@ -23,6 +23,7 @@ import { SharedMedicsModule } from '../shared/components/shared-medics/shared-me
 import { SpinnersModule } from '../shared/components/spinners/spinners.module';
 import { UserModule } from '../shared/components/user/user.module';
 import { PipesModule } from '../shared/pipes/pipes.module';
+import { StudiesModule } from '../studies/studies.module';
 import { CreateExamFormComponent } from './components/create-exam-form/create-exam-form.component';
 import { CreateOrderFormComponent } from './components/create-order-form/create-order-form.component';
 import { EditOrderComponent } from './components/edit-order/edit-order.component';
@@ -41,19 +42,16 @@ import { OrdersTableMenuComponent } from './components/orders-table-menu/orders-
 import { OrdersTableWithMenuComponent } from './components/orders-table-with-menu/orders-table-with-menu.component';
 import { OrdersTableComponent } from './components/orders-table/orders-table.component';
 import { OrdersComponent } from './components/orders/orders.component';
-import { CreateStudyFormComponent } from './components/studies/create-study-form/create-study-form.component';
 import { UploadImagesComponent } from './components/upload-images/upload-images.component';
 import { OrderRoutingModule } from './order-routing.module';
 import { ExamCategoryPipe } from './pipes/exam-category.pipe';
 import { OrderStatusPipe } from './pipes/order-status.pipe';
 import { RadiographyTypePipe } from './pipes/radiography-type.pipe';
-import { StudyTypePipe } from './pipes/study-type.pipe';
 
 @NgModule({
   declarations: [
     CreateExamFormComponent,
     CreateOrderFormComponent,
-    CreateStudyFormComponent,
     ExamCategoryPipe,
     ExamPreviewComponent,
     LoadedImagePreviewComponent,
@@ -72,7 +70,6 @@ import { StudyTypePipe } from './pipes/study-type.pipe';
     OrderStatusPipe,
     PiecesBlockComponent,
     RadiographyTypePipe,
-    StudyTypePipe,
     ToothPieceComponent,
     UploadImagesComponent,
     EditOrderComponent,
@@ -103,6 +100,7 @@ import { StudyTypePipe } from './pipes/study-type.pipe';
     AutocompletesModule,
     FilesModule,
     SpinnersModule,
+    StudiesModule,
   ],
 })
 export class OrdersModule {}

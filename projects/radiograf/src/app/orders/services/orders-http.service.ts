@@ -8,9 +8,9 @@ import { Injectable } from '@angular/core';
 import { Params } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ApiRadiografEnv } from '../../core/config/apis/api-radiograf/api-radiograf.config';
+import { ICreateStudy } from '../../studies/types/study.interface';
 import { ICreateExam } from '../types/exam.interface';
 import { ICreateOrder, IUpdateOrder } from '../types/order.interface';
-import { ICreateStudy } from '../types/studio.interface';
 
 @Injectable({
   providedIn: 'root',

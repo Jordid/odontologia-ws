@@ -7,11 +7,6 @@ import {
   SimpleChanges
 } from '@angular/core';
 
-export interface IProgressInfo {
-  value: any;
-  fileName: string;
-}
-
 @Component({
   selector: 'odo-loaded-image-preview',
   templateUrl: './loaded-image-preview.component.html',
@@ -36,7 +31,9 @@ export class LoadedImagePreviewComponent implements OnChanges {
       var reader = new FileReader();
       reader.readAsDataURL(this.file);
       reader.onload = (_event) => {
-        this.urlFile = reader.result;
+        if (reader.result) {
+          this.urlFile = reader.result;
+        }
       };
     }
   }

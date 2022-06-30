@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { OrdersService } from '../../../services/orders.service';
-import { IFile } from '../../../types/file.interface';
-import { ICreateStudy, IStudy } from '../../../types/studio.interface';
-import { IProgressInfo } from '../../create-exam-form/create-exam-form.component';
+import { OrdersService } from '../../../orders/services/orders.service';
+import { IFile } from '../../../shared/types/files/file.interface';
+import { IProgressInfo } from '../../../shared/types/files/progress-info.interface';
+import { ICreateStudy, IStudy } from '../../types/study.interface';
 import { CreateStudyForm } from './create-study-form.class';
 
 @Component({

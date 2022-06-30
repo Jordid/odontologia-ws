@@ -1,5 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { StudyTypeEnum, StudyTypeInfo } from '../types/study-type.enum';
+import {
+  StudyTypeEnum,
+  StudyTypeInfo
+} from '../../../studies/types/study-type.enum';
 
 @Pipe({
   name: 'studyType',

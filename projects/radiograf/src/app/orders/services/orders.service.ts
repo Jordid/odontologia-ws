@@ -10,11 +10,11 @@ import { OAuthStorageService } from '../../auth/services/o-auth-storage.service'
 import { CommonsHttpService } from '../../core/services/commons/commons-http/commons-http.service';
 import { PaginationLinks } from '../../core/types/pagination-links';
 import { ProgressBarService } from '../../shared/services/progress-bar/progress-bar.service';
+import { IFile } from '../../shared/types/files/file.interface';
+import { ICreateStudy, IStudy } from '../../studies/types/study.interface';
 import { ICreateExam, IExam } from '../types/exam.interface';
-import { IFile } from '../types/file.interface';
 import { ICreateOrder, IOrder, IUpdateOrder } from '../types/order.interface';
 import { IRadiographyType } from '../types/radiography-type.interface';
-import { ICreateStudy, IStudy } from '../types/studio.interface';
 import { OrdersHttpService } from './orders-http.service';
 import { OrdersSnackbarsService } from './orders-snackbars.service';
 
