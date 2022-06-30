@@ -1,0 +1,40 @@
+.tableContainer {
+  overflow: auto;
+}
+table {
+  width: 100%;
+}
+
+.avatarContainer {
+  margin-right: 8px;
+}
+
+.actionsRow {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+
+table.mat-table {
+  .cdk-column-orderCode.mat-column-orderCode {
+    min-width: 105px;
+  }
+  .cdk-column-patientNames.mat-column-patientNames {
+    min-width: 180px;
+  }
+  .cdk-column-patientDocument.mat-column-patientDocument {
+    min-width: 120px;
+  }
+  .cdk-column-medicNames.mat-column-medicNames {
+    min-width: 180px;
+  }
+  .cdk-column-medicDocument.mat-column-medicDocument {
+    min-width: 120px;
+  }
+  .cdk-column-status.mat-column-status {
+    min-width: 90px;
+  }
+  .cdk-column-actions.mat-column-actions {
+    min-width: 90px;
+  }
+}

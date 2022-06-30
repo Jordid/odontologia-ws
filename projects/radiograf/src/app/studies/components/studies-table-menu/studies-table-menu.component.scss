@@ -1,0 +1,44 @@
+.menuTableContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 64px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  background-color: white;
+  flex-wrap: wrap;
+  padding-bottom: 4px;
+  padding-top: 4px;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin: 0px;
+  .titleSearchContainer {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    .titleContainer {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      h5 {
+        font-size: 20px;
+        line-height: 32px;
+        font-weight: 500;
+        padding-right: 24px;
+        margin-bottom: 0px;
+        border-right: 1px solid rgba(0, 0, 0, 0.12);
+      }
+    }
+    .searcherContainer {
+      margin-top: 4px;
+      margin-bottom: 4px;
+    }
+  }
+  .actionsContainer {
+    display: flex;
+    justify-content: flex-end;
+    .addButton {
+      margin-left: 8px;
+    }
+  }
+}
