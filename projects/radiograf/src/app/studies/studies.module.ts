@@ -24,6 +24,7 @@ import { StudiesTableWithMenuComponent } from './components/studies-table-with-m
 import { StudiesTableComponent } from './components/studies-table/studies-table.component';
 import { StudiesComponent } from './components/studies/studies.component';
 import { StudyRoutingModule } from './study-routing.module';
+import { MiniStudyPreviewComponent } from './components/mini-study-preview/mini-study-preview.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { StudyRoutingModule } from './study-routing.module';
     StudiesTableMenuComponent,
     StudiesTableComponent,
     CreateStudyFormComponent,
+    MiniStudyPreviewComponent,
   ],
   imports: [
     CommonModule,

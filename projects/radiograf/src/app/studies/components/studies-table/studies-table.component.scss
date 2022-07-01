@@ -12,29 +12,31 @@ table {
 .actionsRow {
   display: flex;
   flex-wrap: nowrap;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
 table.mat-table {
-  .cdk-column-orderCode.mat-column-orderCode {
-    min-width: 105px;
+  .cdk-column-studyCode.mat-column-studyCode {
+    min-width: 140px;
   }
-  .cdk-column-patientNames.mat-column-patientNames {
-    min-width: 180px;
+  .cdk-column-preview.mat-column-preview {
+    min-width: 140px;
   }
-  .cdk-column-patientDocument.mat-column-patientDocument {
-    min-width: 120px;
+  .cdk-column-description.mat-column-description {
+    min-width: 250px;
+    max-width: 400px;
   }
-  .cdk-column-medicNames.mat-column-medicNames {
-    min-width: 180px;
-  }
-  .cdk-column-medicDocument.mat-column-medicDocument {
-    min-width: 120px;
-  }
-  .cdk-column-status.mat-column-status {
-    min-width: 90px;
+  .cdk-column-type.mat-column-type {
+    min-width: 140px;
   }
   .cdk-column-actions.mat-column-actions {
-    min-width: 90px;
+    min-width: 80px;
   }
+}
+
+.description {
+  line-height: normal;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }

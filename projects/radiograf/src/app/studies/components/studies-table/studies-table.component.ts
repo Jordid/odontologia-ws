@@ -33,7 +33,9 @@ export class StudiesTableComponent implements OnInit, AfterViewInit {
 
   public displayedColumns: string[] = [
     'studyCode',
+    'preview',
     'description',
+    'type',
     'actions',
   ];
 
@@ -72,6 +74,9 @@ export class StudiesTableComponent implements OnInit, AfterViewInit {
     this.params = params;
   };
 
+  viewStudy(study: IStudy): void {
+    console.log('Ver study: ', study);
+  }
   deleteStudy(study: IStudy): void {
     console.log('Delete study: ', study);
   }
