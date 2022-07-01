@@ -1,4 +1,7 @@
-<div class="mat-elevation-z8 tableContainer">
+<div
+  class="mat-elevation-z1 tableContainer"
+  [ngClass]="{ 'd-none': paginator?.length === 0 }"
+>
   <table mat-table matSort>
     <!-- firstName Column -->
     <ng-container matColumnDef="avatar">
@@ -111,3 +114,8 @@
   <mat-paginator #paginator [pageSizeOptions]="[10, 25, 50, 100, 250]">
   </mat-paginator>
 </div>
+
+<odo-no-results-display-in-table
+  *ngIf="paginator?.length === 0"
+  message="No hay pacientes para mostrar."
+></odo-no-results-display-in-table>

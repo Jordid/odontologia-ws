@@ -19,3 +19,10 @@
   border-top-color: #000000;
   animation: spinner 0.8s linear infinite;
 }
+
+.tableSpinnerContainer {
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

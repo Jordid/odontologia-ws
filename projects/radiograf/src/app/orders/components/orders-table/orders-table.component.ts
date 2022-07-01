@@ -89,7 +89,7 @@ export class OrdersTableComponent implements OnInit, AfterViewInit {
 
   viewOrder(order: IOrder): void {
     if (order?.orderId && order?.client?.clientId) {
-      let route = null;
+      let route: string;
       if (this.clientId) {
         route = `/admin/clients/${order?.client?.clientId}/orders/${order?.orderId}`;
       } else {

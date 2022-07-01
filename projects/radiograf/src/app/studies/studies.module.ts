@@ -11,8 +11,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { LayoutModule } from '../layout/layout.module';
+import { ComponentsModule } from '../shared/components/components.module';
 import { FilesModule } from '../shared/components/files/files.module';
 import { SearchersModule } from '../shared/components/searchers/searchers.module';
+import { SpinnersModule } from '../shared/components/spinners/spinners.module';
 import { PipesModule } from '../shared/pipes/pipes.module';
 import { CreateStudyFormComponent } from './components/create-study-form/create-study-form.component';
 import { StudiesInitComponent } from './components/studies-init/studies-init.component';
@@ -51,6 +53,8 @@ import { StudyRoutingModule } from './study-routing.module';
     ReactiveFormsModule,
     SearchersModule,
     StudyRoutingModule,
+    ComponentsModule,
+    SpinnersModule,
   ],
   exports: [CreateStudyFormComponent],
 })

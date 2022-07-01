@@ -16,6 +16,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ExamPreviewComponent } from '../orders/components/exams/exam-preview/exam-preview.component';
 import { AutocompletesModule } from '../shared/components/autocompletes/autocompletes.module';
+import { ComponentsModule } from '../shared/components/components.module';
 import { DialogsModule } from '../shared/components/dialogs/dialogs.module';
 import { FilesModule } from '../shared/components/files/files.module';
 import { SearchersModule } from '../shared/components/searchers/searchers.module';
@@ -101,6 +102,7 @@ import { RadiographyTypePipe } from './pipes/radiography-type.pipe';
     FilesModule,
     SpinnersModule,
     StudiesModule,
+    ComponentsModule
   ],
 })
 export class OrdersModule {}

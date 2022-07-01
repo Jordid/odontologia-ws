@@ -1,4 +1,13 @@
 <div class="menuTableContainer">
   <odo-medics-table-menu></odo-medics-table-menu>
-  <odo-medics-table></odo-medics-table>
+  <ng-container *ngIf="medics$ | async; else spinner"> </ng-container>
+  <div [ngClass]="{ 'd-none': !(medics$ | async) }">
+    <odo-medics-table></odo-medics-table>
+  </div>
 </div>
+
+<ng-template #spinner>
+  <div class="mat-elevation-z1 tableSpinnerContainer">
+    <odo-progress-spinner></odo-progress-spinner>
+  </div>
+</ng-template>

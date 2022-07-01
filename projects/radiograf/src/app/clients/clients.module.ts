@@ -12,8 +12,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ComponentsModule } from '../shared/components/components.module';
 import { DialogsModule } from '../shared/components/dialogs/dialogs.module';
 import { SearchersModule } from '../shared/components/searchers/searchers.module';
+import { SpinnersModule } from '../shared/components/spinners/spinners.module';
 import { UserModule } from '../shared/components/user/user.module';
 import { PipesModule } from '../shared/pipes/pipes.module';
 import { ClientRoutingModule } from './client-routing.module';
@@ -59,6 +61,8 @@ import { ClientStatusPipe } from './pipes/client-status.pipe';
     UserModule,
     PipesModule,
     DialogsModule,
+    SpinnersModule,
+    ComponentsModule,
   ],
 })
 export class ClientsModule {}

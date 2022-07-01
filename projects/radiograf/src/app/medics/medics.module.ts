@@ -10,8 +10,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ComponentsModule } from '../shared/components/components.module';
 import { DialogsModule } from '../shared/components/dialogs/dialogs.module';
 import { SharedMedicsModule } from '../shared/components/shared-medics/shared-medics.module';
+import { SpinnersModule } from '../shared/components/spinners/spinners.module';
 import { UserModule } from '../shared/components/user/user.module';
 import { PipesModule } from '../shared/pipes/pipes.module';
 import { CreateMedicFormComponent } from './components/create-medic-form/create-medic-form.component';
@@ -52,6 +54,8 @@ import { MedicsRoutingModule } from './medic-routing.module';
     SharedMedicsModule,
     PipesModule,
     DialogsModule,
+    ComponentsModule,
+    SpinnersModule,
   ],
 })
 export class MedicsModule {}
